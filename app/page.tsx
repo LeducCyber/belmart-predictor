@@ -324,8 +324,9 @@ export default function BelmartPredictor2026() {
     <div className="min-h-screen bg-[#0A2C6D] text-white">
 
       {/* HEADER */}
-      <header className="flex items-center justify-between bg-[#082456] px-8 py-5 shadow-lg">
+      <header className="flex flex-col md:flex-row items-center justify-between bg-[#082456] px-6 md:px-8 py-5 shadow-lg gap-5">
 
+        {/* LEFT */}
         <div className="flex items-center gap-4">
 
           <Image
@@ -333,13 +334,15 @@ export default function BelmartPredictor2026() {
             alt="Belmart Logo"
             width={80}
             height={80}
-            className="rounded-2xl"
+            className="rounded-2xl shadow-lg"
           />
 
           <div>
 
-            <h1 className="text-3xl font-black text-[#FFD400]">
-              Jeu de pronostique de Belmart
+            <h1 className="text-2xl md:text-4xl font-black text-[#FFD400] leading-tight">
+              Jeu de pronostique
+              <br />
+              de Belmart
             </h1>
 
             <p className="text-sm text-gray-200">
@@ -350,27 +353,64 @@ export default function BelmartPredictor2026() {
 
         </div>
 
-        {user ? (
+        {/* NAVIGATION */}
+        <nav className="flex flex-wrap items-center justify-center gap-4 md:gap-6 font-bold text-sm md:text-base">
 
-          <button
-            onClick={() => signOut(auth)}
-            className="bg-red-500 text-white px-5 py-2 rounded-xl font-semibold hover:scale-105 transition"
+          <a
+            href="/"
+            className="hover:text-[#FFD400] transition"
           >
-            Logout
-          </button>
+            Accueil
+          </a>
 
-        ) : (
-
-          <button
-            onClick={() =>
-              window.location.href = "/login"
-            }
-            className="bg-[#FFD400] text-[#0A2C6D] px-5 py-2 rounded-xl font-semibold hover:scale-105 transition"
+          <a
+            href="/groups"
+            className="hover:text-[#FFD400] transition"
           >
-            Login
-          </button>
+            Groupes
+          </a>
 
-        )}
+          <a
+            href="/admin"
+            className="hover:text-[#FFD400] transition"
+          >
+            Classement
+          </a>
+
+          {!user && (
+
+            <>
+
+              <a
+                href="/login"
+                className="bg-white text-[#082456] px-5 py-2 rounded-xl hover:scale-105 transition"
+              >
+                Login
+              </a>
+
+              <a
+                href="/signup"
+                className="bg-[#FFD400] text-[#082456] px-5 py-2 rounded-xl hover:scale-105 transition"
+              >
+                S'inscrire
+              </a>
+
+            </>
+
+          )}
+
+          {user && (
+
+            <button
+              onClick={() => signOut(auth)}
+              className="bg-red-500 text-white px-5 py-2 rounded-xl hover:scale-105 transition"
+            >
+              Logout
+            </button>
+
+          )}
+
+        </nav>
 
       </header>
 
@@ -382,8 +422,7 @@ export default function BelmartPredictor2026() {
         </h2>
 
         <p className="text-xl text-gray-200">
-          Faites vos pronostics et gagnez
-          avec Belmart 🔥
+          Faites vos pronostics et gagnez avec Belmart 🔥
         </p>
 
       </section>
