@@ -28,6 +28,51 @@ export default function SignupPage() {
 
   const handleSignup = async () => {
 
+    // VALIDATE NAME
+    if (!name.trim()) {
+
+      alert("Veuillez entrer votre nom");
+
+      return;
+
+    }
+
+    // VALIDATE EMAIL
+    const emailRegex =
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(email)) {
+
+      alert(
+        "Veuillez entrer un email valide"
+      );
+
+      return;
+
+    }
+
+    // VALIDATE PASSWORD
+    if (password.length < 6) {
+
+      alert(
+        "Le mot de passe doit contenir au moins 6 caractères"
+      );
+
+      return;
+
+    }
+
+    // VALIDATE GENDER
+    if (!gender) {
+
+      alert(
+        "Veuillez sélectionner votre sexe"
+      );
+
+      return;
+
+    }
+
     try {
 
       const userCredential =
@@ -65,7 +110,30 @@ export default function SignupPage() {
 
     } catch (error: any) {
 
-      alert(error.message);
+      // FIREBASE ERRORS
+      if (
+        error.code ===
+        "auth/email-already-in-use"
+      ) {
+
+        alert(
+          "Cet email est déjà utilisé"
+        );
+
+      } else if (
+        error.code ===
+        "auth/invalid-email"
+      ) {
+
+        alert(
+          "Adresse email invalide"
+        );
+
+      } else {
+
+        alert(error.message);
+
+      }
 
     }
 
