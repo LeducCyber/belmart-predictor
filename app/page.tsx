@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 import { useEffect, useState } from "react";
 
 import {
@@ -15,6 +17,7 @@ import {
 } from "firebase/firestore";
 
 import { auth, db } from "../lib/firebase";
+
 import { getWorldCupMatches } from "../lib/api";
 
 export default function BelmartPredictor2026() {
@@ -81,10 +84,12 @@ export default function BelmartPredictor2026() {
       predictedHome === official.home &&
       predictedAway === official.away
     ) {
+
       return 3;
+
     }
 
-    // CORRECT WINNER
+    // WINNER
     const predictedWinner =
       predictedHome > predictedAway
         ? "home"
@@ -100,10 +105,13 @@ export default function BelmartPredictor2026() {
         : "draw";
 
     if (predictedWinner === officialWinner) {
+
       return 1;
+
     }
 
     return 0;
+
   };
 
   // FETCH LEADERBOARD
@@ -130,6 +138,7 @@ export default function BelmartPredictor2026() {
       console.log(error);
 
     }
+
   };
 
   // SAVE PREDICTION
@@ -145,14 +154,16 @@ export default function BelmartPredictor2026() {
       alert("Veuillez vous connecter");
 
       return;
+
     }
 
-    // LOCKED
+    // LOCK
     if (scores[index]?.locked) {
 
       alert("Prédiction déjà enregistrée");
 
       return;
+
     }
 
     try {
@@ -160,7 +171,6 @@ export default function BelmartPredictor2026() {
       const predictionId =
         `${user.uid}_${match.team1}_${match.team2}`;
 
-      // CALCULATE POINTS
       const points = calculatePoints(
         match.team1,
         match.team2,
@@ -202,7 +212,9 @@ export default function BelmartPredictor2026() {
         },
       });
 
-      alert(`Prédiction enregistrée 🔥 (${points} points)`);
+      alert(
+        `Prédiction enregistrée 🔥 (${points} points)`
+      );
 
       fetchLeaderboard();
 
@@ -211,22 +223,28 @@ export default function BelmartPredictor2026() {
       console.log(error);
 
       alert("Erreur sauvegarde");
+
     }
+
   };
 
   useEffect(() => {
 
     // AUTH
-    onAuthStateChanged(auth, (currentUser) => {
+    onAuthStateChanged(
+      auth,
+      (currentUser) => {
 
-      setUser(currentUser);
+        setUser(currentUser);
 
-    });
+      }
+    );
 
     // FETCH MATCHES
     const fetchMatches = async () => {
 
-      const apiMatches = await getWorldCupMatches();
+      const apiMatches =
+        await getWorldCupMatches();
 
       const countryCodes: any = {
 
@@ -263,27 +281,36 @@ export default function BelmartPredictor2026() {
 
       };
 
-      const formattedMatches = (apiMatches || [])
-        .slice(0, 6)
-        .map((match: any) => ({
+      const formattedMatches =
+        (apiMatches || [])
+          .slice(0, 6)
+          .map((match: any) => ({
 
-          team1: match.homeTeam.name,
+            team1:
+              match.homeTeam.name,
 
-          flag1:
-            countryCodes[match.homeTeam.tla] || "us",
+            flag1:
+              countryCodes[
+                match.homeTeam.tla
+              ] || "us",
 
-          team2: match.awayTeam.name,
+            team2:
+              match.awayTeam.name,
 
-          flag2:
-            countryCodes[match.awayTeam.tla] || "us",
+            flag2:
+              countryCodes[
+                match.awayTeam.tla
+              ] || "us",
 
-          date:
-            new Date(match.utcDate)
-              .toLocaleDateString(),
+            date:
+              new Date(
+                match.utcDate
+              ).toLocaleDateString(),
 
-        }));
+          }));
 
       setMatches(formattedMatches);
+
     };
 
     fetchMatches();
@@ -297,17 +324,29 @@ export default function BelmartPredictor2026() {
     <div className="min-h-screen bg-[#0A2C6D] text-white">
 
       {/* HEADER */}
-      <header className="flex items-center justify-between px-8 py-5 bg-[#082456] shadow-lg">
+      <header className="flex items-center justify-between bg-[#082456] px-8 py-5 shadow-lg">
 
-        <div>
+        <div className="flex items-center gap-4">
 
-          <h1 className="text-3xl font-bold text-[#FFD400]">
-            Belmart Predictor 2026
-          </h1>
+          <Image
+            src="/belmart-logo.jpeg"
+            alt="Belmart Logo"
+            width={80}
+            height={80}
+            className="rounded-2xl"
+          />
 
-          <p className="text-sm text-gray-200">
-            FIFA World Cup Prediction Platform
-          </p>
+          <div>
+
+            <h1 className="text-3xl font-black text-[#FFD400]">
+              Jeu de pronostique de Belmart
+            </h1>
+
+            <p className="text-sm text-gray-200">
+              Coupe du Monde FIFA 2026
+            </p>
+
+          </div>
 
         </div>
 
@@ -342,6 +381,11 @@ export default function BelmartPredictor2026() {
           Predict. Win. Celebrate.
         </h2>
 
+        <p className="text-xl text-gray-200">
+          Faites vos pronostics et gagnez
+          avec Belmart 🔥
+        </p>
+
       </section>
 
       {/* MATCHES */}
@@ -353,127 +397,139 @@ export default function BelmartPredictor2026() {
 
         <div className="grid md:grid-cols-3 gap-6">
 
-          {matches.map((match: any, index: number) => (
+          {matches.map(
+            (match: any, index: number) => (
 
-            <div
-              key={index}
-              className="bg-white text-[#0A2C6D] rounded-3xl p-6 shadow-xl"
-            >
+              <div
+                key={index}
+                className="bg-white text-[#0A2C6D] rounded-3xl p-6 shadow-xl"
+              >
 
-              <div className="text-center">
+                <div className="text-center">
 
-                <p className="text-sm text-gray-500 mb-4">
-                  {match.date}
-                </p>
+                  <p className="text-sm text-gray-500 mb-4">
+                    {match.date}
+                  </p>
 
-                <div className="flex items-center justify-between mb-5">
+                  <div className="flex items-center justify-between mb-5">
 
-                  <div className="flex flex-col items-center">
+                    <div className="flex flex-col items-center">
 
-                    <img
-                      src={`https://flagcdn.com/w80/${match.flag1}.png`}
-                      alt={match.team1}
-                      className="w-16 h-16 mb-2 rounded-full"
-                    />
+                      <img
+                        src={`https://flagcdn.com/w80/${match.flag1}.png`}
+                        alt={match.team1}
+                        className="w-16 h-16 mb-2 rounded-full"
+                      />
 
-                    <div className="font-bold">
-                      {match.team1}
+                      <div className="font-bold">
+                        {match.team1}
+                      </div>
+
+                    </div>
+
+                    <span className="font-black text-2xl">
+                      VS
+                    </span>
+
+                    <div className="flex flex-col items-center">
+
+                      <img
+                        src={`https://flagcdn.com/w80/${match.flag2}.png`}
+                        alt={match.team2}
+                        className="w-16 h-16 mb-2 rounded-full"
+                      />
+
+                      <div className="font-bold">
+                        {match.team2}
+                      </div>
+
                     </div>
 
                   </div>
 
-                  <span className="font-black text-2xl">
-                    VS
-                  </span>
+                  <div className="flex justify-center gap-3 mb-5">
 
-                  <div className="flex flex-col items-center">
-
-                    <img
-                      src={`https://flagcdn.com/w80/${match.flag2}.png`}
-                      alt={match.team2}
-                      className="w-16 h-16 mb-2 rounded-full"
+                    <input
+                      type="number"
+                      placeholder="0"
+                      disabled={scores[index]?.locked}
+                      value={
+                        scores[index]?.home || ""
+                      }
+                      onChange={(e) =>
+                        setScores({
+                          ...scores,
+                          [index]: {
+                            ...scores[index],
+                            home: e.target.value,
+                          },
+                        })
+                      }
+                      className={`w-16 h-16 text-center border rounded-xl text-2xl font-bold ${
+                        scores[index]?.locked
+                          ? "bg-gray-300 cursor-not-allowed"
+                          : ""
+                      }`}
                     />
 
-                    <div className="font-bold">
-                      {match.team2}
-                    </div>
+                    <input
+                      type="number"
+                      placeholder="0"
+                      disabled={scores[index]?.locked}
+                      value={
+                        scores[index]?.away || ""
+                      }
+                      onChange={(e) =>
+                        setScores({
+                          ...scores,
+                          [index]: {
+                            ...scores[index],
+                            away: e.target.value,
+                          },
+                        })
+                      }
+                      className={`w-16 h-16 text-center border rounded-xl text-2xl font-bold ${
+                        scores[index]?.locked
+                          ? "bg-gray-300 cursor-not-allowed"
+                          : ""
+                      }`}
+                    />
 
                   </div>
 
-                </div>
-
-                <div className="flex justify-center gap-3 mb-5">
-
-                  <input
-                    type="number"
-                    placeholder="0"
+                  <button
                     disabled={scores[index]?.locked}
-                    value={scores[index]?.home || ""}
-                    onChange={(e) =>
-                      setScores({
-                        ...scores,
-                        [index]: {
-                          ...scores[index],
-                          home: e.target.value,
-                        },
-                      })
+                    onClick={() =>
+                      savePrediction(
+                        match,
+                        Number(
+                          scores[index]?.home || 0
+                        ),
+                        Number(
+                          scores[index]?.away || 0
+                        ),
+                        index
+                      )
                     }
-                    className={`w-16 h-16 text-center border rounded-xl text-2xl font-bold ${
+                    className={`px-5 py-3 rounded-xl w-full transition ${
                       scores[index]?.locked
-                        ? "bg-gray-300 cursor-not-allowed"
-                        : ""
+                        ? "bg-gray-400 cursor-not-allowed"
+                        : "bg-[#0A2C6D] hover:bg-[#082456] text-white"
                     }`}
-                  />
+                  >
 
-                  <input
-                    type="number"
-                    placeholder="0"
-                    disabled={scores[index]?.locked}
-                    value={scores[index]?.away || ""}
-                    onChange={(e) =>
-                      setScores({
-                        ...scores,
-                        [index]: {
-                          ...scores[index],
-                          away: e.target.value,
-                        },
-                      })
-                    }
-                    className={`w-16 h-16 text-center border rounded-xl text-2xl font-bold ${
-                      scores[index]?.locked
-                        ? "bg-gray-300 cursor-not-allowed"
-                        : ""
-                    }`}
-                  />
+                    {scores[index]?.locked
+                      ? "Prediction Locked"
+                      : "Save Prediction"}
+
+                  </button>
 
                 </div>
-
-                <button
-                  disabled={scores[index]?.locked}
-                  onClick={() =>
-                    savePrediction(
-                      match,
-                      Number(scores[index]?.home || 0),
-                      Number(scores[index]?.away || 0),
-                      index
-                    )
-                  }
-                  className={`px-5 py-3 rounded-xl w-full transition ${
-                    scores[index]?.locked
-                      ? "bg-gray-400 cursor-not-allowed"
-                      : "bg-[#0A2C6D] hover:bg-[#082456] text-white"
-                  }`}
-                >
-                  {scores[index]?.locked
-                    ? "Prediction Locked"
-                    : "Save Prediction"}
-                </button>
 
               </div>
 
-            </div>
-
-          ))}
+            )
+          )}
 
         </div>
 
@@ -514,64 +570,74 @@ export default function BelmartPredictor2026() {
 
               {Object.values(
 
-                leaderboard.reduce((acc: any, item: any) => {
+                leaderboard.reduce(
+                  (acc: any, item: any) => {
 
-                  if (!acc[item.email]) {
+                    if (!acc[item.email]) {
 
-                    acc[item.email] = {
+                      acc[item.email] = {
 
-                      email: item.email,
+                        email: item.email,
 
-                      totalPoints: 0,
+                        totalPoints: 0,
 
-                    };
+                      };
 
-                  }
+                    }
 
-                  acc[item.email].totalPoints +=
-                    item.points || 0;
+                    acc[item.email]
+                      .totalPoints +=
+                      item.points || 0;
 
-                  return acc;
+                    return acc;
 
-                }, {})
+                  },
+                  {}
+                )
 
               )
 
               .sort(
                 (a: any, b: any) =>
-                  b.totalPoints - a.totalPoints
+                  b.totalPoints -
+                  a.totalPoints
               )
 
-              .map((player: any, index: number) => (
+              .map(
+                (
+                  player: any,
+                  index: number
+                ) => (
 
-                <tr
-                  key={index}
-                  className="border-b"
-                >
+                  <tr
+                    key={index}
+                    className="border-b"
+                  >
 
-                  <td className="p-4 font-black text-xl">
+                    <td className="p-4 font-black text-xl">
 
-                    {index === 0
-                      ? "🥇"
-                      : index === 1
-                      ? "🥈"
-                      : index === 2
-                      ? "🥉"
-                      : `#${index + 1}`}
+                      {index === 0
+                        ? "🥇"
+                        : index === 1
+                        ? "🥈"
+                        : index === 2
+                        ? "🥉"
+                        : `#${index + 1}`}
 
-                  </td>
+                    </td>
 
-                  <td className="p-4 font-bold">
-                    {player.email}
-                  </td>
+                    <td className="p-4 font-bold">
+                      {player.email}
+                    </td>
 
-                  <td className="p-4 font-black text-2xl text-[#0A2C6D]">
-                    {player.totalPoints}
-                  </td>
+                    <td className="p-4 font-black text-2xl text-[#0A2C6D]">
+                      {player.totalPoints}
+                    </td>
 
-                </tr>
+                  </tr>
 
-              ))}
+                )
+              )}
 
             </tbody>
 
@@ -583,9 +649,13 @@ export default function BelmartPredictor2026() {
 
       {/* FOOTER */}
       <footer className="bg-[#082456] py-6 text-center text-gray-300 mt-10">
-        © 2026 Belmart Predictor — All Rights Reserved
+
+        © 2026 Jeu de pronostique de Belmart
+
       </footer>
 
     </div>
+
   );
+
 }
