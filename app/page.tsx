@@ -377,6 +377,13 @@ export default function BelmartPredictor2026() {
             Classement
           </a>
 
+          <a
+            href="/rules"
+            className="hover:text-[#FFD400] transition"
+          >
+            Règlement
+          </a>
+
           {!user && (
 
             <>
