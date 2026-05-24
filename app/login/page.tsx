@@ -3,7 +3,6 @@
 import { useState } from "react";
 import {
   signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
 } from "firebase/auth";
 
 import { auth } from "../../lib/firebase";
@@ -12,25 +11,6 @@ export default function LoginPage() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // CREATE ACCOUNT
-  const handleSignup = async () => {
-
-    try {
-
-      await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-
-     window.location.href = "/";
-
-    } catch (error: any) {
-
-      console.log(error);
-      alert(error.message);
-    }
-  };
 
   // LOGIN
   const handleLogin = async () => {
@@ -83,13 +63,6 @@ export default function LoginPage() {
           className="w-full bg-[#FFD400] text-[#0A2C6D] py-4 rounded-xl font-bold hover:scale-105 transition"
         >
           Login
-        </button>
-
-        <button
-          onClick={handleSignup}
-          className="w-full bg-white border-2 border-[#0A2C6D] text-[#0A2C6D] py-4 rounded-xl font-bold mt-4 hover:scale-105 transition"
-        >
-          Create Account
         </button>
 
       </div>
