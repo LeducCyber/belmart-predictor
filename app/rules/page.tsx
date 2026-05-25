@@ -6,6 +6,18 @@ export default function RulesPage() {
 
     <div className="min-h-screen bg-gradient-to-b from-[#001B70] to-[#002C9B] text-white px-6 py-10">
 
+      {/* BACK HOME BUTTON */}
+      <div className="mb-8">
+
+        <a
+          href="/"
+          className="inline-block bg-white text-[#001B70] font-black px-6 py-3 rounded-2xl shadow-xl hover:scale-105 transition"
+        >
+          ← Retour à l'accueil
+        </a>
+
+      </div>
+
       {/* HEADER */}
       <div className="flex flex-col items-center mb-14">
 
