@@ -1,5 +1,7 @@
 "use client";
+
 import Image from "next/image";
+
 import { useEffect, useState } from "react";
 
 import {
@@ -41,10 +43,19 @@ export default function AdminDashboard() {
           return;
         }
 
+        // ADMINS
+        const admins = [
+
+          "lkgroupsainfo@gmail.com",
+          "stleduc2@gmail.com",
+
+        ];
+
         // NOT ADMIN
         if (
-          currentUser.email !==
-          "lkgroupsainfo@gmail.com"
+          !admins.includes(
+            currentUser.email || ""
+          )
         ) {
 
           alert("ACCESS DENIED");
@@ -145,14 +156,39 @@ export default function AdminDashboard() {
 
     <div className="min-h-screen bg-[#0A2C6D] text-white p-8">
 
-      <h1 className="text-5xl font-bold text-[#FFD400] mb-10">
-        Admin Dashboard 🛠️
-      </h1>
+      {/* BACK BUTTON */}
+      <div className="mb-8">
+
+        <a
+          href="/"
+          className="inline-block bg-white text-[#0A2C6D] font-black px-6 py-3 rounded-2xl shadow-xl hover:scale-105 transition"
+        >
+          ← Retour à l'accueil
+        </a>
+
+      </div>
+
+      {/* HEADER */}
+      <div className="flex items-center gap-5 mb-10">
+
+        <Image
+          src="/belmart-logo.jpeg"
+          alt="Belmart"
+          width={80}
+          height={80}
+          className="rounded-2xl shadow-xl"
+        />
+
+        <h1 className="text-5xl font-bold text-[#FFD400]">
+          Admin Dashboard 🛠️
+        </h1>
+
+      </div>
 
       {/* STATS */}
       <div className="grid md:grid-cols-3 gap-6 mb-10">
 
-        <div className="bg-white text-[#0A2C6D] p-6 rounded-3xl">
+        <div className="bg-white text-[#0A2C6D] p-6 rounded-3xl shadow-xl">
 
           <h2 className="text-2xl font-bold mb-2">
             Total Users
@@ -164,7 +200,7 @@ export default function AdminDashboard() {
 
         </div>
 
-        <div className="bg-white text-[#0A2C6D] p-6 rounded-3xl">
+        <div className="bg-white text-[#0A2C6D] p-6 rounded-3xl shadow-xl">
 
           <h2 className="text-2xl font-bold mb-2">
             Predictions
@@ -176,13 +212,13 @@ export default function AdminDashboard() {
 
         </div>
 
-        <div className="bg-white text-[#0A2C6D] p-6 rounded-3xl">
+        <div className="bg-white text-[#0A2C6D] p-6 rounded-3xl shadow-xl">
 
           <h2 className="text-2xl font-bold mb-2">
             Top Player 🏆
           </h2>
 
-          <p className="text-xl font-bold">
+          <p className="text-xl font-bold break-all">
             {topPlayer}
           </p>
 
@@ -195,7 +231,7 @@ export default function AdminDashboard() {
       </div>
 
       {/* TABLE */}
-      <div className="bg-white rounded-3xl overflow-hidden">
+      <div className="bg-white rounded-3xl overflow-hidden shadow-2xl">
 
         <table className="w-full text-[#0A2C6D]">
 
@@ -229,7 +265,7 @@ export default function AdminDashboard() {
 
               <tr
                 key={index}
-                className="border-b"
+                className="border-b hover:bg-gray-100 transition"
               >
 
                 <td className="p-4 font-bold">
@@ -259,5 +295,7 @@ export default function AdminDashboard() {
       </div>
 
     </div>
+
   );
+
 }
