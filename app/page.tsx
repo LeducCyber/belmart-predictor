@@ -153,6 +153,8 @@ export default function BelmartPredictor2026() {
 
       alert("Veuillez vous connecter");
 
+      window.location.href = "/login";
+
       return;
 
     }
@@ -386,23 +388,12 @@ export default function BelmartPredictor2026() {
 
           {!user && (
 
-            <>
-
-              <a
-                href="/login"
-                className="bg-white text-[#082456] px-5 py-2 rounded-xl hover:scale-105 transition"
-              >
-                Login
-              </a>
-
-              <a
-                href="/signup"
-                className="bg-[#FFD400] text-[#082456] px-5 py-2 rounded-xl hover:scale-105 transition"
-              >
-                S'inscrire
-              </a>
-
-            </>
+            <a
+              href="/login"
+              className="bg-white text-[#082456] px-5 py-2 rounded-xl hover:scale-105 transition"
+            >
+              Login
+            </a>
 
           )}
 
