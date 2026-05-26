@@ -34,19 +34,20 @@ export default function LoginPage() {
         password
       );
 
-      alert("Login successful!");
+      alert("Connexion réussie ✅");
 
       window.location.href = "/dashboard";
 
     } catch (error: any) {
 
-      alert(error.message);
+      alert("Email ou mot de passe incorrect");
 
     } finally {
 
       setLoading(false);
 
     }
+
   };
 
   return (
@@ -55,7 +56,7 @@ export default function LoginPage() {
 
       <div className="bg-white p-10 rounded-3xl shadow-2xl w-full max-w-[420px]">
 
-        {/* Back Home */}
+        {/* Retour accueil */}
         <div className="mb-5">
 
           <Link
@@ -67,18 +68,20 @@ export default function LoginPage() {
 
         </div>
 
-        {/* Title */}
-        <h1 className="text-4xl font-bold text-center text-[#082456] mb-8">
-          Belmart Login
+        {/* Titre */}
+        <h1 className="text-4xl font-black text-center text-[#082456] mb-8">
+
+          Connexion Belmart
+
         </h1>
 
-        {/* Form */}
+        {/* Formulaire */}
         <form onSubmit={handleLogin}>
 
           {/* Email */}
           <input
             type="email"
-            placeholder="Email"
+            placeholder="Adresse email"
             className="w-full border border-gray-400 rounded-2xl px-4 py-4 mb-5 outline-none focus:border-[#082456]"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -88,7 +91,7 @@ export default function LoginPage() {
           {/* Password */}
           <input
             type="password"
-            placeholder="Password"
+            placeholder="Mot de passe"
             className="w-full border border-gray-400 rounded-2xl px-4 py-4 mb-3 outline-none focus:border-[#082456]"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -102,7 +105,7 @@ export default function LoginPage() {
               href="/reset-password"
               className="text-sm text-[#082456] hover:underline"
             >
-              Forgot Password?
+              Mot de passe oublié ?
             </Link>
 
           </div>
@@ -113,12 +116,12 @@ export default function LoginPage() {
             disabled={loading}
             className={`w-full font-bold py-4 rounded-2xl transition ${
               loading
-                ? "bg-gray-400 cursor-not-allowed"
+                ? "bg-gray-400 cursor-not-allowed text-white"
                 : "bg-yellow-400 hover:bg-yellow-500 text-[#082456]"
             }`}
           >
 
-            {loading ? "Loading..." : "Login"}
+            {loading ? "Connexion..." : "Se connecter"}
 
           </button>
 
@@ -128,14 +131,14 @@ export default function LoginPage() {
         <div className="text-center mt-6">
 
           <span className="text-gray-600">
-            Don’t have an account?
+            Vous n'avez pas de compte ?
           </span>
 
           <Link
             href="/signup"
             className="ml-2 text-[#082456] font-semibold hover:underline"
           >
-            Create Account
+            Créer un compte
           </Link>
 
         </div>

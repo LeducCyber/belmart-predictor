@@ -1,7 +1,5 @@
 "use client";
 
-import Image from "next/image";
-
 import { useEffect, useState } from "react";
 
 import {
@@ -10,15 +8,11 @@ import {
 } from "firebase/auth";
 
 import {
-  collection,
-  getDocs,
   setDoc,
   doc,
 } from "firebase/firestore";
 
 import { auth, db } from "../lib/firebase";
-
-import { getWorldCupMatches } from "../lib/api";
 
 export default function BelmartPredictor2026() {
 
@@ -28,217 +22,18 @@ export default function BelmartPredictor2026() {
 
   const [scores, setScores] = useState<any>({});
 
-  const [leaderboard, setLeaderboard] = useState<any[]>([]);
-
-  // TIMER
   const [timeLeft, setTimeLeft] = useState({
+
     days: 0,
     hours: 0,
     minutes: 0,
     seconds: 0,
+
   });
 
-  // RESULTS
-  const officialResults: any = {
-
-    "Mexico_vs_South Africa": {
-      home: 2,
-      away: 1,
-    },
-
-    "South Korea_vs_Czechia": {
-      home: 1,
-      away: 1,
-    },
-
-    "Canada_vs_Bosnia-Herzegovina": {
-      home: 0,
-      away: 2,
-    },
-
-    "United States_vs_Paraguay": {
-      home: 3,
-      away: 1,
-    },
-
-    "Qatar_vs_Switzerland": {
-      home: 1,
-      away: 2,
-    },
-
-    "Brazil_vs_Morocco": {
-      home: 2,
-      away: 0,
-    },
-
-  };
-
-  // CALCULATE POINTS
-  const calculatePoints = (
-    team1: string,
-    team2: string,
-    predictedHome: number,
-    predictedAway: number
-  ) => {
-
-    const key = `${team1}_vs_${team2}`;
-
-    const official = officialResults[key];
-
-    if (!official) return 0;
-
-    // EXACT SCORE
-    if (
-      predictedHome === official.home &&
-      predictedAway === official.away
-    ) {
-
-      return 3;
-
-    }
-
-    // WINNER
-    const predictedWinner =
-      predictedHome > predictedAway
-        ? "home"
-        : predictedAway > predictedHome
-        ? "away"
-        : "draw";
-
-    const officialWinner =
-      official.home > official.away
-        ? "home"
-        : official.away > official.home
-        ? "away"
-        : "draw";
-
-    if (predictedWinner === officialWinner) {
-
-      return 1;
-
-    }
-
-    return 0;
-
-  };
-
-  // FETCH LEADERBOARD
-  const fetchLeaderboard = async () => {
-
-    try {
-
-      const querySnapshot = await getDocs(
-        collection(db, "predictions")
-      );
-
-      const data: any[] = [];
-
-      querySnapshot.forEach((document) => {
-
-        data.push(document.data());
-
-      });
-
-      setLeaderboard(data);
-
-    } catch (error) {
-
-      console.log(error);
-
-    }
-
-  };
-
-  // SAVE PREDICTION
-  const savePrediction = async (
-    match: any,
-    homeScore: number,
-    awayScore: number,
-    index: number
-  ) => {
-
-    if (!user) {
-
-      alert("Veuillez vous connecter");
-
-      window.location.href = "/login";
-
-      return;
-
-    }
-
-    if (scores[index]?.locked) {
-
-      alert("Prédiction déjà enregistrée");
-
-      return;
-
-    }
-
-    try {
-
-      const predictionId =
-        `${user.uid}_${match.team1}_${match.team2}`;
-
-      const points = calculatePoints(
-        match.team1,
-        match.team2,
-        homeScore,
-        awayScore
-      );
-
-      await setDoc(
-        doc(db, "predictions", predictionId),
-        {
-
-          userId: user.uid,
-
-          email: user.email,
-
-          team1: match.team1,
-
-          team2: match.team2,
-
-          homeScore,
-
-          awayScore,
-
-          points,
-
-          locked: true,
-
-          createdAt: new Date(),
-
-        }
-      );
-
-      setScores({
-        ...scores,
-        [index]: {
-          ...scores[index],
-          locked: true,
-        },
-      });
-
-      alert(
-        `Prédiction enregistrée 🔥 (${points} points)`
-      );
-
-      fetchLeaderboard();
-
-    } catch (error) {
-
-      console.log(error);
-
-      alert("Erreur sauvegarde");
-
-    }
-
-  };
-
+  // AUTH + TIMER
   useEffect(() => {
 
-    // AUTH
     onAuthStateChanged(
       auth,
       (currentUser) => {
@@ -248,7 +43,6 @@ export default function BelmartPredictor2026() {
       }
     );
 
-    // COUNTDOWN
     const targetDate = new Date(
       "2026-06-11T00:00:00"
     ).getTime();
@@ -259,277 +53,359 @@ export default function BelmartPredictor2026() {
 
       const distance = targetDate - now;
 
-      const days = Math.floor(
-        distance / (1000 * 60 * 60 * 24)
-      );
-
-      const hours = Math.floor(
-        (distance % (1000 * 60 * 60 * 24)) /
-        (1000 * 60 * 60)
-      );
-
-      const minutes = Math.floor(
-        (distance % (1000 * 60 * 60)) /
-        (1000 * 60)
-      );
-
-      const seconds = Math.floor(
-        (distance % (1000 * 60)) / 1000
-      );
-
       setTimeLeft({
-        days,
-        hours,
-        minutes,
-        seconds,
+
+        days: Math.floor(
+          distance / (1000 * 60 * 60 * 24)
+        ),
+
+        hours: Math.floor(
+          (distance %
+            (1000 * 60 * 60 * 24)) /
+            (1000 * 60 * 60)
+        ),
+
+        minutes: Math.floor(
+          (distance %
+            (1000 * 60 * 60)) /
+            (1000 * 60)
+        ),
+
+        seconds: Math.floor(
+          (distance %
+            (1000 * 60)) / 1000
+        ),
+
       });
 
     }, 1000);
 
-    // FETCH MATCHES
-    const fetchMatches = async () => {
-
-      const apiMatches =
-        await getWorldCupMatches();
-
-      const countryCodes: any = {
-
-        USA: "us",
-        ENG: "gb",
-        FRA: "fr",
-        GER: "de",
-        ESP: "es",
-        BRA: "br",
-        ARG: "ar",
-        MEX: "mx",
-        CAN: "ca",
-        PAR: "py",
-        RSA: "za",
-        POR: "pt",
-        NED: "nl",
-        ITA: "it",
-        CRO: "hr",
-        BEL: "be",
-        SUI: "ch",
-        DEN: "dk",
-        POL: "pl",
-        URU: "uy",
-        COL: "co",
-        JAP: "jp",
-        KOR: "kr",
-        MAR: "ma",
-        SEN: "sn",
-        CMR: "cm",
-        NGA: "ng",
-        BIH: "ba",
-        QAT: "qa",
-        CZE: "cz",
-
-      };
-
-      const formattedMatches =
-        (apiMatches || [])
-          .slice(0, 6)
-          .map((match: any) => ({
-
-            team1:
-              match.homeTeam.name,
-
-            flag1:
-              countryCodes[
-                match.homeTeam.tla
-              ] || "us",
-
-            team2:
-              match.awayTeam.name,
-
-            flag2:
-              countryCodes[
-                match.awayTeam.tla
-              ] || "us",
-
-            date:
-              new Date(
-                match.utcDate
-              ).toLocaleDateString(),
-
-          }));
-
-      setMatches(formattedMatches);
-
-    };
-
-    fetchMatches();
-
-    fetchLeaderboard();
-
-    return () => clearInterval(interval);
+    return () =>
+      clearInterval(interval);
 
   }, []);
+
+  // MATCHES
+  useEffect(() => {
+
+    const formattedMatches = [
+
+      {
+        team1: "Mexique",
+        team2: "Afrique du Sud",
+        flag1: "mx",
+        flag2: "za",
+        date: "jeudi 11 juin 2026",
+        time: "15:00",
+      },
+
+      {
+        team1: "République de Corée",
+        team2: "Tchéquie",
+        flag1: "kr",
+        flag2: "cz",
+        date: "jeudi 11 juin 2026",
+        time: "22:00",
+      },
+
+      {
+        team1: "Canada",
+        team2: "Bosnie-Herzégovine",
+        flag1: "ca",
+        flag2: "ba",
+        date: "vendredi 12 juin 2026",
+        time: "15:00",
+      },
+
+      {
+        team1: "Qatar",
+        team2: "Suisse",
+        flag1: "qa",
+        flag2: "ch",
+        date: "vendredi 12 juin 2026",
+        time: "19:00",
+      },
+
+      {
+        team1: "Brésil",
+        team2: "Maroc",
+        flag1: "br",
+        flag2: "ma",
+        date: "samedi 13 juin 2026",
+        time: "16:00",
+      },
+
+      {
+        team1: "Haïti",
+        team2: "Écosse",
+        flag1: "ht",
+        flag2: "gb",
+        date: "samedi 13 juin 2026",
+        time: "21:00",
+      },
+
+      {
+        team1: "États-Unis",
+        team2: "Paraguay",
+        flag1: "us",
+        flag2: "py",
+        date: "dimanche 14 juin 2026",
+        time: "18:00",
+      },
+
+      {
+        team1: "Allemagne",
+        team2: "Curaçao",
+        flag1: "de",
+        flag2: "cw",
+        date: "lundi 15 juin 2026",
+        time: "20:00",
+      },
+
+      {
+        team1: "France",
+        team2: "Sénégal",
+        flag1: "fr",
+        flag2: "sn",
+        date: "mardi 16 juin 2026",
+        time: "21:00",
+      },
+
+    ];
+
+    setMatches(formattedMatches);
+
+  }, []);
+
+  // SAVE PREDICTION
+  const savePrediction = async (
+
+    match: any,
+
+    homeScore: number,
+
+    awayScore: number,
+
+    index: number
+
+  ) => {
+
+    if (!user) {
+
+      alert(
+        "Veuillez vous connecter"
+      );
+
+      window.location.href =
+        "/login";
+
+      return;
+
+    }
+
+    try {
+
+      const predictionId =
+        `${user.uid}_${match.team1}_${match.team2}`;
+
+      await setDoc(
+
+        doc(
+          db,
+          "predictions",
+          predictionId
+        ),
+
+        {
+
+          userId: user.uid,
+
+          email: user.email,
+
+          match:
+            `${match.team1} vs ${match.team2}`,
+
+          prediction:
+            `${homeScore}-${awayScore}`,
+
+          createdAt:
+            new Date(),
+
+        }
+      );
+
+      setScores({
+
+        ...scores,
+
+        [index]: {
+
+          locked: true,
+
+        },
+
+      });
+
+      alert(
+        "Pronostic enregistré 🔥"
+      );
+
+    } catch (error) {
+
+      console.log(error);
+
+      alert(
+        "Erreur lors de l'enregistrement"
+      );
+
+    }
+
+  };
 
   return (
 
     <div className="min-h-screen bg-[#0A2C6D] text-white">
 
       {/* HEADER */}
-      <header className="flex flex-col md:flex-row items-center justify-between bg-[#082456] px-6 md:px-8 py-5 shadow-lg gap-5">
+      <header className="bg-[#082456] px-6 py-5 shadow-xl">
 
-        {/* LEFT */}
-        <div className="flex items-center gap-4">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-5">
 
-          <Image
-            src="/belmart-logo.jpeg"
-            alt="Belmart Logo"
-            width={80}
-            height={80}
-            className="rounded-2xl shadow-lg"
-          />
+          <h1 className="text-3xl md:text-5xl font-black text-[#FFD400]">
 
-          <div>
+            Jeu de pronostique
+            <br />
+            de Belmart
 
-            <h1 className="text-2xl md:text-4xl font-black text-[#FFD400] leading-tight">
-              Jeu de pronostique
-              <br />
-              de Belmart
-            </h1>
+          </h1>
 
-            <p className="text-sm text-gray-200">
-              Coupe du Monde FIFA 2026
-            </p>
+          <nav className="flex flex-wrap gap-5 font-bold">
 
-          </div>
-
-        </div>
-
-        {/* NAVIGATION */}
-        <nav className="flex flex-wrap items-center justify-center gap-4 md:gap-6 font-bold text-sm md:text-base">
-
-          <a
-            href="/"
-            className="hover:text-[#FFD400] transition"
-          >
-            Accueil
-          </a>
-
-          <a
-            href="/groups"
-            className="hover:text-[#FFD400] transition"
-          >
-            Groupes
-          </a>
-
-          <a
-            href="/matches"
-            className="hover:text-[#FFD400] transition"
-          >
-            Matchs
-          </a>
-
-          <a
-            href="/admin"
-            className="hover:text-[#FFD400] transition"
-          >
-            Classement
-          </a>
-
-          <a
-            href="/rules"
-            className="hover:text-[#FFD400] transition"
-          >
-            Règlement
-          </a>
-
-          {!user && (
-
-            <a
-              href="/login"
-              className="bg-white text-[#082456] px-5 py-2 rounded-xl hover:scale-105 transition"
-            >
-              Login
+            <a href="/">
+              Accueil
             </a>
 
-          )}
+            <a href="/groups">
+              Groupes
+            </a>
 
-          {user && (
+            <a href="/matches">
+              Matchs
+            </a>
 
-            <button
-              onClick={() => signOut(auth)}
-              className="bg-red-500 text-white px-5 py-2 rounded-xl hover:scale-105 transition"
-            >
-              Logout
-            </button>
+            <a href="/admin">
+              Classement
+            </a>
 
-          )}
+            <a href="/rules">
+              Règlement
+            </a>
 
-        </nav>
+            {!user ? (
+
+              <a
+                href="/login"
+                className="bg-white text-[#082456] px-4 py-2 rounded-xl"
+              >
+                Connexion
+              </a>
+
+            ) : (
+
+              <button
+                onClick={() =>
+                  signOut(auth)
+                }
+                className="bg-red-500 px-4 py-2 rounded-xl"
+              >
+                Déconnexion
+              </button>
+
+            )}
+
+          </nav>
+
+        </div>
 
       </header>
 
       {/* TIMER */}
       <section className="px-6 py-8">
 
-        <div className="bg-gradient-to-r from-blue-600 to-blue-500 rounded-3xl p-8 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-8">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-500 rounded-3xl p-8 flex flex-col md:flex-row items-center justify-between gap-8">
 
-          <div className="flex items-center gap-5">
+          <div>
 
-            <Image
-              src="/belmart-logo.jpeg"
-              alt="Belmart"
-              width={90}
-              height={90}
-              className="rounded-2xl shadow-xl"
-            />
+            <h2 className="text-2xl md:text-5xl font-black">
 
-            <div>
+              Coupe du Monde FIFA 2026™
 
-              <h2 className="text-2xl md:text-4xl font-black">
-                Coupe du Monde de la FIFA 2026™
-              </h2>
+            </h2>
 
-              <p className="text-lg text-gray-200 mt-2">
-                11 juin - 19 juillet 2026
-              </p>
+            <p className="mt-3 text-xl">
 
-            </div>
+              11 juin - 19 juillet 2026
+
+            </p>
 
           </div>
 
           <div className="flex gap-6 text-center">
 
             <div>
+
               <div className="text-5xl font-black">
+
                 {timeLeft.days}
+
               </div>
-              <div className="text-sm uppercase">
-                jours
+
+              <div>
+                JOURS
               </div>
+
             </div>
 
             <div>
+
               <div className="text-5xl font-black">
+
                 {timeLeft.hours}
+
               </div>
-              <div className="text-sm uppercase">
-                heures
+
+              <div>
+                HEURES
               </div>
+
             </div>
 
             <div>
+
               <div className="text-5xl font-black">
+
                 {timeLeft.minutes}
+
               </div>
-              <div className="text-sm uppercase">
-                minutes
+
+              <div>
+                MINUTES
               </div>
+
             </div>
 
             <div>
+
               <div className="text-5xl font-black">
+
                 {timeLeft.seconds}
+
               </div>
-              <div className="text-sm uppercase">
-                secs
+
+              <div>
+                SECS
               </div>
+
             </div>
 
           </div>
@@ -539,155 +415,190 @@ export default function BelmartPredictor2026() {
       </section>
 
       {/* HERO */}
-      <section className="px-8 py-16 text-center">
+      <section className="text-center py-12 px-5">
 
-        <h2 className="text-5xl font-bold mb-5">
+        <h2 className="text-4xl md:text-6xl font-black">
+
           Predict. Win. Celebrate.
+
         </h2>
 
-        <p className="text-xl text-gray-200">
+        <p className="text-xl mt-5 text-gray-200">
+
           Faites vos pronostics et gagnez avec Belmart 🔥
+
         </p>
 
       </section>
 
       {/* MATCHES */}
-      <section className="px-8 py-10">
+      <section className="px-6 pb-16">
 
-        <h3 className="text-3xl font-bold text-[#FFD400] mb-6">
-          Upcoming Matches
+        <h3 className="text-3xl font-black text-[#FFD400] mb-8">
+
+          Matchs à venir
+
         </h3>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
           {matches.map(
-            (match: any, index: number) => (
+            (
+              match: any,
+              index: number
+            ) => (
 
               <div
                 key={index}
                 className="bg-white text-[#0A2C6D] rounded-3xl p-6 shadow-xl"
               >
 
-                <div className="text-center">
+                {/* DATE */}
+                <p className="text-center text-gray-500 mb-3 font-semibold">
 
-                  <p className="text-sm text-gray-500 mb-4">
-                    {match.date}
-                  </p>
+                  {match.date}
 
-                  <div className="flex items-center justify-between mb-5">
+                </p>
 
-                    <div className="flex flex-col items-center">
+                {/* TIME */}
+                <p className="text-center text-3xl font-black mb-5">
 
-                      <img
-                        src={`https://flagcdn.com/w80/${match.flag1}.png`}
-                        alt={match.team1}
-                        className="w-16 h-16 mb-2 rounded-full"
-                      />
+                  {match.time}
 
-                      <div className="font-bold">
-                        {match.team1}
-                      </div>
+                </p>
 
-                    </div>
+                {/* TEAMS */}
+                <div className="flex items-center justify-between mb-8">
 
-                    <span className="font-black text-2xl">
-                      VS
+                  {/* TEAM 1 */}
+                  <div className="flex flex-col items-center w-[120px]">
+
+                    <img
+                      src={`https://flagcdn.com/w80/${match.flag1}.png`}
+                      className="w-14 h-14 rounded-full mb-2"
+                    />
+
+                    <span className="font-bold text-center text-sm md:text-base">
+
+                      {match.team1}
+
                     </span>
 
-                    <div className="flex flex-col items-center">
+                  </div>
 
-                      <img
-                        src={`https://flagcdn.com/w80/${match.flag2}.png`}
-                        alt={match.team2}
-                        className="w-16 h-16 mb-2 rounded-full"
-                      />
+                  {/* VS */}
+                  <div className="text-2xl font-black">
 
-                      <div className="font-bold">
-                        {match.team2}
-                      </div>
-
-                    </div>
+                    VS
 
                   </div>
 
-                  <div className="flex justify-center gap-3 mb-5">
+                  {/* TEAM 2 */}
+                  <div className="flex flex-col items-center w-[120px]">
 
-                    <input
-                      type="number"
-                      placeholder="0"
-                      disabled={scores[index]?.locked}
-                      value={
-                        scores[index]?.home || ""
-                      }
-                      onChange={(e) =>
-                        setScores({
-                          ...scores,
-                          [index]: {
-                            ...scores[index],
-                            home: e.target.value,
-                          },
-                        })
-                      }
-                      className={`w-16 h-16 text-center border rounded-xl text-2xl font-bold ${
-                        scores[index]?.locked
-                          ? "bg-gray-300 cursor-not-allowed"
-                          : ""
-                      }`}
+                    <img
+                      src={`https://flagcdn.com/w80/${match.flag2}.png`}
+                      className="w-14 h-14 rounded-full mb-2"
                     />
 
-                    <input
-                      type="number"
-                      placeholder="0"
-                      disabled={scores[index]?.locked}
-                      value={
-                        scores[index]?.away || ""
-                      }
-                      onChange={(e) =>
-                        setScores({
-                          ...scores,
-                          [index]: {
-                            ...scores[index],
-                            away: e.target.value,
-                          },
-                        })
-                      }
-                      className={`w-16 h-16 text-center border rounded-xl text-2xl font-bold ${
-                        scores[index]?.locked
-                          ? "bg-gray-300 cursor-not-allowed"
-                          : ""
-                      }`}
-                    />
+                    <span className="font-bold text-center text-sm md:text-base">
+
+                      {match.team2}
+
+                    </span>
 
                   </div>
-
-                  <button
-                    disabled={scores[index]?.locked}
-                    onClick={() =>
-                      savePrediction(
-                        match,
-                        Number(
-                          scores[index]?.home || 0
-                        ),
-                        Number(
-                          scores[index]?.away || 0
-                        ),
-                        index
-                      )
-                    }
-                    className={`px-5 py-3 rounded-xl w-full transition ${
-                      scores[index]?.locked
-                        ? "bg-gray-400 cursor-not-allowed"
-                        : "bg-[#0A2C6D] hover:bg-[#082456] text-white"
-                    }`}
-                  >
-
-                    {scores[index]?.locked
-                      ? "Prediction Locked"
-                      : "Save Prediction"}
-
-                  </button>
 
                 </div>
+
+                {/* INPUTS */}
+                <div className="flex justify-center gap-4 mb-5">
+
+                  <input
+                    type="number"
+                    min="0"
+                    disabled={
+                      scores[index]?.locked
+                    }
+                    onChange={(e) =>
+                      setScores({
+
+                        ...scores,
+
+                        [index]: {
+
+                          ...scores[index],
+
+                          home:
+                            e.target.value,
+
+                        },
+
+                      })
+                    }
+                    className="w-14 h-14 border border-[#0A2C6D] rounded-xl text-center text-2xl font-black"
+                  />
+
+                  <input
+                    type="number"
+                    min="0"
+                    disabled={
+                      scores[index]?.locked
+                    }
+                    onChange={(e) =>
+                      setScores({
+
+                        ...scores,
+
+                        [index]: {
+
+                          ...scores[index],
+
+                          away:
+                            e.target.value,
+
+                        },
+
+                      })
+                    }
+                    className="w-14 h-14 border border-[#0A2C6D] rounded-xl text-center text-2xl font-black"
+                  />
+
+                </div>
+
+                {/* BUTTON */}
+                <button
+                  disabled={
+                    scores[index]?.locked
+                  }
+                  onClick={() =>
+                    savePrediction(
+
+                      match,
+
+                      Number(
+                        scores[index]?.home || 0
+                      ),
+
+                      Number(
+                        scores[index]?.away || 0
+                      ),
+
+                      index
+                    )
+                  }
+                  className={`w-full py-3 rounded-2xl font-bold transition ${
+                    scores[index]?.locked
+                      ? "bg-gray-400"
+                      : "bg-[#0A2C6D] text-white hover:bg-[#082456]"
+                  }`}
+                >
+
+                  {scores[index]?.locked
+                    ? "Pronostic verrouillé"
+                    : "Enregistrer"}
+
+                </button>
 
               </div>
 
@@ -697,13 +608,6 @@ export default function BelmartPredictor2026() {
         </div>
 
       </section>
-
-      {/* FOOTER */}
-      <footer className="bg-[#082456] py-6 text-center text-gray-300 mt-10">
-
-        © 2026 Jeu de pronostique de Belmart
-
-      </footer>
 
     </div>
 

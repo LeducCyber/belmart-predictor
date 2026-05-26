@@ -5,26 +5,34 @@ import { useState } from "react";
 import Link from "next/link";
 
 import {
-  createUserWithEmailAndPassword
+  createUserWithEmailAndPassword,
 } from "firebase/auth";
 
 import {
   doc,
-  setDoc
+  setDoc,
 } from "firebase/firestore";
 
 import {
   auth,
-  db
+  db,
 } from "../../lib/firebase";
 
 export default function SignupPage() {
 
   const [name, setName] = useState("");
 
+  const [phone, setPhone] = useState("");
+
   const [email, setEmail] = useState("");
 
   const [password, setPassword] = useState("");
+
+  const [isBelmartClient, setIsBelmartClient] =
+    useState("");
+
+  const [fidelityCard, setFidelityCard] =
+    useState("");
 
   const handleSignup = async (
     e: React.FormEvent
@@ -34,6 +42,7 @@ export default function SignupPage() {
 
     try {
 
+      // CREATE USER
       const userCredential =
         await createUserWithEmailAndPassword(
           auth,
@@ -41,79 +50,191 @@ export default function SignupPage() {
           password
         );
 
-      const user = userCredential.user;
+      const user =
+        userCredential.user;
 
-      await setDoc(doc(db, "users", user.uid), {
-        name,
-        email,
-        createdAt: new Date()
-      });
+      // SAVE USER INFO
+      await setDoc(
+        doc(db, "users", user.uid),
+        {
 
-      alert("Account created successfully!");
+          name,
 
-      window.location.href = "/login";
+          phone,
+
+          email,
+
+          isBelmartClient,
+
+          fidelityCard,
+
+          createdAt: new Date(),
+
+        }
+      );
+
+      alert(
+        "Compte créé avec succès ✅"
+      );
+
+      window.location.href =
+        "/dashboard";
 
     } catch (error: any) {
 
       alert(error.message);
 
     }
+
   };
 
   return (
-    <div className="min-h-screen bg-[#0A2C6D] flex items-center justify-center">
 
-      <div className="bg-white p-10 rounded-3xl shadow-2xl w-[400px]">
+    <div className="min-h-screen bg-[#0A2C6D] flex items-center justify-center px-4">
 
-        <h1 className="text-3xl font-bold text-center text-[#082456] mb-8">
-          Create Account
+      <div className="bg-white p-10 rounded-3xl shadow-2xl w-full max-w-md">
+
+        {/* TITLE */}
+        <h1 className="text-4xl font-black text-center text-[#082456] mb-8">
+
+          Créer un compte
+
         </h1>
 
-        <form onSubmit={handleSignup}>
+        {/* FORM */}
+        <form
+          onSubmit={handleSignup}
+        >
 
+          {/* NAME */}
           <input
             type="text"
-            placeholder="Full Name"
-            className="w-full border border-gray-400 rounded-2xl px-4 py-4 mb-4 outline-none"
+            placeholder="Nom complet"
+            className="w-full border border-gray-300 rounded-2xl px-4 py-4 mb-5 outline-none focus:border-[#082456]"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) =>
+              setName(e.target.value)
+            }
             required
           />
 
+          {/* PHONE */}
+          <input
+            type="tel"
+            placeholder="Numéro de téléphone"
+            className="w-full border border-gray-300 rounded-2xl px-4 py-4 mb-5 outline-none focus:border-[#082456]"
+            value={phone}
+            onChange={(e) =>
+              setPhone(e.target.value)
+            }
+            required
+          />
+
+          {/* BELMART CLIENT */}
+          <div className="mb-5">
+
+            <label className="block text-[#082456] font-bold mb-3">
+
+              Êtes-vous un client Belmart ?
+
+            </label>
+
+            <select
+              className="w-full border border-gray-300 rounded-2xl px-4 py-4 outline-none focus:border-[#082456]"
+              value={isBelmartClient}
+              onChange={(e) =>
+                setIsBelmartClient(
+                  e.target.value
+                )
+              }
+              required
+            >
+
+              <option value="">
+                Sélectionner
+              </option>
+
+              <option value="Oui">
+                Oui
+              </option>
+
+              <option value="Non">
+                Non
+              </option>
+
+            </select>
+
+          </div>
+
+          {/* FIDELITY CARD */}
+          {isBelmartClient === "Oui" && (
+
+            <input
+              type="text"
+              placeholder="Entrez les 4 premiers chiffres de votre carte de fidélité"
+              className="w-full border border-gray-300 rounded-2xl px-4 py-4 mb-5 outline-none focus:border-[#082456]"
+              value={fidelityCard}
+              onChange={(e) =>
+                setFidelityCard(
+                  e.target.value
+                )
+              }
+              maxLength={4}
+              required
+            />
+
+          )}
+
+          {/* EMAIL */}
           <input
             type="email"
-            placeholder="Email"
-            className="w-full border border-gray-400 rounded-2xl px-4 py-4 mb-4 outline-none"
+            placeholder="Adresse email"
+            className="w-full border border-gray-300 rounded-2xl px-4 py-4 mb-5 outline-none focus:border-[#082456]"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) =>
+              setEmail(e.target.value)
+            }
             required
           />
 
+          {/* PASSWORD */}
           <input
             type="password"
-            placeholder="Password"
-            className="w-full border border-gray-400 rounded-2xl px-4 py-4 mb-5 outline-none"
+            placeholder="Mot de passe"
+            className="w-full border border-gray-300 rounded-2xl px-4 py-4 mb-6 outline-none focus:border-[#082456]"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) =>
+              setPassword(e.target.value)
+            }
             required
           />
 
+          {/* BUTTON */}
           <button
             type="submit"
-            className="w-full bg-yellow-400 hover:bg-yellow-500 text-[#082456] font-bold py-4 rounded-2xl transition"
+            className="w-full bg-[#FFD400] hover:bg-yellow-400 text-[#082456] font-black py-4 rounded-2xl transition"
           >
-            Create Account
+
+            S'inscrire
+
           </button>
 
         </form>
 
-        <div className="text-center mt-5">
+        {/* LOGIN */}
+        <div className="text-center mt-6">
+
+          <span className="text-gray-600">
+            Vous avez déjà un compte ?
+          </span>
 
           <Link
             href="/login"
-            className="text-[#082456] hover:underline"
+            className="ml-2 text-[#082456] font-bold hover:underline"
           >
-            Back to Login
+
+            Connexion
+
           </Link>
 
         </div>
@@ -121,5 +242,7 @@ export default function SignupPage() {
       </div>
 
     </div>
+
   );
+
 }
