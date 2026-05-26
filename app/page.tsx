@@ -30,7 +30,15 @@ export default function BelmartPredictor2026() {
 
   const [leaderboard, setLeaderboard] = useState<any[]>([]);
 
-  // OFFICIAL RESULTS
+  // TIMER
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
+
+  // RESULTS
   const officialResults: any = {
 
     "Mexico_vs_South Africa": {
@@ -159,7 +167,6 @@ export default function BelmartPredictor2026() {
 
     }
 
-    // LOCK
     if (scores[index]?.locked) {
 
       alert("Prédiction déjà enregistrée");
@@ -205,7 +212,6 @@ export default function BelmartPredictor2026() {
         }
       );
 
-      // LOCK UI
       setScores({
         ...scores,
         [index]: {
@@ -241,6 +247,44 @@ export default function BelmartPredictor2026() {
 
       }
     );
+
+    // COUNTDOWN
+    const targetDate = new Date(
+      "2026-06-11T00:00:00"
+    ).getTime();
+
+    const interval = setInterval(() => {
+
+      const now = new Date().getTime();
+
+      const distance = targetDate - now;
+
+      const days = Math.floor(
+        distance / (1000 * 60 * 60 * 24)
+      );
+
+      const hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) /
+        (1000 * 60 * 60)
+      );
+
+      const minutes = Math.floor(
+        (distance % (1000 * 60 * 60)) /
+        (1000 * 60)
+      );
+
+      const seconds = Math.floor(
+        (distance % (1000 * 60)) / 1000
+      );
+
+      setTimeLeft({
+        days,
+        hours,
+        minutes,
+        seconds,
+      });
+
+    }, 1000);
 
     // FETCH MATCHES
     const fetchMatches = async () => {
@@ -319,6 +363,8 @@ export default function BelmartPredictor2026() {
 
     fetchLeaderboard();
 
+    return () => clearInterval(interval);
+
   }, []);
 
   return (
@@ -373,6 +419,13 @@ export default function BelmartPredictor2026() {
           </a>
 
           <a
+            href="/matches"
+            className="hover:text-[#FFD400] transition"
+          >
+            Matchs
+          </a>
+
+          <a
             href="/admin"
             className="hover:text-[#FFD400] transition"
           >
@@ -411,6 +464,79 @@ export default function BelmartPredictor2026() {
         </nav>
 
       </header>
+
+      {/* TIMER */}
+      <section className="px-6 py-8">
+
+        <div className="bg-gradient-to-r from-blue-600 to-blue-500 rounded-3xl p-8 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-8">
+
+          <div className="flex items-center gap-5">
+
+            <Image
+              src="/belmart-logo.jpeg"
+              alt="Belmart"
+              width={90}
+              height={90}
+              className="rounded-2xl shadow-xl"
+            />
+
+            <div>
+
+              <h2 className="text-2xl md:text-4xl font-black">
+                Coupe du Monde de la FIFA 2026™
+              </h2>
+
+              <p className="text-lg text-gray-200 mt-2">
+                11 juin - 19 juillet 2026
+              </p>
+
+            </div>
+
+          </div>
+
+          <div className="flex gap-6 text-center">
+
+            <div>
+              <div className="text-5xl font-black">
+                {timeLeft.days}
+              </div>
+              <div className="text-sm uppercase">
+                jours
+              </div>
+            </div>
+
+            <div>
+              <div className="text-5xl font-black">
+                {timeLeft.hours}
+              </div>
+              <div className="text-sm uppercase">
+                heures
+              </div>
+            </div>
+
+            <div>
+              <div className="text-5xl font-black">
+                {timeLeft.minutes}
+              </div>
+              <div className="text-sm uppercase">
+                minutes
+              </div>
+            </div>
+
+            <div>
+              <div className="text-5xl font-black">
+                {timeLeft.seconds}
+              </div>
+              <div className="text-sm uppercase">
+                secs
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
 
       {/* HERO */}
       <section className="px-8 py-16 text-center">
@@ -567,118 +693,6 @@ export default function BelmartPredictor2026() {
 
             )
           )}
-
-        </div>
-
-      </section>
-
-      {/* GLOBAL LEADERBOARD */}
-      <section className="px-8 py-10">
-
-        <h2 className="text-3xl font-bold text-[#FFD400] mb-6">
-          Global Leaderboard 🏆
-        </h2>
-
-        <div className="bg-white rounded-3xl overflow-hidden">
-
-          <table className="w-full text-[#0A2C6D]">
-
-            <thead className="bg-[#FFD400]">
-
-              <tr>
-
-                <th className="p-4 text-left">
-                  Rank
-                </th>
-
-                <th className="p-4 text-left">
-                  Player
-                </th>
-
-                <th className="p-4 text-left">
-                  Total Points
-                </th>
-
-              </tr>
-
-            </thead>
-
-            <tbody>
-
-              {Object.values(
-
-                leaderboard.reduce(
-                  (acc: any, item: any) => {
-
-                    if (!acc[item.email]) {
-
-                      acc[item.email] = {
-
-                        email: item.email,
-
-                        totalPoints: 0,
-
-                      };
-
-                    }
-
-                    acc[item.email]
-                      .totalPoints +=
-                      item.points || 0;
-
-                    return acc;
-
-                  },
-                  {}
-                )
-
-              )
-
-              .sort(
-                (a: any, b: any) =>
-                  b.totalPoints -
-                  a.totalPoints
-              )
-
-              .map(
-                (
-                  player: any,
-                  index: number
-                ) => (
-
-                  <tr
-                    key={index}
-                    className="border-b"
-                  >
-
-                    <td className="p-4 font-black text-xl">
-
-                      {index === 0
-                        ? "🥇"
-                        : index === 1
-                        ? "🥈"
-                        : index === 2
-                        ? "🥉"
-                        : `#${index + 1}`}
-
-                    </td>
-
-                    <td className="p-4 font-bold">
-                      {player.email}
-                    </td>
-
-                    <td className="p-4 font-black text-2xl text-[#0A2C6D]">
-                      {player.totalPoints}
-                    </td>
-
-                  </tr>
-
-                )
-              )}
-
-            </tbody>
-
-          </table>
 
         </div>
 

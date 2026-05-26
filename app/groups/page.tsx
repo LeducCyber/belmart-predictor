@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 
 export default function GroupsPage() {
@@ -5,27 +7,27 @@ export default function GroupsPage() {
   const groups = [
 
     {
-      name: "GROUPE A",
+      name: "Groupe A",
       teams: [
         "🇲🇽 Mexique",
         "🇿🇦 Afrique du Sud",
-        "🇰🇷 Corée du Sud",
+        "🇰🇷 République de Corée",
         "🇨🇿 Tchéquie",
       ],
     },
 
     {
-      name: "GROUPE B",
+      name: "Groupe B",
       teams: [
         "🇨🇦 Canada",
-        "🇧🇦 Bosnie",
+        "🇧🇦 Bosnie-Herzégovine",
         "🇶🇦 Qatar",
         "🇨🇭 Suisse",
       ],
     },
 
     {
-      name: "GROUPE C",
+      name: "Groupe C",
       teams: [
         "🇧🇷 Brésil",
         "🇲🇦 Maroc",
@@ -34,169 +36,184 @@ export default function GroupsPage() {
       ],
     },
 
-    {
-      name: "GROUPE D",
-      teams: [
-        "🇺🇸 États-Unis",
-        "🇵🇾 Paraguay",
-        "🇦🇺 Australie",
-        "🇹🇷 Turquie",
-      ],
-    },
-
-    {
-      name: "GROUPE E",
-      teams: [
-        "🇩🇪 Allemagne",
-        "🇨🇼 Curaçao",
-        "🇨🇮 Côte d’Ivoire",
-        "🇪🇨 Équateur",
-      ],
-    },
-
-    {
-      name: "GROUPE F",
-      teams: [
-        "🇳🇱 Pays-Bas",
-        "🇯🇵 Japon",
-        "🇸🇪 Suède",
-        "🇹🇳 Tunisie",
-      ],
-    },
-
-    {
-      name: "GROUPE G",
-      teams: [
-        "🇧🇪 Belgique",
-        "🇪🇬 Égypte",
-        "🇮🇷 Iran",
-        "🇳🇿 Nouvelle-Zélande",
-      ],
-    },
-
-    {
-      name: "GROUPE H",
-      teams: [
-        "🇪🇸 Espagne",
-        "🇨🇻 Cap Vert",
-        "🇸🇦 Arabie Saoudite",
-        "🇺🇾 Uruguay",
-      ],
-    },
-
-    {
-      name: "GROUPE I",
-      teams: [
-        "🇫🇷 France",
-        "🇸🇳 Sénégal",
-        "🇮🇶 Irak",
-        "🇳🇴 Norvège",
-      ],
-    },
-
-    {
-      name: "GROUPE J",
-      teams: [
-        "🇦🇷 Argentine",
-        "🇩🇿 Algérie",
-        "🇦🇹 Autriche",
-        "🇯🇴 Jordanie",
-      ],
-    },
-
-    {
-      name: "GROUPE K",
-      teams: [
-        "🇵🇹 Portugal",
-        "🇨🇩 RD Congo",
-        "🇺🇿 Ouzbékistan",
-        "🇨🇴 Colombie",
-      ],
-    },
-
-    {
-      name: "GROUPE L",
-      teams: [
-        "🏴 Angleterre",
-        "🇭🇷 Croatie",
-        "🇬🇭 Ghana",
-        "🇵🇦 Panama",
-      ],
-    },
-
   ];
 
   return (
 
-    <div className="min-h-screen bg-gradient-to-b from-[#001B70] to-[#002C9B] text-white px-6 py-10">
-
-      {/* BACK HOME BUTTON */}
-      <div className="mb-8">
-
-        <a
-          href="/"
-          className="inline-block bg-white text-[#001B70] font-black px-6 py-3 rounded-2xl shadow-xl hover:scale-105 transition"
-        >
-          ← Retour à l'accueil
-        </a>
-
-      </div>
+    <div className="min-h-screen bg-[#F4F4F4]">
 
       {/* HEADER */}
-      <div className="flex flex-col items-center mb-14">
+      <div className="bg-[#0A2C6D] text-white p-6 shadow-xl">
 
-        <Image
-          src="/belmart-logo.jpeg"
-          alt="Belmart"
-          width={120}
-          height={120}
-          className="rounded-3xl shadow-2xl mb-6"
-        />
+        <div className="flex items-center justify-between">
 
-        <h1 className="text-3xl md:text-6xl font-black text-center uppercase leading-tight">
+          <div className="flex items-center gap-5">
 
-          Les Groupes de la Coupe du Monde
+            <Image
+              src="/belmart-logo.jpeg"
+              alt="Belmart"
+              width={80}
+              height={80}
+              className="rounded-2xl"
+            />
 
-        </h1>
+            <div>
 
-        <div className="bg-cyan-400 text-[#001B70] px-6 py-2 rounded-xl font-black text-2xl mt-5 shadow-lg">
+              <h1 className="text-3xl md:text-5xl font-black">
+                Classements
+              </h1>
 
-          2026
+              <p className="text-gray-300 mt-2">
+                Coupe du Monde FIFA 2026
+              </p>
+
+            </div>
+
+          </div>
+
+          <a
+            href="/"
+            className="bg-white text-[#0A2C6D] px-5 py-3 rounded-2xl font-bold"
+          >
+            ← Accueil
+          </a>
 
         </div>
 
       </div>
 
-      {/* GROUPS */}
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
+      {/* GROUP TABLES */}
+      <div className="max-w-7xl mx-auto px-6 py-10 space-y-10">
 
         {groups.map((group, index) => (
 
           <div
             key={index}
-            className="bg-[#00145A] border border-blue-400 rounded-3xl p-6 shadow-2xl hover:scale-105 transition duration-300"
+            className="bg-white rounded-3xl shadow-xl overflow-hidden"
           >
 
-            <h2 className="text-2xl font-black text-[#FFD400] mb-6 text-center">
+            {/* GROUP HEADER */}
+            <div className="bg-[#082456] text-white px-6 py-4">
 
-              {group.name}
+              <h2 className="text-2xl font-black">
 
-            </h2>
+                {group.name}
 
-            <div className="space-y-4">
+              </h2>
 
-              {group.teams.map((team, i) => (
+            </div>
 
-                <div
-                  key={i}
-                  className="bg-white text-[#001B70] rounded-xl px-4 py-3 font-black text-lg shadow-md"
-                >
+            {/* TABLE */}
+            <div className="overflow-x-auto">
 
-                  {team}
+              <table className="w-full text-[#082456]">
 
-                </div>
+                <thead className="bg-gray-100">
 
-              ))}
+                  <tr>
+
+                    <th className="p-4 text-left">
+                      #
+                    </th>
+
+                    <th className="p-4 text-left">
+                      Équipe
+                    </th>
+
+                    <th className="p-4">
+                      J
+                    </th>
+
+                    <th className="p-4">
+                      G
+                    </th>
+
+                    <th className="p-4">
+                      N
+                    </th>
+
+                    <th className="p-4">
+                      P
+                    </th>
+
+                    <th className="p-4">
+                      Bp
+                    </th>
+
+                    <th className="p-4">
+                      Bc
+                    </th>
+
+                    <th className="p-4">
+                      Dif.
+                    </th>
+
+                    <th className="p-4 font-black">
+                      Pts
+                    </th>
+
+                  </tr>
+
+                </thead>
+
+                <tbody>
+
+                  {group.teams.map(
+                    (team, i) => (
+
+                      <tr
+                        key={i}
+                        className="border-b hover:bg-gray-50 transition"
+                      >
+
+                        <td className="p-4 font-bold">
+                          {i + 1}
+                        </td>
+
+                        <td className="p-4 font-bold text-lg">
+                          {team}
+                        </td>
+
+                        <td className="p-4 text-center">
+                          0
+                        </td>
+
+                        <td className="p-4 text-center">
+                          0
+                        </td>
+
+                        <td className="p-4 text-center">
+                          0
+                        </td>
+
+                        <td className="p-4 text-center">
+                          0
+                        </td>
+
+                        <td className="p-4 text-center">
+                          0
+                        </td>
+
+                        <td className="p-4 text-center">
+                          0
+                        </td>
+
+                        <td className="p-4 text-center">
+                          0
+                        </td>
+
+                        <td className="p-4 text-center font-black">
+                          0
+                        </td>
+
+                      </tr>
+
+                    )
+                  )}
+
+                </tbody>
+
+              </table>
 
             </div>
 
