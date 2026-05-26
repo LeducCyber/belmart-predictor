@@ -28,6 +28,9 @@ export default function SignupPage() {
 
   const [password, setPassword] = useState("");
 
+  const [loading, setLoading] =
+    useState(false);
+
   const [isBelmartClient, setIsBelmartClient] =
     useState("");
 
@@ -39,6 +42,8 @@ export default function SignupPage() {
   ) => {
 
     e.preventDefault();
+
+    setLoading(true);
 
     try {
 
@@ -84,15 +89,31 @@ export default function SignupPage() {
 
       alert(error.message);
 
+    } finally {
+
+      setLoading(false);
+
     }
 
   };
 
   return (
 
-    <div className="min-h-screen bg-[#0A2C6D] flex items-center justify-center px-4">
+    <div className="min-h-screen bg-[#0A2C6D] flex items-center justify-center px-4 py-10">
 
       <div className="bg-white p-10 rounded-3xl shadow-2xl w-full max-w-md">
+
+        {/* BACK HOME */}
+        <div className="mb-5">
+
+          <Link
+            href="/"
+            className="text-[#082456] font-semibold hover:underline"
+          >
+            ← Retour à l'accueil
+          </Link>
+
+        </div>
 
         {/* TITLE */}
         <h1 className="text-4xl font-black text-center text-[#082456] mb-8">
@@ -110,7 +131,7 @@ export default function SignupPage() {
           <input
             type="text"
             placeholder="Nom complet"
-            className="w-full border border-gray-300 rounded-2xl px-4 py-4 mb-5 outline-none focus:border-[#082456]"
+            className="w-full bg-[#F3F4F6] border-2 border-gray-400 rounded-2xl px-4 py-4 mb-5 text-[#082456] placeholder-gray-500 outline-none focus:border-yellow-400 focus:bg-white transition"
             value={name}
             onChange={(e) =>
               setName(e.target.value)
@@ -122,7 +143,7 @@ export default function SignupPage() {
           <input
             type="tel"
             placeholder="Numéro de téléphone"
-            className="w-full border border-gray-300 rounded-2xl px-4 py-4 mb-5 outline-none focus:border-[#082456]"
+            className="w-full bg-[#F3F4F6] border-2 border-gray-400 rounded-2xl px-4 py-4 mb-5 text-[#082456] placeholder-gray-500 outline-none focus:border-yellow-400 focus:bg-white transition"
             value={phone}
             onChange={(e) =>
               setPhone(e.target.value)
@@ -140,7 +161,7 @@ export default function SignupPage() {
             </label>
 
             <select
-              className="w-full border border-gray-300 rounded-2xl px-4 py-4 outline-none focus:border-[#082456]"
+              className="w-full bg-[#F3F4F6] border-2 border-gray-400 rounded-2xl px-4 py-4 text-[#082456] outline-none focus:border-yellow-400 transition"
               value={isBelmartClient}
               onChange={(e) =>
                 setIsBelmartClient(
@@ -171,8 +192,8 @@ export default function SignupPage() {
 
             <input
               type="text"
-              placeholder="Entrez les 4 premiers chiffres de votre carte de fidélité"
-              className="w-full border border-gray-300 rounded-2xl px-4 py-4 mb-5 outline-none focus:border-[#082456]"
+              placeholder="4 premiers chiffres de votre carte fidélité"
+              className="w-full bg-[#F3F4F6] border-2 border-gray-400 rounded-2xl px-4 py-4 mb-5 text-[#082456] placeholder-gray-500 outline-none focus:border-yellow-400 focus:bg-white transition"
               value={fidelityCard}
               onChange={(e) =>
                 setFidelityCard(
@@ -189,7 +210,7 @@ export default function SignupPage() {
           <input
             type="email"
             placeholder="Adresse email"
-            className="w-full border border-gray-300 rounded-2xl px-4 py-4 mb-5 outline-none focus:border-[#082456]"
+            className="w-full bg-[#F3F4F6] border-2 border-gray-400 rounded-2xl px-4 py-4 mb-5 text-[#082456] placeholder-gray-500 outline-none focus:border-yellow-400 focus:bg-white transition"
             value={email}
             onChange={(e) =>
               setEmail(e.target.value)
@@ -201,7 +222,7 @@ export default function SignupPage() {
           <input
             type="password"
             placeholder="Mot de passe"
-            className="w-full border border-gray-300 rounded-2xl px-4 py-4 mb-6 outline-none focus:border-[#082456]"
+            className="w-full bg-[#F3F4F6] border-2 border-gray-400 rounded-2xl px-4 py-4 mb-6 text-[#082456] placeholder-gray-500 outline-none focus:border-yellow-400 focus:bg-white transition"
             value={password}
             onChange={(e) =>
               setPassword(e.target.value)
@@ -212,10 +233,17 @@ export default function SignupPage() {
           {/* BUTTON */}
           <button
             type="submit"
-            className="w-full bg-[#FFD400] hover:bg-yellow-400 text-[#082456] font-black py-4 rounded-2xl transition"
+            disabled={loading}
+            className={`w-full font-black py-4 rounded-2xl transition ${
+              loading
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-[#FFD400] hover:bg-yellow-400 text-[#082456]"
+            }`}
           >
 
-            S'inscrire
+            {loading
+              ? "Création..."
+              : "S'inscrire"}
 
           </button>
 
