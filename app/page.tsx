@@ -90,12 +90,13 @@ export default function BelmartPredictor2026() {
 
     const formattedMatches = [
 
+      // GROUPE A
       {
         team1: "Mexique",
         team2: "Afrique du Sud",
         flag1: "mx",
         flag2: "za",
-        date: "jeudi 11 juin 2026",
+        date: "Jeudi 11 Juin 2026",
         time: "15:00",
       },
 
@@ -104,16 +105,17 @@ export default function BelmartPredictor2026() {
         team2: "Tchéquie",
         flag1: "kr",
         flag2: "cz",
-        date: "jeudi 11 juin 2026",
+        date: "Jeudi 11 Juin 2026",
         time: "22:00",
       },
 
+      // GROUPE B
       {
         team1: "Canada",
         team2: "Bosnie-Herzégovine",
         flag1: "ca",
         flag2: "ba",
-        date: "vendredi 12 juin 2026",
+        date: "Vendredi 12 Juin 2026",
         time: "15:00",
       },
 
@@ -122,16 +124,17 @@ export default function BelmartPredictor2026() {
         team2: "Suisse",
         flag1: "qa",
         flag2: "ch",
-        date: "vendredi 12 juin 2026",
+        date: "Vendredi 12 Juin 2026",
         time: "19:00",
       },
 
+      // GROUPE C
       {
         team1: "Brésil",
         team2: "Maroc",
         flag1: "br",
         flag2: "ma",
-        date: "samedi 13 juin 2026",
+        date: "Samedi 13 Juin 2026",
         time: "16:00",
       },
 
@@ -140,35 +143,65 @@ export default function BelmartPredictor2026() {
         team2: "Écosse",
         flag1: "ht",
         flag2: "gb",
-        date: "samedi 13 juin 2026",
+        date: "Samedi 13 Juin 2026",
         time: "21:00",
       },
 
+      // GROUPE D
       {
         team1: "États-Unis",
         team2: "Paraguay",
         flag1: "us",
         flag2: "py",
-        date: "dimanche 14 juin 2026",
+        date: "Dimanche 14 Juin 2026",
         time: "18:00",
       },
 
+      {
+        team1: "Australie",
+        team2: "Turquie",
+        flag1: "au",
+        flag2: "tr",
+        date: "Dimanche 14 Juin 2026",
+        time: "22:00",
+      },
+
+      // GROUPE E
       {
         team1: "Allemagne",
         team2: "Curaçao",
         flag1: "de",
         flag2: "cw",
-        date: "lundi 15 juin 2026",
-        time: "20:00",
+        date: "Lundi 15 Juin 2026",
+        time: "17:00",
       },
 
       {
-        team1: "France",
-        team2: "Sénégal",
-        flag1: "fr",
-        flag2: "sn",
-        date: "mardi 16 juin 2026",
+        team1: "Côte d’Ivoire",
+        team2: "Équateur",
+        flag1: "ci",
+        flag2: "ec",
+        date: "Lundi 15 Juin 2026",
         time: "21:00",
+      },
+
+      // GROUPE F
+      {
+        team1: "Pays-Bas",
+        team2: "Japon",
+        flag1: "nl",
+        flag2: "jp",
+        date: "Mardi 16 Juin 2026",
+        time: "16:00",
+      },
+
+      {
+        team1: "Suède",
+        team2: "Tunisie",
+        flag1: "se",
+        flag2: "tn",
+        date: "Mardi 16 Juin 2026",
+        time: "20:00",
       },
 
     ];
