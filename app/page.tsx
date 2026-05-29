@@ -423,11 +423,17 @@ export default function BelmartPredictor2026() {
 
           <div>
 
-            <h1 className="text-5xl font-black text-yellow-400">
+            <div className="flex items-center gap-4">
+  <img
+    src="/logos/belmart.png"
+    alt="Belmart"
+    className="h-16 w-auto"
+  />
 
-              Belmart Pronostic 2026
-
-            </h1>
+  <h1 className="text-5xl font-black text-yellow-400">
+    Belmart Pronostic 2026
+  </h1>
+</div>
 
             <p className="text-white text-xl mt-2">
 
