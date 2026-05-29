@@ -195,13 +195,15 @@ export default function LeaderboardPage() {
             }
           );
 
-          const leaderboard =
-            Object.values(
-              playersMap
-            ).sort(
-              (a: any, b: any) =>
-                b.points - a.points
-            );
+  const leaderboard =
+  Object.values(
+    playersMap
+  ) as any[];
+
+leaderboard.sort(
+  (a: any, b: any) =>
+    b.points - a.points
+);
 
           setPlayers(
             leaderboard
