@@ -417,19 +417,19 @@ export default function BelmartPredictor2026() {
 
       {/* HEADER */}
 
-      <div className="bg-[#082567] text-white px-3 sm:px-6 py-5">
+      <div className="bg-[#082567] text-white px-6 py-5">
 
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-4">
+        <div className="flex items-center justify-between">
 
-          <div className="text-center lg:text-left">
+          <div>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-yellow-400">
+            <h1 className="text-5xl font-black text-yellow-400">
 
               Belmart Pronostic 2026
 
             </h1>
 
-            <p className="text-white text-lg sm:text-xl mt-1">
+            <p className="text-white text-xl mt-2">
 
               Mondial 2026
 
@@ -437,7 +437,7 @@ export default function BelmartPredictor2026() {
 
           </div>
 
-        <div className="flex flex-wrap justify-center lg:justify-end gap-4 font-bold items-center text-center">
+          <div className="flex gap-6 font-bold items-center">
 
             <a href="/">
               Accueil
@@ -496,7 +496,7 @@ export default function BelmartPredictor2026() {
 
       <div className="bg-[#082567] text-white py-12 px-6 text-center">
 
-        <h2 className="text-4xl sm:text-6xl font-black">
+        <h2 className="text-6xl font-black">
 
           Mondial 2026
 
@@ -510,14 +510,18 @@ export default function BelmartPredictor2026() {
 
         <div className="flex justify-center gap-8 mt-10 flex-wrap">
 
-        <div className="bg-white text-[#082567] rounded-3xl px-6 py-5 w-32 sm:w-40 shadow-2xl">
+          <div className="bg-white text-[#082567] rounded-3xl px-8 py-6 w-40 shadow-2xl">
 
             <div className="text-5xl font-black">
+
               {timeLeft.days}
+
             </div>
 
             <div className="mt-2 font-bold text-xl">
+
               Jours
+
             </div>
 
           </div>
@@ -610,7 +614,7 @@ export default function BelmartPredictor2026() {
 
                 </div>
 
-            <div className="flex flex-col sm:flex-row items-center justify-between mt-10 px-2 sm:px-4 gap-6">
+                <div className="flex items-center justify-between mt-10 px-4">
 
                   <div className="flex flex-col items-center w-[110px]">
 
