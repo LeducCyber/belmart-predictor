@@ -1,301 +1,848 @@
 "use client";
 
-import Image from "next/image";
-
-import { useEffect, useState } from "react";
+import {
+  useEffect,
+  useState,
+} from "react";
 
 import {
   collection,
+  addDoc,
   getDocs,
+  updateDoc,
+  deleteDoc,
+  doc,
 } from "firebase/firestore";
+
+import {
+  auth,
+  db,
+} from "../../lib/firebase";
 
 import {
   onAuthStateChanged,
 } from "firebase/auth";
 
-import { db, auth } from "../../lib/firebase";
+export default function AdminPage() {
 
-export default function AdminDashboard() {
+  const [user, setUser] =
+    useState<any>(null);
 
-  const [predictions, setPredictions] = useState<any[]>([]);
+  const [authorized,
+    setAuthorized] =
+    useState(false);
 
-  const [totalUsers, setTotalUsers] = useState(0);
+  /* RESULTATS */
 
-  const [topPlayer, setTopPlayer] = useState("");
+  const [team1, setTeam1] =
+    useState("");
 
-  const [topPoints, setTopPoints] = useState(0);
+  const [team2, setTeam2] =
+    useState("");
 
-  const [authorized, setAuthorized] = useState(false);
+  const [score1, setScore1] =
+    useState("");
+
+  const [score2, setScore2] =
+    useState("");
+
+  /* MATCHES */
+
+  const [matchTeam1,
+    setMatchTeam1] =
+    useState("");
+
+  const [matchTeam2,
+    setMatchTeam2] =
+    useState("");
+
+  const [flag1, setFlag1] =
+    useState("");
+
+  const [flag2, setFlag2] =
+    useState("");
+
+  const [matchDate,
+    setMatchDate] =
+    useState("");
+
+  const [displayDate,
+    setDisplayDate] =
+    useState("");
+
+  const [matchTime,
+    setMatchTime] =
+    useState("");
+
+  /* DATA */
+
+  const [results, setResults] =
+    useState<any[]>([]);
+
+  const [predictions,
+    setPredictions] =
+    useState<any[]>([]);
+
+  const [matches, setMatches] =
+    useState<any[]>([]);
+
+  /* AUTH */
 
   useEffect(() => {
 
-    const unsubscribe = onAuthStateChanged(
-      auth,
-      async (currentUser) => {
+    const unsubscribe =
+      onAuthStateChanged(
+        auth,
+        (currentUser) => {
 
-        // NOT LOGGED
-        if (!currentUser) {
+          setUser(currentUser);
 
-          alert("Veuillez vous connecter");
+          if (
+            currentUser?.email ===
+            "d.stlouis@belmarthaiti.com"
+          ) {
 
-          window.location.href = "/login";
+            setAuthorized(true);
 
-          return;
-        }
-
-        // ADMINS
-        const admins = [
-
-          "lkgroupsainfo@gmail.com",
-          "stleduc2@gmail.com",
-
-        ];
-
-        // NOT ADMIN
-        if (
-          !admins.includes(
-            currentUser.email || ""
-          )
-        ) {
-
-          alert("ACCESS DENIED");
-
-          window.location.href = "/";
-
-          return;
-        }
-
-        // AUTHORIZED
-        setAuthorized(true);
-
-        try {
-
-          const querySnapshot = await getDocs(
-            collection(db, "predictions")
-          );
-
-          const data: any[] = [];
-
-          querySnapshot.forEach((doc) => {
-
-            data.push(doc.data());
-
-          });
-
-          setPredictions(data);
-
-          // UNIQUE USERS
-          const uniqueUsers = [
-            ...new Set(
-              data.map((item) => item.email)
-            ),
-          ];
-
-          setTotalUsers(uniqueUsers.length);
-
-          // GLOBAL RANKING
-          const totals: any = {};
-
-          data.forEach((item) => {
-
-            if (!totals[item.email]) {
-
-              totals[item.email] = 0;
-
-            }
-
-            totals[item.email] +=
-              item.points || 0;
-
-          });
-
-          // TOP PLAYER
-          let bestPlayer = "";
-
-          let bestPoints = 0;
-
-          Object.entries(totals).forEach(
-            ([email, points]: any) => {
-
-              if (points > bestPoints) {
-
-                bestPlayer = email;
-
-                bestPoints = points;
-
-              }
-
-            }
-          );
-
-          setTopPlayer(bestPlayer);
-
-          setTopPoints(bestPoints);
-
-        } catch (error) {
-
-          console.log(error);
+          }
 
         }
+      );
 
-      }
-    );
-
-    return () => unsubscribe();
+    return () =>
+      unsubscribe();
 
   }, []);
 
-  // BLOCK PAGE
+  /* LOAD DATA */
+
+  useEffect(() => {
+
+    loadData();
+
+  }, []);
+
+  const loadData =
+    async () => {
+
+      /* RESULTS */
+
+      const resultsSnapshot =
+        await getDocs(
+          collection(
+            db,
+            "results"
+          )
+        );
+
+      const resultsData =
+        resultsSnapshot.docs.map(
+          (doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          })
+        );
+
+      setResults(resultsData);
+
+      /* PREDICTIONS */
+
+      const predictionsSnapshot =
+        await getDocs(
+          collection(
+            db,
+            "predictions"
+          )
+        );
+
+      const predictionsData =
+        predictionsSnapshot.docs.map(
+          (doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          })
+        );
+
+      setPredictions(
+        predictionsData
+      );
+
+      /* MATCHES */
+
+      const matchesSnapshot =
+        await getDocs(
+          collection(
+            db,
+            "matches"
+          )
+        );
+
+      const matchesData =
+        matchesSnapshot.docs.map(
+          (doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          })
+        );
+
+      setMatches(matchesData);
+
+    };
+
+  /* ADD RESULT */
+
+  const addResult =
+    async () => {
+
+      if (
+        !team1 ||
+        !team2 ||
+        score1 === "" ||
+        score2 === ""
+      ) {
+
+        alert(
+          "Compléter tous les champs"
+        );
+
+        return;
+
+      }
+
+      try {
+
+        await addDoc(
+          collection(
+            db,
+            "results"
+          ),
+          {
+            team1,
+            team2,
+            finalScore1:
+              Number(score1),
+            finalScore2:
+              Number(score2),
+          }
+        );
+
+        alert(
+          "Résultat ajouté ✅"
+        );
+
+        setTeam1("");
+        setTeam2("");
+        setScore1("");
+        setScore2("");
+
+        loadData();
+
+      } catch (error) {
+
+        console.log(error);
+
+        alert(
+          "Erreur"
+        );
+
+      }
+
+    };
+
+  /* ADD MATCH */
+
+  const addMatch =
+    async () => {
+
+      if (
+        !matchTeam1 ||
+        !matchTeam2 ||
+        !flag1 ||
+        !flag2 ||
+        !matchDate ||
+        !displayDate ||
+        !matchTime
+      ) {
+
+        alert(
+          "Compléter tous les champs"
+        );
+
+        return;
+
+      }
+
+      try {
+
+        await addDoc(
+          collection(
+            db,
+            "matches"
+          ),
+          {
+            team1:
+              matchTeam1,
+
+            team2:
+              matchTeam2,
+
+            flag1,
+
+            flag2,
+
+            date:
+              matchDate,
+
+            displayDate,
+
+            time:
+              matchTime,
+          }
+        );
+
+        alert(
+          "Match ajouté ✅"
+        );
+
+        setMatchTeam1("");
+        setMatchTeam2("");
+        setFlag1("");
+        setFlag2("");
+        setMatchDate("");
+        setDisplayDate("");
+        setMatchTime("");
+
+        loadData();
+
+      } catch (error) {
+
+        console.log(error);
+
+        alert(
+          "Erreur lors de l'ajout"
+        );
+
+      }
+
+    };
+
+  /* EDIT MATCH */
+
+
+  const deleteMatch =
+  async (matchId: string) => {
+
+    const confirmDelete =
+      confirm(
+        "Voulez-vous supprimer ce match ?"
+      );
+
+    if (!confirmDelete) return;
+
+    try {
+
+      await deleteDoc(
+        doc(
+          db,
+          "matches",
+          matchId
+        )
+      );
+
+      alert(
+        "Match supprimé ✅"
+      );
+
+      loadData();
+
+    } catch (error) {
+
+      console.log(error);
+
+      alert(
+        "Erreur suppression"
+      );
+
+    }
+
+  };
+    async (match: any) => {
+
+      const newTeam1 =
+        prompt(
+          "Equipe 1",
+          match.team1
+        );
+
+      const newTeam2 =
+        prompt(
+          "Equipe 2",
+          match.team2
+        );
+
+      const newFlag1 =
+        prompt(
+          "Flag 1",
+          match.flag1
+        );
+
+      const newFlag2 =
+        prompt(
+          "Flag 2",
+          match.flag2
+        );
+
+      const newDate =
+        prompt(
+          "Date",
+          match.date
+        );
+
+      const newDisplayDate =
+        prompt(
+          "Display Date",
+          match.displayDate
+        );
+
+      const newTime =
+        prompt(
+          "Heure",
+          match.time
+        );
+
+      if (
+        !newTeam1 ||
+        !newTeam2 ||
+        !newFlag1 ||
+        !newFlag2 ||
+        !newDate ||
+        !newDisplayDate ||
+        !newTime
+      ) return;
+
+      try {
+
+        await updateDoc(
+          doc(
+            db,
+            "matches",
+            match.id
+          ),
+          {
+            team1:
+              newTeam1,
+
+            team2:
+              newTeam2,
+
+            flag1:
+              newFlag1,
+
+            flag2:
+              newFlag2,
+
+            date:
+              newDate,
+
+            displayDate:
+              newDisplayDate,
+
+            time:
+              newTime,
+          }
+        );
+
+        alert(
+          "Match modifié ✅"
+        );
+
+        loadData();
+
+      } catch (error) {
+
+        console.log(error);
+
+        alert(
+          "Erreur modification"
+        );
+
+      }
+
+    };
+
+  /* ACCESS */
+
   if (!authorized) {
 
-    return null;
+    return (
+
+      <div className="min-h-screen bg-[#082567] text-white flex items-center justify-center text-4xl font-black">
+
+        Accès Refusé
+
+      </div>
+
+    );
 
   }
 
   return (
 
-    <div className="min-h-screen bg-[#0A2C6D] text-white p-8">
+    <div className="min-h-screen bg-[#082567] text-white p-6">
 
-      {/* BACK BUTTON */}
-      <div className="mb-8">
+      {/* HEADER */}
+
+      <div className="flex justify-between items-center mb-10">
+
+        <div>
+
+          <h1 className="text-5xl font-black text-yellow-400">
+
+            Administration
+
+          </h1>
+
+          <p className="text-xl mt-2">
+
+            Dashboard Belmart Pronostic 2026
+
+          </p>
+
+        </div>
 
         <a
           href="/"
-          className="inline-block bg-white text-[#0A2C6D] font-black px-6 py-3 rounded-2xl shadow-xl hover:scale-105 transition"
+          className="bg-white text-[#082567] px-6 py-3 rounded-2xl font-black"
         >
-          ← Retour à l'accueil
+          Retour Accueil
         </a>
 
       </div>
 
-      {/* HEADER */}
-      <div className="flex items-center gap-5 mb-10">
+      {/* ADD MATCH */}
 
-        <Image
-          src="/belmart-logo.jpeg"
-          alt="Belmart"
-          width={80}
-          height={80}
-          className="rounded-2xl shadow-xl"
-        />
+      <div className="bg-white text-[#082567] rounded-3xl p-8 shadow-2xl mb-10">
 
-        <h1 className="text-5xl font-bold text-[#FFD400]">
-          Admin Dashboard 🛠️
-        </h1>
+        <h2 className="text-4xl font-black mb-8">
+
+          Ajouter Match
+
+        </h2>
+
+        <div className="grid md:grid-cols-3 gap-4">
+
+          <input
+            type="text"
+            placeholder="Equipe 1"
+            value={matchTeam1}
+            onChange={(e) =>
+              setMatchTeam1(
+                e.target.value
+              )
+            }
+            className="border-2 border-gray-200 rounded-2xl p-4"
+          />
+
+          <input
+            type="text"
+            placeholder="Equipe 2"
+            value={matchTeam2}
+            onChange={(e) =>
+              setMatchTeam2(
+                e.target.value
+              )
+            }
+            className="border-2 border-gray-200 rounded-2xl p-4"
+          />
+
+          <input
+            type="text"
+            placeholder="Flag 1 (mx)"
+            value={flag1}
+            onChange={(e) =>
+              setFlag1(
+                e.target.value
+              )
+            }
+            className="border-2 border-gray-200 rounded-2xl p-4"
+          />
+
+          <input
+            type="text"
+            placeholder="Flag 2 (za)"
+            value={flag2}
+            onChange={(e) =>
+              setFlag2(
+                e.target.value
+              )
+            }
+            className="border-2 border-gray-200 rounded-2xl p-4"
+          />
+
+          <input
+            type="text"
+            placeholder="Date 2026-06-11"
+            value={matchDate}
+            onChange={(e) =>
+              setMatchDate(
+                e.target.value
+              )
+            }
+            className="border-2 border-gray-200 rounded-2xl p-4"
+          />
+
+          <input
+            type="text"
+            placeholder="Jeudi 11 Juin 2026"
+            value={displayDate}
+            onChange={(e) =>
+              setDisplayDate(
+                e.target.value
+              )
+            }
+            className="border-2 border-gray-200 rounded-2xl p-4"
+          />
+
+          <input
+            type="text"
+            placeholder="15:00"
+            value={matchTime}
+            onChange={(e) =>
+              setMatchTime(
+                e.target.value
+              )
+            }
+            className="border-2 border-gray-200 rounded-2xl p-4"
+          />
+
+        </div>
+
+        <button
+          onClick={addMatch}
+          className="bg-[#082567] text-white px-8 py-4 rounded-2xl mt-6 font-black text-xl"
+        >
+          Ajouter Match
+        </button>
 
       </div>
 
-      {/* STATS */}
-      <div className="grid md:grid-cols-3 gap-6 mb-10">
+      {/* MATCHES */}
 
-        <div className="bg-white text-[#0A2C6D] p-6 rounded-3xl shadow-xl">
+      <div className="bg-white text-[#082567] rounded-3xl p-8 shadow-2xl mb-10">
 
-          <h2 className="text-2xl font-bold mb-2">
-            Total Users
-          </h2>
+        <h2 className="text-4xl font-black mb-8">
 
-          <p className="text-5xl font-black">
-            {totalUsers}
-          </p>
+          Matchs
 
-        </div>
+        </h2>
 
-        <div className="bg-white text-[#0A2C6D] p-6 rounded-3xl shadow-xl">
+        <div className="space-y-4">
 
-          <h2 className="text-2xl font-bold mb-2">
-            Predictions
-          </h2>
+          {matches.map(
+            (match) => (
 
-          <p className="text-5xl font-black">
-            {predictions.length}
-          </p>
+              <div
+                key={match.id}
+                className="bg-gray-100 rounded-2xl p-4 flex justify-between items-center"
+              >
 
-        </div>
+                <div>
 
-        <div className="bg-white text-[#0A2C6D] p-6 rounded-3xl shadow-xl">
+                  <div className="font-black text-xl">
 
-          <h2 className="text-2xl font-bold mb-2">
-            Top Player 🏆
-          </h2>
+                    {match.team1}
 
-          <p className="text-xl font-bold break-all">
-            {topPlayer}
-          </p>
+                    {" vs "}
 
-          <p className="text-4xl font-black mt-2">
-            {topPoints} pts
-          </p>
+                    {match.team2}
+
+                  </div>
+
+                  <div className="mt-2 text-gray-600">
+
+                    {match.displayDate}
+
+                    {" - "}
+
+                    {match.time}
+
+                  </div>
+
+                </div>
+
+              <div className="flex gap-2">
+
+  <button
+    onClick={() =>
+      editMatch(match)
+    }
+    className="bg-yellow-400 text-[#082567] px-4 py-2 rounded-xl font-black"
+  >
+    Modifier
+  </button>
+
+  <button
+    onClick={() =>
+      deleteMatch(match.id)
+    }
+    className="bg-red-600 text-white px-4 py-2 rounded-xl font-black"
+  >
+    Supprimer
+  </button>
+
+</div>
+
+              </div>
+
+            )
+          )}
 
         </div>
 
       </div>
 
-      {/* TABLE */}
-      <div className="bg-white rounded-3xl overflow-hidden shadow-2xl">
+      {/* ADD RESULT */}
 
-        <table className="w-full text-[#0A2C6D]">
+      <div className="bg-white text-[#082567] rounded-3xl p-8 shadow-2xl mb-10">
 
-          <thead className="bg-[#FFD400]">
+        <h2 className="text-4xl font-black mb-8">
 
-            <tr>
+          Ajouter Résultat Officiel
 
-              <th className="p-4 text-left">
-                User
-              </th>
+        </h2>
+        <div className="bg-white text-[#082567] rounded-3xl p-8 shadow-2xl mb-10">
 
-              <th className="p-4 text-left">
-                Match
-              </th>
+  <h2 className="text-4xl font-black mb-8">
 
-              <th className="p-4 text-left">
-                Prediction
-              </th>
+    Pronostics Utilisateurs
 
-              <th className="p-4 text-left">
-                Points
-              </th>
+  </h2>
+
+  <div className="overflow-x-auto">
+
+    <table className="w-full">
+
+      <thead>
+
+        <tr className="border-b-2 border-gray-200">
+
+          <th className="text-left py-4">
+            Utilisateur
+          </th>
+
+          <th className="text-left py-4">
+            Match
+          </th>
+
+          <th className="text-left py-4">
+            Pronostic
+          </th>
+
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        {predictions.map(
+          (prediction) => (
+
+            <tr
+              key={prediction.id}
+              className="border-b border-gray-100"
+            >
+
+              <td className="py-4">
+                {prediction.userEmail}
+              </td>
+
+              <td className="py-4">
+                {prediction.team1}
+                {" vs "}
+                {prediction.team2}
+              </td>
+
+              <td className="py-4 font-black">
+                {prediction.score1}
+                {" - "}
+                {prediction.score2}
+              </td>
 
             </tr>
 
-          </thead>
+          )
+        )}
 
-          <tbody>
+      </tbody>
 
-            {predictions.map((item, index) => (
+    </table>
 
-              <tr
-                key={index}
-                className="border-b hover:bg-gray-100 transition"
-              >
+  </div>
 
-                <td className="p-4 font-bold">
-                  {item.email}
-                </td>
+</div>
 
-                <td className="p-4">
-                  {item.team1} vs {item.team2}
-                </td>
+        <div className="grid md:grid-cols-4 gap-4">
 
-                <td className="p-4">
-                  {item.homeScore} - {item.awayScore}
-                </td>
+          <input
+            type="text"
+            placeholder="Equipe 1"
+            value={team1}
+            onChange={(e) =>
+              setTeam1(
+                e.target.value
+              )
+            }
+            className="border-2 border-gray-200 rounded-2xl p-4"
+          />
 
-                <td className="p-4 font-black">
-                  {item.points}
-                </td>
+          <input
+            type="text"
+            placeholder="Equipe 2"
+            value={team2}
+            onChange={(e) =>
+              setTeam2(
+                e.target.value
+              )
+            }
+            className="border-2 border-gray-200 rounded-2xl p-4"
+          />
 
-              </tr>
+          <input
+            type="number"
+            placeholder="Score 1"
+            value={score1}
+            onChange={(e) =>
+              setScore1(
+                e.target.value
+              )
+            }
+            className="border-2 border-gray-200 rounded-2xl p-4"
+          />
 
-            ))}
+          <input
+            type="number"
+            placeholder="Score 2"
+            value={score2}
+            onChange={(e) =>
+              setScore2(
+                e.target.value
+              )
+            }
+            className="border-2 border-gray-200 rounded-2xl p-4"
+          />
 
-          </tbody>
+        </div>
 
-        </table>
+        <button
+          onClick={addResult}
+          className="bg-[#082567] text-white px-8 py-4 rounded-2xl mt-6 font-black text-xl"
+        >
+          Ajouter Résultat
+        </button>
 
       </div>
 
     </div>
 
   );
-
 }

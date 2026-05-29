@@ -2,31 +2,35 @@
 
 import { useState } from "react";
 
-import Link from "next/link";
-
 import {
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 
 import { auth } from "../../lib/firebase";
 
+import { useRouter } from "next/navigation";
+
 export default function LoginPage() {
 
-  const [email, setEmail] = useState("");
+  const router = useRouter();
 
-  const [password, setPassword] = useState("");
+  const [email, setEmail] =
+    useState("");
 
-  const [loading, setLoading] = useState(false);
+  const [password, setPassword] =
+    useState("");
 
-  const handleLogin = async (
-    e: React.FormEvent
-  ) => {
+  const [error, setError] =
+    useState("");
 
-    e.preventDefault();
+  const [loading, setLoading] =
+    useState(false);
 
-    setLoading(true);
+  const handleLogin = async () => {
 
     try {
+
+      setLoading(true);
 
       await signInWithEmailAndPassword(
         auth,
@@ -34,13 +38,17 @@ export default function LoginPage() {
         password
       );
 
-      alert("Connexion réussie ✅");
+      alert("Bienvenue 🎉");
 
-      window.location.href = "/dashboard";
+      router.push("/");
 
-    } catch (error: any) {
+    } catch (error) {
 
-      alert("Email ou mot de passe incorrect");
+      console.log(error);
+
+      setError(
+        "Email ou mot de passe incorrect"
+      );
 
     } finally {
 
@@ -52,101 +60,89 @@ export default function LoginPage() {
 
   return (
 
-    <div className="min-h-screen bg-[#0A2C6D] flex items-center justify-center px-5">
+    <div className="min-h-screen bg-[#082567] flex items-center justify-center p-6">
 
-      <div className="bg-white p-10 rounded-3xl shadow-2xl w-full max-w-[420px]">
+      <div className="bg-white rounded-3xl p-10 w-full max-w-md shadow-2xl">
 
-        {/* Retour accueil */}
-        <div className="mb-5">
-
-          <Link
-            href="/"
-            className="text-[#082456] font-semibold hover:underline"
-          >
-            ← Retour à l'accueil
-          </Link>
-
-        </div>
-
-        {/* Titre */}
-        <h1 className="text-4xl font-black text-center text-[#082456] mb-8">
-
-          Connexion Belmart
-
+        <h1 className="text-5xl font-black text-[#082567] text-center">
+          Connexion
         </h1>
 
-        {/* Formulaire */}
-        <form onSubmit={handleLogin}>
+        <p className="text-center text-gray-500 mt-3">
+          Belmart Pronostics FIFA 2026
+        </p>
 
-          {/* Email */}
+        <div className="mt-8">
+
+          <label className="font-bold text-[#082567]">
+            Email
+          </label>
+
           <input
             type="email"
-            placeholder="Adresse email"
-            className="w-full border border-gray-400 rounded-2xl px-4 py-4 mb-5 outline-none focus:border-[#082456]"
+            placeholder="Votre email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
+            onChange={(e) =>
+              setEmail(e.target.value)
+            }
+            className="w-full border-2 border-gray-200 rounded-2xl p-4 mt-2 outline-none"
           />
-
-          {/* Password */}
-          <input
-            type="password"
-            placeholder="Mot de passe"
-            className="w-full border border-gray-400 rounded-2xl px-4 py-4 mb-3 outline-none focus:border-[#082456]"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-
-          {/* Forgot Password */}
-          <div className="text-right mb-5">
-
-            <Link
-              href="/reset-password"
-              className="text-sm text-[#082456] hover:underline"
-            >
-              Mot de passe oublié ?
-            </Link>
-
-          </div>
-
-          {/* Login Button */}
-          <button
-            type="submit"
-            disabled={loading}
-            className={`w-full font-bold py-4 rounded-2xl transition ${
-              loading
-                ? "bg-gray-400 cursor-not-allowed text-white"
-                : "bg-yellow-400 hover:bg-yellow-500 text-[#082456]"
-            }`}
-          >
-
-            {loading ? "Connexion..." : "Se connecter"}
-
-          </button>
-
-        </form>
-
-        {/* Signup */}
-        <div className="text-center mt-6">
-
-          <span className="text-gray-600">
-            Vous n'avez pas de compte ?
-          </span>
-
-          <Link
-            href="/signup"
-            className="ml-2 text-[#082456] font-semibold hover:underline"
-          >
-            Créer un compte
-          </Link>
 
         </div>
+
+        <div className="mt-6">
+
+          <label className="font-bold text-[#082567]">
+            Mot de passe
+          </label>
+
+          <input
+            type="password"
+            placeholder="Votre mot de passe"
+            value={password}
+            onChange={(e) =>
+              setPassword(e.target.value)
+            }
+            className="w-full border-2 border-gray-200 rounded-2xl p-4 mt-2 outline-none"
+          />
+
+        </div>
+
+        {error && (
+
+          <div className="bg-red-100 text-red-600 p-4 rounded-2xl mt-6 text-center font-bold">
+            {error}
+          </div>
+
+        )}
+
+        <button
+          onClick={handleLogin}
+          disabled={loading}
+          className="w-full bg-[#082567] text-white py-4 rounded-2xl mt-8 font-black text-xl hover:bg-blue-900 transition"
+        >
+          {loading
+            ? "Connexion..."
+            : "Se connecter"}
+        </button>
+
+        <a
+          href="/signup"
+          className="block text-center mt-6 text-[#082567] font-black text-lg"
+        >
+          Pas encore de compte ? Créer un compte
+        </a>
+
+        <a
+          href="/"
+          className="block text-center mt-6 text-[#082567] font-bold"
+        >
+          ← Retour à l'accueil
+        </a>
 
       </div>
 
     </div>
 
   );
-
 }

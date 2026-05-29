@@ -2,8 +2,6 @@
 
 import { useState } from "react";
 
-import Link from "next/link";
-
 import {
   createUserWithEmailAndPassword,
 } from "firebase/auth";
@@ -18,36 +16,39 @@ import {
   db,
 } from "../../lib/firebase";
 
+import { useRouter } from "next/navigation";
+
 export default function SignupPage() {
 
-  const [name, setName] = useState("");
+  const router = useRouter();
 
-  const [phone, setPhone] = useState("");
+  const [fullName, setFullName] =
+    useState("");
 
-  const [email, setEmail] = useState("");
+  const [phone, setPhone] =
+    useState("");
 
-  const [password, setPassword] = useState("");
+  const [email, setEmail] =
+    useState("");
+
+  const [password, setPassword] =
+    useState("");
+
+  const [isClient, setIsClient] =
+    useState(false);
+
+  const [cardNumber, setCardNumber] =
+    useState("");
 
   const [loading, setLoading] =
     useState(false);
 
-  const [isBelmartClient, setIsBelmartClient] =
-    useState("");
-
-  const [fidelityCard, setFidelityCard] =
-    useState("");
-
-  const handleSignup = async (
-    e: React.FormEvent
-  ) => {
-
-    e.preventDefault();
-
-    setLoading(true);
+  const handleSignup = async () => {
 
     try {
 
-      // CREATE USER
+      setLoading(true);
+
       const userCredential =
         await createUserWithEmailAndPassword(
           auth,
@@ -55,39 +56,39 @@ export default function SignupPage() {
           password
         );
 
-      const user =
-        userCredential.user;
-
-      // SAVE USER INFO
       await setDoc(
-        doc(db, "users", user.uid),
+        doc(
+          db,
+          "users",
+          userCredential.user.uid
+        ),
         {
-
-          name,
-
+          fullName,
           phone,
-
           email,
-
-          isBelmartClient,
-
-          fidelityCard,
-
-          createdAt: new Date(),
-
+          isClient,
+          cardNumber:
+            isClient
+              ? cardNumber
+              : "",
+          createdAt:
+            new Date(),
         }
       );
 
       alert(
-        "Compte créé avec succès ✅"
+        `Bienvenue ${fullName} 🎉`
       );
 
-      window.location.href =
-        "/dashboard";
+      router.push("/");
 
-    } catch (error: any) {
+    } catch (error) {
 
-      alert(error.message);
+      console.log(error);
+
+      alert(
+        "Erreur lors de la création du compte"
+      );
 
     } finally {
 
@@ -99,178 +100,170 @@ export default function SignupPage() {
 
   return (
 
-    <div className="min-h-screen bg-[#0A2C6D] flex items-center justify-center px-4 py-10">
+    <div className="min-h-screen bg-[#082567] flex items-center justify-center p-6">
 
-      <div className="bg-white p-10 rounded-3xl shadow-2xl w-full max-w-md">
+      <div className="bg-white rounded-3xl p-10 w-full max-w-xl shadow-2xl">
 
-        {/* BACK HOME */}
-        <div className="mb-5">
+        <h1 className="text-5xl font-black text-[#082567] text-center">
+          Créer un compte
+        </h1>
 
-          <Link
-            href="/"
-            className="text-[#082456] font-semibold hover:underline"
-          >
-            ← Retour à l'accueil
-          </Link>
+        <p className="text-center text-gray-500 mt-3">
+          Belmart Pronostics FIFA 2026
+        </p>
+
+        <div className="mt-8">
+
+          <label className="font-bold text-[#082567]">
+            Nom complet
+          </label>
+
+          <input
+            type="text"
+            value={fullName}
+            onChange={(e) =>
+              setFullName(
+                e.target.value
+              )
+            }
+            placeholder="Votre nom complet"
+            className="w-full border-2 border-gray-200 rounded-2xl p-4 mt-2 outline-none"
+          />
 
         </div>
 
-        {/* TITLE */}
-        <h1 className="text-4xl font-black text-center text-[#082456] mb-8">
+        <div className="mt-6">
 
-          Créer un compte
+          <label className="font-bold text-[#082567]">
+            Téléphone
+          </label>
 
-        </h1>
-
-        {/* FORM */}
-        <form
-          onSubmit={handleSignup}
-        >
-
-          {/* NAME */}
           <input
             type="text"
-            placeholder="Nom complet"
-            className="w-full bg-[#F3F4F6] border-2 border-gray-400 rounded-2xl px-4 py-4 mb-5 text-[#082456] placeholder-gray-500 outline-none focus:border-yellow-400 focus:bg-white transition"
-            value={name}
-            onChange={(e) =>
-              setName(e.target.value)
-            }
-            required
-          />
-
-          {/* PHONE */}
-          <input
-            type="tel"
-            placeholder="Numéro de téléphone"
-            className="w-full bg-[#F3F4F6] border-2 border-gray-400 rounded-2xl px-4 py-4 mb-5 text-[#082456] placeholder-gray-500 outline-none focus:border-yellow-400 focus:bg-white transition"
             value={phone}
             onChange={(e) =>
-              setPhone(e.target.value)
+              setPhone(
+                e.target.value
+              )
             }
-            required
+            placeholder="+509XXXXXXXX"
+            className="w-full border-2 border-gray-200 rounded-2xl p-4 mt-2 outline-none"
           />
 
-          {/* BELMART CLIENT */}
-          <div className="mb-5">
+        </div>
 
-            <label className="block text-[#082456] font-bold mb-3">
+        <div className="mt-6">
 
-              Êtes-vous un client Belmart ?
+          <label className="font-bold text-[#082567]">
+            Email
+          </label>
 
-            </label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) =>
+              setEmail(
+                e.target.value
+              )
+            }
+            placeholder="Votre email"
+            className="w-full border-2 border-gray-200 rounded-2xl p-4 mt-2 outline-none"
+          />
 
-            <select
-              className="w-full bg-[#F3F4F6] border-2 border-gray-400 rounded-2xl px-4 py-4 text-[#082456] outline-none focus:border-yellow-400 transition"
-              value={isBelmartClient}
+        </div>
+
+        <div className="mt-6">
+
+          <label className="font-bold text-[#082567]">
+            Mot de passe
+          </label>
+
+          <input
+            type="password"
+            value={password}
+            onChange={(e) =>
+              setPassword(
+                e.target.value
+              )
+            }
+            placeholder="Votre mot de passe"
+            className="w-full border-2 border-gray-200 rounded-2xl p-4 mt-2 outline-none"
+          />
+
+        </div>
+
+        <div className="mt-6">
+
+          <label className="flex items-center gap-3 font-bold text-[#082567]">
+
+            <input
+              type="checkbox"
+              checked={isClient}
               onChange={(e) =>
-                setIsBelmartClient(
-                  e.target.value
+                setIsClient(
+                  e.target.checked
                 )
               }
-              required
-            >
+              className="w-5 h-5"
+            />
 
-              <option value="">
-                Sélectionner
-              </option>
+            Client Belmart ?
 
-              <option value="Oui">
-                Oui
-              </option>
+          </label>
 
-              <option value="Non">
-                Non
-              </option>
+        </div>
 
-            </select>
+        {isClient && (
 
-          </div>
+          <div className="mt-6">
 
-          {/* FIDELITY CARD */}
-          {isBelmartClient === "Oui" && (
+            <label className="font-bold text-[#082567]">
+              Numéro de carte fidélité
+            </label>
 
             <input
               type="text"
-              placeholder="4 premiers chiffres de votre carte fidélité"
-              className="w-full bg-[#F3F4F6] border-2 border-gray-400 rounded-2xl px-4 py-4 mb-5 text-[#082456] placeholder-gray-500 outline-none focus:border-yellow-400 focus:bg-white transition"
-              value={fidelityCard}
+              value={cardNumber}
               onChange={(e) =>
-                setFidelityCard(
+                setCardNumber(
                   e.target.value
                 )
               }
-              maxLength={4}
-              required
+              placeholder="Votre numéro de carte"
+              className="w-full border-2 border-gray-200 rounded-2xl p-4 mt-2 outline-none"
             />
 
-          )}
+          </div>
 
-          {/* EMAIL */}
-          <input
-            type="email"
-            placeholder="Adresse email"
-            className="w-full bg-[#F3F4F6] border-2 border-gray-400 rounded-2xl px-4 py-4 mb-5 text-[#082456] placeholder-gray-500 outline-none focus:border-yellow-400 focus:bg-white transition"
-            value={email}
-            onChange={(e) =>
-              setEmail(e.target.value)
-            }
-            required
-          />
+        )}
 
-          {/* PASSWORD */}
-          <input
-            type="password"
-            placeholder="Mot de passe"
-            className="w-full bg-[#F3F4F6] border-2 border-gray-400 rounded-2xl px-4 py-4 mb-6 text-[#082456] placeholder-gray-500 outline-none focus:border-yellow-400 focus:bg-white transition"
-            value={password}
-            onChange={(e) =>
-              setPassword(e.target.value)
-            }
-            required
-          />
+        <button
+          onClick={handleSignup}
+          disabled={loading}
+          className="w-full bg-[#082567] text-white py-4 rounded-2xl mt-8 font-black text-xl hover:bg-blue-900 transition"
+        >
+          {loading
+            ? "Création..."
+            : "Créer un compte"}
+        </button>
 
-          {/* BUTTON */}
-          <button
-            type="submit"
-            disabled={loading}
-            className={`w-full font-black py-4 rounded-2xl transition ${
-              loading
-                ? "bg-gray-400 cursor-not-allowed"
-                : "bg-[#FFD400] hover:bg-yellow-400 text-[#082456]"
-            }`}
-          >
+        <a
+          href="/login"
+          className="block text-center mt-6 text-[#082567] font-black text-lg"
+        >
+          Déjà un compte ? Connexion
+        </a>
 
-            {loading
-              ? "Création..."
-              : "S'inscrire"}
-
-          </button>
-
-        </form>
-
-        {/* LOGIN */}
-        <div className="text-center mt-6">
-
-          <span className="text-gray-600">
-            Vous avez déjà un compte ?
-          </span>
-
-          <Link
-            href="/login"
-            className="ml-2 text-[#082456] font-bold hover:underline"
-          >
-
-            Connexion
-
-          </Link>
-
-        </div>
+        <a
+          href="/"
+          className="block text-center mt-6 text-[#082567] font-bold"
+        >
+          ← Retour à l'accueil
+        </a>
 
       </div>
 
     </div>
 
   );
-
 }

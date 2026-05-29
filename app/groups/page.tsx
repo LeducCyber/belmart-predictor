@@ -1,7 +1,5 @@
 "use client";
 
-import Image from "next/image";
-
 export default function GroupsPage() {
 
   const groups = [
@@ -9,217 +7,212 @@ export default function GroupsPage() {
     {
       name: "Groupe A",
       teams: [
-        "🇲🇽 Mexique",
-        "🇿🇦 Afrique du Sud",
-        "🇰🇷 République de Corée",
-        "🇨🇿 Tchéquie",
+        "Mexique",
+        "Afrique du Sud",
+        "République de Corée",
+        "Tchéquie",
       ],
+      codes: ["mx", "za", "kr", "cz"],
     },
 
     {
       name: "Groupe B",
       teams: [
-        "🇨🇦 Canada",
-        "🇧🇦 Bosnie-Herzégovine",
-        "🇶🇦 Qatar",
-        "🇨🇭 Suisse",
+        "Canada",
+        "Bosnie-Herzégovine",
+        "Qatar",
+        "Suisse",
       ],
+      codes: ["ca", "ba", "qa", "ch"],
     },
 
     {
       name: "Groupe C",
       teams: [
-        "🇧🇷 Brésil",
-        "🇲🇦 Maroc",
-        "🇭🇹 Haïti",
-        "🏴 Écosse",
+        "Brésil",
+        "Maroc",
+        "Haïti",
+        "Écosse",
       ],
+      codes: ["br", "ma", "ht", "gb"],
+    },
+
+    {
+      name: "Groupe D",
+      teams: [
+        "États-Unis",
+        "Australie",
+        "Turquie",
+        "Paraguay",
+      ],
+      codes: ["us", "au", "tr", "py"],
+    },
+
+    {
+      name: "Groupe E",
+      teams: [
+        "Allemagne",
+        "Curaçao",
+        "Côte d'Ivoire",
+        "Équateur",
+      ],
+      codes: ["de", "cw", "ci", "ec"],
+    },
+
+    {
+      name: "Groupe F",
+      teams: [
+        "Pays-Bas",
+        "Japon",
+        "Suède",
+        "Tunisie",
+      ],
+      codes: ["nl", "jp", "se", "tn"],
+    },
+
+    {
+      name: "Groupe G",
+      teams: [
+        "Belgique",
+        "Égypte",
+        "Iran",
+        "Nouvelle-Zélande",
+      ],
+      codes: ["be", "eg", "ir", "nz"],
+    },
+
+    {
+      name: "Groupe H",
+      teams: [
+        "Espagne",
+        "Cap-Vert",
+        "Arabie saoudite",
+        "Uruguay",
+      ],
+      codes: ["es", "cv", "sa", "uy"],
+    },
+
+    {
+      name: "Groupe I",
+      teams: [
+        "France",
+        "Sénégal",
+        "Irak",
+        "Norvège",
+      ],
+      codes: ["fr", "sn", "iq", "no"],
+    },
+
+    {
+      name: "Groupe J",
+      teams: [
+        "Argentine",
+        "Algérie",
+        "Autriche",
+        "Jordanie",
+      ],
+      codes: ["ar", "dz", "at", "jo"],
+    },
+
+    {
+      name: "Groupe K",
+      teams: [
+        "Portugal",
+        "RD Congo",
+        "Ouzbékistan",
+        "Colombie",
+      ],
+      codes: ["pt", "cd", "uz", "co"],
+    },
+
+    {
+      name: "Groupe L",
+      teams: [
+        "Angleterre",
+        "Croatie",
+        "Ghana",
+        "Panama",
+      ],
+      codes: ["gb", "hr", "gh", "pa"],
     },
 
   ];
 
   return (
 
-    <div className="min-h-screen bg-[#F4F4F4]">
+    <div className="min-h-screen bg-gray-100 p-6">
 
-      {/* HEADER */}
-      <div className="bg-[#0A2C6D] text-white p-6 shadow-xl">
+      <div className="max-w-7xl mx-auto">
 
-        <div className="flex items-center justify-between">
+        <div className="bg-[#082567] text-white rounded-3xl p-6 mb-8 shadow-xl flex items-center justify-between">
 
-          <div className="flex items-center gap-5">
+          <div>
 
-            <Image
-              src="/belmart-logo.jpeg"
-              alt="Belmart"
-              width={80}
-              height={80}
-              className="rounded-2xl"
-            />
+            <h1 className="text-4xl font-black">
+              Groupes Coupe du Monde 2026
+            </h1>
 
-            <div>
-
-              <h1 className="text-3xl md:text-5xl font-black">
-                Classements
-              </h1>
-
-              <p className="text-gray-300 mt-2">
-                Coupe du Monde FIFA 2026
-              </p>
-
-            </div>
+            <p className="mt-2 text-lg text-gray-200">
+              Phase de groupes FIFA 2026
+            </p>
 
           </div>
 
           <a
             href="/"
-            className="bg-white text-[#0A2C6D] px-5 py-3 rounded-2xl font-bold"
+            className="bg-white text-[#082567] px-5 py-3 rounded-2xl font-bold hover:bg-gray-200 transition"
           >
-            ← Accueil
+            ← Retour à l'accueil
           </a>
 
         </div>
 
-      </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-      {/* GROUP TABLES */}
-      <div className="max-w-7xl mx-auto px-6 py-10 space-y-10">
+          {groups.map((group, index) => (
 
-        {groups.map((group, index) => (
+            <div
+              key={index}
+              className="bg-white rounded-3xl shadow-lg overflow-hidden"
+            >
 
-          <div
-            key={index}
-            className="bg-white rounded-3xl shadow-xl overflow-hidden"
-          >
+              <div className="bg-[#082567] text-white p-4">
 
-            {/* GROUP HEADER */}
-            <div className="bg-[#082456] text-white px-6 py-4">
+                <h2 className="text-2xl font-black">
+                  {group.name}
+                </h2>
 
-              <h2 className="text-2xl font-black">
+              </div>
 
-                {group.name}
+              <div className="p-4">
 
-              </h2>
+                {group.teams.map((team, i) => (
 
-            </div>
+                  <div
+                    key={i}
+                    className="flex items-center gap-4 border-b py-4"
+                  >
 
-            {/* TABLE */}
-            <div className="overflow-x-auto">
+                    <img
+                      src={`https://flagcdn.com/w80/${group.codes[i]}.png`}
+                      className="w-10 h-10 rounded-full"
+                    />
 
-              <table className="w-full text-[#082456]">
+                    <span className="text-lg font-bold text-[#082567]">
+                      {team}
+                    </span>
 
-                <thead className="bg-gray-100">
+                  </div>
 
-                  <tr>
+                ))}
 
-                    <th className="p-4 text-left">
-                      #
-                    </th>
-
-                    <th className="p-4 text-left">
-                      Équipe
-                    </th>
-
-                    <th className="p-4">
-                      J
-                    </th>
-
-                    <th className="p-4">
-                      G
-                    </th>
-
-                    <th className="p-4">
-                      N
-                    </th>
-
-                    <th className="p-4">
-                      P
-                    </th>
-
-                    <th className="p-4">
-                      Bp
-                    </th>
-
-                    <th className="p-4">
-                      Bc
-                    </th>
-
-                    <th className="p-4">
-                      Dif.
-                    </th>
-
-                    <th className="p-4 font-black">
-                      Pts
-                    </th>
-
-                  </tr>
-
-                </thead>
-
-                <tbody>
-
-                  {group.teams.map(
-                    (team, i) => (
-
-                      <tr
-                        key={i}
-                        className="border-b hover:bg-gray-50 transition"
-                      >
-
-                        <td className="p-4 font-bold">
-                          {i + 1}
-                        </td>
-
-                        <td className="p-4 font-bold text-lg">
-                          {team}
-                        </td>
-
-                        <td className="p-4 text-center">
-                          0
-                        </td>
-
-                        <td className="p-4 text-center">
-                          0
-                        </td>
-
-                        <td className="p-4 text-center">
-                          0
-                        </td>
-
-                        <td className="p-4 text-center">
-                          0
-                        </td>
-
-                        <td className="p-4 text-center">
-                          0
-                        </td>
-
-                        <td className="p-4 text-center">
-                          0
-                        </td>
-
-                        <td className="p-4 text-center">
-                          0
-                        </td>
-
-                        <td className="p-4 text-center font-black">
-                          0
-                        </td>
-
-                      </tr>
-
-                    )
-                  )}
-
-                </tbody>
-
-              </table>
+              </div>
 
             </div>
 
-          </div>
+          ))}
 
-        ))}
+        </div>
 
       </div>
 
