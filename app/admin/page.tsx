@@ -672,15 +672,7 @@ export default function AdminPage() {
 
               <div className="flex gap-2">
 
-  <button
-    onClick={() =>
-      editMatch(match)
-    }
-    className="bg-yellow-400 text-[#082567] px-4 py-2 rounded-xl font-black"
-  >
-    Modifier
-  </button>
-
+  
   <button
     onClick={() =>
       deleteMatch(match.id)
