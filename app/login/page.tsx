@@ -69,7 +69,7 @@ export default function LoginPage() {
         </h1>
 
         <p className="text-center text-gray-500 mt-3">
-          Belmart Pronostics FIFA 2026
+          Belmart Pronostics Mondial  2026
         </p>
 
         <div className="mt-8">
