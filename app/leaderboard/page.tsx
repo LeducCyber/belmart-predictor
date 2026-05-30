@@ -79,7 +79,19 @@ export default function LeaderboardPage() {
             );
 
           const results: any = {};
+const usersSnapshot =
+  await getDocs(
+    collection(db, "users")
+  );
 
+const usersMap: any = {};
+
+usersSnapshot.forEach(
+  (doc) => {
+    usersMap[doc.id] =
+      doc.data();
+  }
+);
           resultsSnapshot.forEach(
             (doc) => {
 
@@ -115,14 +127,14 @@ export default function LeaderboardPage() {
 
               let exactScores = 0;
 
-              const predictedWinner =
-                prediction.score1 >
-                prediction.score2
-                  ? prediction.team1
-                  : prediction.score1 <
-                    prediction.score2
-                  ? prediction.team2
-                  : "draw";
+        const predictedWinner =
+  prediction.homeScore >
+  prediction.awayScore
+    ? prediction.team1
+    : prediction.homeScore <
+      prediction.awayScore
+    ? prediction.team2
+    : "draw";
 
               const realWinner =
                 result.finalScore1 >
@@ -132,13 +144,12 @@ export default function LeaderboardPage() {
                     result.finalScore2
                   ? result.team2
                   : "draw";
-
-              if (
-                prediction.score1 ==
-                  result.finalScore1 &&
-                prediction.score2 ==
-                  result.finalScore2
-              ) {
+if (
+  prediction.homeScore ==
+    result.finalScore1 &&
+  prediction.awayScore ==
+    result.finalScore2
+) {
 
                 points += 3;
 
@@ -165,9 +176,14 @@ export default function LeaderboardPage() {
 
                   id:
                     prediction.userId,
-
-                  name:
-                    prediction.userEmail,
+      name:
+  usersMap[
+    prediction.userId
+  ]?.username ||
+  usersMap[
+    prediction.userId
+  ]?.fullName ||
+  prediction.email,
 
                   points: 0,
 

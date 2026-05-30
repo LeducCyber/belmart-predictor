@@ -24,6 +24,7 @@ export default function SignupPage() {
 
   const [fullName, setFullName] =
     useState("");
+    const [username, setUsername] = useState("");
 
   const [phone, setPhone] =
     useState("");
@@ -56,26 +57,26 @@ export default function SignupPage() {
           password
         );
 
-      await setDoc(
-        doc(
-          db,
-          "users",
-          userCredential.user.uid
-        ),
-        {
-          fullName,
-          phone,
-          email,
-          isClient,
-          cardNumber:
-            isClient
-              ? cardNumber
-              : "",
-          createdAt:
-            new Date(),
-        }
-      );
-
+  await setDoc(
+  doc(
+    db,
+    "users",
+    userCredential.user.uid
+  ),
+  {
+    username,
+    fullName,
+    phone,
+    email,
+    isClient,
+    cardNumber:
+      isClient
+        ? cardNumber
+        : "",
+    createdAt:
+      new Date(),
+  }
+);
       alert(
         `Bienvenue ${fullName} 🎉`
       );
@@ -129,6 +130,14 @@ export default function SignupPage() {
             placeholder="Votre nom complet"
             className="w-full border-2 border-gray-200 rounded-2xl p-4 mt-2 outline-none"
           />
+          <input
+  value={username}
+  onChange={(e) =>
+    setUsername(e.target.value)
+  }
+  placeholder="Nom d'utilisateur"
+  className="w-full border-2 border-gray-200 rounded-2xl p-4 mt-2 outline-none"
+/>
 
         </div>
 

@@ -452,7 +452,7 @@ export default function BelmartPredictor2026() {
             </a>
 
             <a href="/reglement">
-              Matchs
+              reglement
             </a>
 
             {user?.email ===
