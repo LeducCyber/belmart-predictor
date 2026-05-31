@@ -128,11 +128,11 @@ usersSnapshot.forEach(
               let exactScores = 0;
 
         const predictedWinner =
-  prediction.homeScore >
-  prediction.awayScore
+  Number(prediction.score1) >
+  Number(prediction.score2)
     ? prediction.team1
-    : prediction.homeScore <
-      prediction.awayScore
+    : Number(prediction.score1) <
+      Number(prediction.score2)
     ? prediction.team2
     : "draw";
 
@@ -145,10 +145,10 @@ usersSnapshot.forEach(
                   ? result.team2
                   : "draw";
 if (
-  prediction.homeScore ==
-    result.finalScore1 &&
-  prediction.awayScore ==
-    result.finalScore2
+  Number(prediction.score1) ===
+    Number(result.finalScore1) &&
+  Number(prediction.score2) ===
+    Number(result.finalScore2)
 ) {
 
                 points += 3;
@@ -224,6 +224,7 @@ leaderboard.sort(
           setPlayers(
             leaderboard
           );
+          console.log(leaderboard);
 
           if (currentUser) {
 

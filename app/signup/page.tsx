@@ -9,6 +9,10 @@ import {
 import {
   doc,
   setDoc,
+  collection,
+  query,
+  where,
+  getDocs,
 } from "firebase/firestore";
 
 import {
@@ -50,12 +54,34 @@ export default function SignupPage() {
 
       setLoading(true);
 
+     const usernameQuery = query(
+  collection(db, "users"),
+  where(
+    "username",
+    "==",
+    username.trim()
+  )
+);
+
+const usernameSnapshot =
+  await getDocs(usernameQuery);
+
+if (!usernameSnapshot.empty) {
+  alert(
+    "Ce nom d'utilisateur existe déjà"
+  );
+  return;
+}
       const userCredential =
         await createUserWithEmailAndPassword(
           auth,
           email,
           password
         );
+        if (!username.trim()) {
+  alert("Le nom d'utilisateur est obligatoire");
+  return;
+}
 
   await setDoc(
   doc(

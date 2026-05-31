@@ -762,6 +762,19 @@ setResults(resultsMap);
                   Pronostic Sauvegardé
 
                 </button>
+{results[`${match.team1}-${match.team2}`] && (
+  <div className="text-center mt-4">
+   <p className="text-sm font-bold text-gray-600 uppercase">
+  Score final
+</p>
+
+    <p className="text-2xl font-black text-green-600">
+      {results[`${match.team1}-${match.team2}`].finalScore1}
+      {" - "}
+      {results[`${match.team1}-${match.team2}`].finalScore2}
+    </p>
+  </div>
+)}
 
               </div>
 
