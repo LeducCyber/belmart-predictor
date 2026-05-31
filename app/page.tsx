@@ -547,12 +547,12 @@ setResults(resultsMap);
 <div className="bg-[#082567] text-white py-12 px-6 text-center">
 
   <div className="flex justify-center mb-8">
-    <div className="bg-white p-3 rounded-3xl shadow-2xl">
+  <div className="bg-white p-2 rounded-3xl shadow-2xl">
       <Image
         src="/logos/belmart-logo.png"
         alt="Belmart"
-        width={140}
-        height={140}
+        width={110}
+height={110}
       />
     </div>
   </div>
@@ -564,6 +564,11 @@ setResults(resultsMap);
 <p className="text-lg sm:text-2xl mt-4 text-gray-200">
   Pronostiquez les matchs et grimpez au sommet du classement Belmart
 </p>
+
+<p className="mt-3 text-yellow-300 font-bold text-xl">
+  🏆 Gagnez des récompenses exclusives Belmart
+</p>
+
 <p className="text-xl mt-4 font-semibold text-white">
   ⏳ Début de la Coupe du Monde dans :
 </p>
@@ -652,10 +657,19 @@ setResults(resultsMap);
 
               <div
                 key={index}
-              className="bg-white rounded-3xl p-6 text-[#082567] shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 border border-gray-100"
+    className="bg-white rounded-3xl p-6 text-[#082567] shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 hover:border-yellow-400"
               >
 
                 <div className="text-center">
+             {results[`${match.team1}-${match.team2}`] ? (
+  <div className="inline-block bg-green-100 text-green-700 px-4 py-1 rounded-full text-xs font-bold mb-3">
+    ✅ Terminé
+  </div>
+) : (
+  <div className="inline-block bg-blue-100 text-blue-700 px-4 py-1 rounded-full text-xs font-bold mb-3">
+    ⏳ À venir
+  </div>
+)}
 
                   <p className="text-gray-500 font-bold text-lg">
 
@@ -677,8 +691,10 @@ setResults(resultsMap);
 
                     <img
                       src={`https://flagcdn.com/w80/${match.flag1}.png`}
-                      className="w-16 h-16 rounded-full"
-                    />
+                      className="w-20 h-20 rounded-full shadow-lg"
+/>
+
+                  
 
                 <span className="mt-3 font-bold text-center text-sm sm:text-base leading-tight">
 
@@ -688,13 +704,11 @@ setResults(resultsMap);
 
                   </div>
 
-                  <div className="flex flex-col items-center">
+                 <div className="flex flex-col items-center">
 
-                    <div className="text-5xl font-black mb-6">
-
-                      VS
-
-                    </div>
+  <div className="text-4xl font-black mb-4 text-yellow-500">
+    VS
+  </div>
 
                     <div className="flex gap-4">
 
@@ -772,7 +786,7 @@ setResults(resultsMap);
 
                     <img
                       src={`https://flagcdn.com/w80/${match.flag2}.png`}
-                      className="w-16 h-16 rounded-full"
+                    className="w-16 h-16 rounded-full"
                     />
 
                   <span className="mt-3 font-bold text-center text-sm sm:text-base leading-tight">
@@ -791,14 +805,14 @@ setResults(resultsMap);
                       match
                     )
                   }
-                  className="w-full bg-[#082567] text-white py-4 rounded-2xl mt-10 font-bold text-lg"
+                className="w-full bg-[#082567] text-white py-4 rounded-2xl mt-10 font-bold text-lg hover:bg-yellow-500 hover:text-[#082567] transition-all duration-300"
                 >
 
                   Pronostic Sauvegardé
 
                 </button>
 {results[`${match.team1}-${match.team2}`] && (
-  <div className="text-center mt-4">
+<div className="text-center mt-6 bg-green-50 border border-green-200 rounded-2xl py-4">
    <p className="text-sm font-bold text-gray-600 uppercase">
   Score final
 </p>

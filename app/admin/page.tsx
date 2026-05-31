@@ -42,9 +42,11 @@ export default function AdminPage() {
 
   const [score1, setScore1] =
     useState("");
+    const [score2, setScore2] =
+  useState("");
 
-  const [score2, setScore2] =
-    useState("");
+  const [selectedMatch, setSelectedMatch] =
+  useState("");
 
   /* MATCHES */
 
@@ -799,29 +801,41 @@ export default function AdminPage() {
             className="border-2 border-gray-200 rounded-2xl p-4"
           />
 
-          <input
-            type="number"
-            placeholder="Score 1"
-            value={score1}
-            onChange={(e) =>
-              setScore1(
-                e.target.value
-              )
-            }
-            className="border-2 border-gray-200 rounded-2xl p-4"
-          />
+         <select
+  value={selectedMatch}
+  onChange={(e) => {
+    setSelectedMatch(e.target.value);
 
-          <input
-            type="number"
-            placeholder="Score 2"
-            value={score2}
-            onChange={(e) =>
-              setScore2(
-                e.target.value
-              )
-            }
-            className="border-2 border-gray-200 rounded-2xl p-4"
-          />
+    const match = matches.find(
+      (m) => m.id === e.target.value
+    );
+
+    if (match) {
+      setTeam1(match.team1);
+      setTeam2(match.team2);
+    }
+  }}
+  className="border-2 border-gray-200 rounded-2xl p-4"
+>
+  <option value="">
+    Choisir un match
+  </option>
+
+  {matches.map((match) => (
+    <option
+      key={match.id}
+      value={match.id}
+    >
+      {match.team1} vs {match.team2}
+    </option>
+  ))}
+</select>
+
+<div className="border-2 border-gray-200 rounded-2xl p-4 flex items-center font-bold">
+  {team1 && team2
+    ? `${team1} vs ${team2}`
+    : "Aucun match sélectionné"}
+</div>
 
         </div>
 
