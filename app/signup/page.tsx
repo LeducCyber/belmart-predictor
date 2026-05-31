@@ -110,7 +110,7 @@ export default function SignupPage() {
         </h1>
 
         <p className="text-center text-gray-500 mt-3">
-          Belmart Pronostic FIFA Mondial 2026
+          Belmart Pronostic Mondial 2026
         </p>
 
         <div className="mt-8">
