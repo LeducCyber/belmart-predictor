@@ -27,6 +27,8 @@ export default function BelmartPredictor2026() {
 
   const [matches, setMatches] =
     useState<any[]>([]);
+    const [results, setResults] =
+  useState<any>({});
 
   const [predictions, setPredictions] =
     useState<any>({});
@@ -173,6 +175,30 @@ export default function BelmartPredictor2026() {
           setMatches(
             sortedMatches
           );
+          const resultsSnapshot =
+  await getDocs(
+    collection(
+      db,
+      "results"
+    )
+  );
+
+const resultsMap: any = {};
+
+resultsSnapshot.forEach(
+  (doc) => {
+
+    const data =
+      doc.data();
+
+    resultsMap[
+      `${data.team1}-${data.team2}`
+    ] = data;
+
+  }
+);
+
+setResults(resultsMap);
 
         } catch (error) {
 
