@@ -644,11 +644,9 @@ height={110}
 
       <div className="px-4 pb-10 pt-10">
 
-        <h2 className="text-5xl font-black text-yellow-400 mb-8">
-
-          Match
-
-        </h2>
+       <h2 className="text-5xl font-black text-yellow-400 mb-8">
+  ⚽ Matchs à pronostiquer
+</h2> 
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
 
@@ -656,9 +654,9 @@ height={110}
             (match, index) => (
 
               <div
-                key={index}
-    className="bg-white rounded-3xl p-6 text-[#082567] shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 hover:border-yellow-400"
-              >
+  key={index}
+  className="bg-white rounded-3xl p-6 text-[#082567] shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 hover:border-yellow-400 min-h-[650px]"
+>
 
                 <div className="text-center">
              {results[`${match.team1}-${match.team2}`] ? (
@@ -696,12 +694,9 @@ height={110}
 
                   
 
-                <span className="mt-3 font-bold text-center text-sm sm:text-base leading-tight">
-
-                      {match.team1}
-
-                    </span>
-
+                <span className="mt-3 font-bold text-center text-sm leading-tight max-w-[90px] break-words">
+  {match.team1}
+</span>
                   </div>
 
                  <div className="flex flex-col items-center">
@@ -785,15 +780,13 @@ height={110}
                 <div className="flex flex-col items-center w-[120px]">
 
                     <img
-                      src={`https://flagcdn.com/w80/${match.flag2}.png`}
-                    className="w-16 h-16 rounded-full"
-                    />
+  src={`https://flagcdn.com/w80/${match.flag2}.png`}
+  className="w-20 h-20 rounded-full shadow-lg"
+/>
 
-                  <span className="mt-3 font-bold text-center text-sm sm:text-base leading-tight">
-
-                      {match.team2}
-
-                    </span>
+            <span className="mt-3 font-bold text-center text-sm leading-tight max-w-[90px] break-words">
+  {match.team2}
+</span>
 
                   </div>
 
