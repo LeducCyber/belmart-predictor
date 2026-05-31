@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
+
 import {
   onAuthStateChanged,
   signOut,
@@ -449,65 +449,44 @@ setResults(resultsMap);
 
           <div className="text-center lg:text-left">
 
-           <div className="flex items-center gap-4">
-  <Image
-    src="/belmart-logo.png"
-    alt="Belmart"
-    width={70}
-    height={70}
-    className="rounded-xl"
-  />
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-yellow-400">
 
-  <div>
-    <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-yellow-400">
-      Belmart Pronostic 2026
-    </h1>
+              Belmart Pronostic 2026
 
-    <p className="text-white text-lg sm:text-xl mt-1">
-      Coupe du Monde 2026
-    </p>
-  </div>
-</div>
+            </h1>
+
+            <p className="text-white text-lg sm:text-xl mt-1">
+
+              Mondial 2026
+
+            </p>
+
           </div>
 
         <div className="flex flex-wrap justify-center lg:justify-end gap-4 font-bold items-center text-center">
 
-            <a
-  href="/"
-  className="hover:text-yellow-400 transition-colors"
->
-  Accueil
-</a>
-            <a
-  href="/leaderboard"
-  className="hover:text-yellow-400 transition-colors"
->
-  Classement Client
-</a>
+            <a href="/">
+              Accueil
+            </a>
 
-           <a
-  href="/groups"
-  className="hover:text-yellow-400 transition-colors"
->
-  Groupes
-</a>
+            <a href="/leaderboard">
+              Classement Client
+            </a>
 
-            <a
-  href="/reglement"
-  className="hover:text-yellow-400 transition-colors"
->
-  Règlement
-</a>
+            <a href="/groups">
+              Groupes
+            </a>
+
+            <a href="/reglement">
+              reglement
+            </a>
 
             {user?.email ===
               "d.stlouis@belmarthaiti.com" && (
 
-              <a
-  href="/admin"
-  className="hover:text-yellow-400 transition-colors"
->
-  Administration
-</a>
+              <a href="/admin">
+                Administration
+              </a>
 
             )}
 
@@ -541,32 +520,19 @@ setResults(resultsMap);
 
       {/* COUNTDOWN */}
 
+      <div className="bg-[#082567] text-white py-12 px-6 text-center">
 
-{/* COUNTDOWN */}
+        <h2 className="text-4xl sm:text-6xl font-black">
 
-<div className="bg-[#082567] text-white py-12 px-6 text-center">
+          Mondial 2026
 
-  <div className="flex justify-center mb-8">
-    <div className="bg-white p-3 rounded-3xl shadow-2xl">
-      <Image
-        src="/logos/belmart-logo.png"
-        alt="Belmart"
-        width={140}
-        height={140}
-      />
-    </div>
-  </div>
+        </h2>
 
-  <h2 className="text-4xl sm:text-6xl font-black text-yellow-400">
-  Coupe du Monde 2026
-</h2>
+        <p className="text-2xl mt-4">
 
-<p className="text-lg sm:text-2xl mt-4 text-gray-200">
-  Pronostiquez les matchs et grimpez au sommet du classement Belmart
-</p>
-<p className="text-xl mt-4 font-semibold text-white">
-  ⏳ Début de la Coupe du Monde dans :
-</p>
+          Début de la Coupe du Monde :
+
+        </p>
 
         <div className="flex justify-center gap-8 mt-10 flex-wrap">
 
@@ -582,8 +548,7 @@ setResults(resultsMap);
 
           </div>
 
-        <div className="bg-white text-[#082567] rounded-3xl px-6 py-5 w-32 sm:w-40 shadow-2xl hover:scale-105 transition-all duration-300">
-
+          <div className="bg-white text-[#082567] rounded-3xl px-8 py-6 w-40 shadow-2xl">
 
             <div className="text-5xl font-black">
 
@@ -652,7 +617,7 @@ setResults(resultsMap);
 
               <div
                 key={index}
-              className="bg-white rounded-3xl p-6 text-[#082567] shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 border border-gray-100"
+                className="bg-white rounded-3xl p-6 text-[#082567] shadow-xl"
               >
 
                 <div className="text-center">
@@ -673,14 +638,14 @@ setResults(resultsMap);
 
             <div className="flex flex-col sm:flex-row items-center justify-between mt-10 px-2 sm:px-4 gap-6">
 
-                <div className="flex flex-col items-center w-[120px]">
+                  <div className="flex flex-col items-center w-[110px]">
 
                     <img
                       src={`https://flagcdn.com/w80/${match.flag1}.png`}
                       className="w-16 h-16 rounded-full"
                     />
 
-                <span className="mt-3 font-bold text-center text-sm sm:text-base leading-tight">
+                    <span className="mt-3 font-bold text-center text-lg">
 
                       {match.team1}
 
@@ -768,14 +733,14 @@ setResults(resultsMap);
 
                   </div>
 
-                <div className="flex flex-col items-center w-[120px]">
+                  <div className="flex flex-col items-center w-[110px]">
 
                     <img
                       src={`https://flagcdn.com/w80/${match.flag2}.png`}
                       className="w-16 h-16 rounded-full"
                     />
 
-                  <span className="mt-3 font-bold text-center text-sm sm:text-base leading-tight">
+                    <span className="mt-3 font-bold text-center text-lg">
 
                       {match.team2}
 
@@ -803,7 +768,7 @@ setResults(resultsMap);
   Score final
 </p>
 
-    <p className="text-4xl font-black text-green-600">
+    <p className="text-2xl font-black text-green-600">
       {results[`${match.team1}-${match.team2}`].finalScore1}
       {" - "}
       {results[`${match.team1}-${match.team2}`].finalScore2}
