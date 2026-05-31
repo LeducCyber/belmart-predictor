@@ -162,7 +162,7 @@ if (!usernameSnapshot.empty) {
     setUsername(e.target.value)
   }
   placeholder="Nom d'utilisateur"
-  className="w-full border-2 border-gray-200 rounded-2xl p-4 mt-2 outline-none"
+  className="w-full bg-[#F8FAFC] border-2 border-gray-200 rounded-2xl px-4 py-3 mt-2 text-[#082567] placeholder-gray-400 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100 outline-none transition-all duration-300"
 />
 
         </div>
