@@ -186,40 +186,44 @@ const userCredential =
             Téléphone
           </label>
 
-          <input
-            type="text"
-            value={phone}
-            onChange={(e) =>
-              setPhone(
-                e.target.value
-              )
-            }
-            placeholder="+509XXXXXXXX"
-            className="w-full border-2 border-gray-200 rounded-2xl p-4 mt-2 outline-none"
-          />
+        <input
+  type="text"
+  value={phone}
+  onChange={(e) =>
+    setPhone(
+      e.target.value
+    )
+  }
+  placeholder="+509XXXXXXXX"
+  className="w-full bg-white border-2 border-gray-300 rounded-2xl px-4 py-4 mt-2 text-[#082567] font-medium placeholder-gray-500 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100 outline-none transition-all duration-300"
+/>
+          
 
         </div>
 
-        <div className="mt-6">
+      
 
-          <label className="font-bold text-[#082567]">
-            Email
-          </label>
+<div className="mt-6">
 
-          <input
-            type="email"
-            value={email}
-            onChange={(e) =>
-              setEmail(
-                e.target.value
-              )
-            }
-            placeholder="Votre email"
-            className="w-full border-2 border-gray-200 rounded-2xl p-4 mt-2 outline-none"
-          />
+  <label className="font-bold text-[#082567]">
+    Email
+  </label>
 
+  <input
+    type="email"
+    value={email}
+    onChange={(e) =>
+      setEmail(
+        e.target.value
+      )
+    }
+    placeholder="Votre email"
+    className="w-full bg-white border-2 border-gray-300 rounded-2xl px-4 py-4 mt-2 text-[#082567] font-medium placeholder-gray-500 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100 outline-none transition-all duration-300"
+  />
 
-   <div className="mt-6">
+</div>
+
+<div className="mt-6">
 
   <label className="font-bold text-[#082567]">
     Mot de passe
@@ -234,7 +238,7 @@ const userCredential =
       )
     }
     placeholder="Votre mot de passe"
-    className="w-full border-2 border-gray-200 rounded-2xl p-4 mt-2 outline-none"
+    className="w-full bg-white border-2 border-gray-300 rounded-2xl px-4 py-4 mt-2 text-[#082567] font-medium placeholder-gray-500 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100 outline-none transition-all duration-300"
   />
 
 </div>
@@ -247,24 +251,22 @@ const userCredential =
 
   <input
     type="password"
-    placeholder="Confirmer votre mot de passe"
     value={confirmPassword}
     onChange={(e) =>
       setConfirmPassword(
         e.target.value
       )
     }
-    className="w-full bg-[#F8FAFC] border-2 border-gray-200 rounded-2xl px-4 py-3 mt-2 text-[#082567] placeholder-gray-400 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100 outline-none transition-all duration-300"
+    placeholder="Confirmer votre mot de passe"
+    className="w-full bg-white border-2 border-gray-300 rounded-2xl px-4 py-4 mt-2 text-[#082567] font-medium placeholder-gray-500 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100 outline-none transition-all duration-300"
   />
 
 </div>
 
-        </div>
+            
+            <div className="mt-6">
 
-        <div className="mt-6">
-
-          <label className="flex items-center gap-3 font-bold text-[#082567]">
-
+  <label className="flex items-center gap-3 font-bold text-[#082567]">
             <input
               type="checkbox"
               checked={isClient}
@@ -299,7 +301,7 @@ const userCredential =
                 )
               }
               placeholder="Votre numéro de carte"
-              className="w-full border-2 border-gray-200 rounded-2xl p-4 mt-2 outline-none"
+              className="w-full bg-white border-2 border-gray-300 rounded-2xl px-4 py-4 mt-2 text-[#082567] font-medium placeholder-gray-500 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100 outline-none transition-all duration-300"
             />
 
           </div>
