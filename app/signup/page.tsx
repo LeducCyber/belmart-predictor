@@ -163,7 +163,7 @@ const userCredential =
               )
             }
             placeholder="Votre nom complet"
-            className="w-full border-2 border-gray-200 rounded-2xl p-4 mt-2 outline-none"
+          className="w-full bg-white border-2 border-gray-300 rounded-2xl px-4 py-4 mt-2 text-[#082567] font-medium placeholder-gray-500 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100 outline-none transition-all duration-300"
           />
           <label className="font-bold text-[#082567]">
   Nom d'utilisateur
