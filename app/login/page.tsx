@@ -127,18 +127,12 @@ export default function LoginPage() {
         </button>
 
         <a
-          href="/signup"
-          className="block text-center mt-6 text-[#082567] font-black text-lg"
-        >
-          Pas encore de compte ? Créer un compte
-        </a>
+  href="/signup"
+  className="block text-center mt-6 text-[#082567] font-black text-lg"
+>
+  Créer un compte
+</a>
 
-        <a
-          href="/"
-          className="block text-center mt-6 text-[#082567] font-bold"
-        >
-          ← Retour à l'accueil
-        </a>
 
       </div>
 

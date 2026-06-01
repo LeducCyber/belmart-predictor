@@ -38,6 +38,8 @@ export default function SignupPage() {
 
   const [password, setPassword] =
     useState("");
+    const [confirmPassword, setConfirmPassword] =
+  useState("");
 
   const [isClient, setIsClient] =
     useState(false);
@@ -72,16 +74,23 @@ if (!usernameSnapshot.empty) {
   );
   return;
 }
-      const userCredential =
-        await createUserWithEmailAndPassword(
-          auth,
-          email,
-          password
-        );
-        if (!username.trim()) {
+     
+ if (!username.trim()) {
   alert("Le nom d'utilisateur est obligatoire");
   return;
 }
+
+if (password !== confirmPassword) {
+  alert("Les mots de passe ne correspondent pas");
+  return;
+}
+
+const userCredential =
+  await createUserWithEmailAndPassword(
+    auth,
+    email,
+    password
+  );
 
   await setDoc(
   doc(
@@ -156,15 +165,19 @@ if (!usernameSnapshot.empty) {
             placeholder="Votre nom complet"
             className="w-full border-2 border-gray-200 rounded-2xl p-4 mt-2 outline-none"
           />
-          <input
+          <label className="font-bold text-[#082567]">
+  Nom d'utilisateur
+</label>
+
+<input
+  type="text"
   value={username}
   onChange={(e) =>
     setUsername(e.target.value)
   }
   placeholder="Nom d'utilisateur"
-  className="w-full bg-[#F8FAFC] border-2 border-gray-200 rounded-2xl px-4 py-3 mt-2 text-[#082567] placeholder-gray-400 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100 outline-none transition-all duration-300"
+  className="w-full bg-white border-2 border-gray-300 rounded-2xl px-4 py-3 mt-2 text-[#082567] font-medium placeholder-gray-500 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100 outline-none transition-all duration-300"
 />
-
         </div>
 
         <div className="mt-6">
@@ -205,25 +218,46 @@ if (!usernameSnapshot.empty) {
             className="w-full border-2 border-gray-200 rounded-2xl p-4 mt-2 outline-none"
           />
 
-        </div>
 
-        <div className="mt-6">
+   <div className="mt-6">
 
-          <label className="font-bold text-[#082567]">
-            Mot de passe
-          </label>
+  <label className="font-bold text-[#082567]">
+    Mot de passe
+  </label>
 
-          <input
-            type="password"
-            value={password}
-            onChange={(e) =>
-              setPassword(
-                e.target.value
-              )
-            }
-            placeholder="Votre mot de passe"
-            className="w-full border-2 border-gray-200 rounded-2xl p-4 mt-2 outline-none"
-          />
+  <input
+    type="password"
+    value={password}
+    onChange={(e) =>
+      setPassword(
+        e.target.value
+      )
+    }
+    placeholder="Votre mot de passe"
+    className="w-full border-2 border-gray-200 rounded-2xl p-4 mt-2 outline-none"
+  />
+
+</div>
+
+<div className="mt-6">
+
+  <label className="font-bold text-[#082567]">
+    Confirmer le mot de passe
+  </label>
+
+  <input
+    type="password"
+    placeholder="Confirmer votre mot de passe"
+    value={confirmPassword}
+    onChange={(e) =>
+      setConfirmPassword(
+        e.target.value
+      )
+    }
+    className="w-full bg-[#F8FAFC] border-2 border-gray-200 rounded-2xl px-4 py-3 mt-2 text-[#082567] placeholder-gray-400 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100 outline-none transition-all duration-300"
+  />
+
+</div>
 
         </div>
 
@@ -282,23 +316,7 @@ if (!usernameSnapshot.empty) {
             : "Créer un compte"}
         </button>
 
-        <a
-          href="/login"
-          className="block text-center mt-6 text-[#082567] font-black text-lg"
-        >
-          Déjà un compte ? Connexion
-        </a>
-
-        <a
-          href="/"
-          className="block text-center mt-6 text-[#082567] font-bold"
-        >
-          ← Retour à l'accueil
-        </a>
-
       </div>
-
     </div>
-
   );
 }
