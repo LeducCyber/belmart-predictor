@@ -449,25 +449,8 @@ setResults(resultsMap);
 
           <div className="text-center lg:text-left">
 
-           <div className="flex items-center gap-4">
-  <Image
-    src="/belmart-logo.png"
-    alt="Belmart"
-    width={70}
-    height={70}
-    className="rounded-xl"
-  />
-
-  <div>
-    <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-yellow-400">
-      Belmart Pronostic 2026
-    </h1>
-
-    <p className="text-white text-lg sm:text-xl mt-1">
-      Coupe du Monde 2026
-    </p>
-  </div>
-</div>
+        
+  
           </div>
 
         <div className="flex flex-wrap justify-center lg:justify-end gap-4 font-bold items-center text-center">
@@ -545,17 +528,20 @@ setResults(resultsMap);
 {/* COUNTDOWN */}
 
 <div className="bg-[#082567] text-white py-12 px-6 text-center">
+<div className="relative flex justify-center mb-8">
 
-  <div className="flex justify-center mb-8">
-  <div className="bg-white p-2 rounded-3xl shadow-2xl">
-      <Image
-        src="/logos/belmart-logo.png"
-        alt="Belmart"
-        width={110}
-height={110}
-      />
-    </div>
+  <div className="absolute w-64 h-64 bg-yellow-400/20 rounded-full blur-3xl"></div>
+
+  <div className="relative bg-white p-3 rounded-3xl shadow-2xl">
+    <Image
+      src="/logos/belmart-logo.png"
+      alt="Belmart"
+      width={140}
+      height={140}
+    />
   </div>
+
+</div>
 
   <h2 className="text-4xl sm:text-6xl font-black text-yellow-400">
   Coupe du Monde 2026
