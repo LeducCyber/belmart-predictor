@@ -288,9 +288,10 @@ leaderboard.sort(
 
         <div>
 
-          <h1 className="text-5xl font-black text-yellow-400">
-            Belmart Pronostic 2026
-          </h1>
+        <h1 className="text-2xl md:text-5xl font-black text-yellow-400">
+  Belmart Pronostic 2026
+</h1>
+
 
           <p className="text-xl mt-2">
             Classement des meilleurs pronostiqueurs
@@ -304,7 +305,7 @@ leaderboard.sort(
             Votre Position
           </h2>
 
-          <p className="text-5xl font-black mt-2">
+          <p className="text-3xl md:text-5xl font-black mt-2">
 
             {userPosition
               ? `#${userPosition}`
@@ -378,24 +379,75 @@ leaderboard.sort(
         </div>
 
       )}
+{/* MOBILE */}
 
+<div className="md:hidden space-y-4 mb-8">
+
+  {players.map((player, index) => (
+
+    <div
+      key={player.id}
+      className="bg-white text-[#082567] rounded-3xl p-5 shadow-xl"
+    >
+
+      <div className="flex justify-between items-center">
+
+        <span className="font-black text-xl">
+          #{index + 1}
+        </span>
+
+        <span className="text-yellow-500 font-black text-2xl">
+          {player.points} pts
+        </span>
+
+      </div>
+
+      <h3 className="font-black text-lg sm:text-xl mt-3 break-words">
+  {player.name}
+</h3>
+
+      <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
+
+        <div>
+          <span className="font-bold">
+            Scores exacts :
+          </span>
+          <br />
+          {player.exactScores}
+        </div>
+
+        <div>
+          <span className="font-bold">
+            Pronostics :
+          </span>
+          <br />
+          {player.predictions}
+        </div>
+
+      </div>
+
+    </div>
+
+  ))}
+
+</div>
       {/* TABLEAU */}
 
-      <div className="bg-white rounded-3xl p-6 text-[#082567] shadow-2xl overflow-x-auto">
+    <div className="hidden md:block bg-white rounded-3xl p-6 text-[#082567] shadow-2xl overflow-x-auto">
 
-        <h2 className="text-4xl font-black mb-6">
+        <h2 className="text-2xl md:text-4xl font-black mb-6">
 
           Classement Général
 
         </h2>
 
-        <table className="w-full">
+        <table className="w-full min-w-[700px]">
 
           <thead>
 
             <tr className="border-b-2 border-gray-200 text-left">
 
-              <th className="py-4 text-xl">
+              <th className="py-4 text-sm md:text-xl">
                 Position
               </th>
 
@@ -452,7 +504,7 @@ leaderboard.sort(
                     className="border-b border-gray-100"
                   >
 
-                    <td className="py-5 font-black text-2xl">
+                    <td className="py-5 font-black text-base md:text-2xl">
 
                       #{index + 1}
 
