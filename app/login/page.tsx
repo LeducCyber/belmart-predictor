@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import {
   signInWithEmailAndPassword,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 
 import { auth } from "../../lib/firebase";
@@ -57,6 +58,35 @@ export default function LoginPage() {
     }
 
   };
+  const resetPassword = async () => {
+
+  if (!email) {
+    alert("Entrez votre email");
+    return;
+  }
+
+  try {
+
+    await sendPasswordResetEmail(
+      auth,
+      email
+    );
+
+    alert(
+      "Email de réinitialisation envoyé ✅"
+    );
+
+  } catch (error) {
+
+    console.log(error);
+
+    alert(
+      "Impossible d'envoyer l'email"
+    );
+
+  }
+
+};
 
   return (
 
@@ -125,7 +155,12 @@ export default function LoginPage() {
             ? "Connexion..."
             : "Se connecter"}
         </button>
-
+<button
+  onClick={resetPassword}
+  className="block mx-auto mt-4 text-[#082567] font-bold hover:underline"
+>
+  Mot de passe oublié ?
+</button>
         <a
   href="/signup"
   className="block text-center mt-6 text-[#082567] font-black text-lg"
