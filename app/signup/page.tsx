@@ -26,8 +26,11 @@ export default function SignupPage() {
 
   const router = useRouter();
 
-  const [fullName, setFullName] =
-    useState("");
+const [firstName, setFirstName] =
+  useState("");
+
+const [lastName, setLastName] =
+  useState("");
     const [username, setUsername] = useState("");
 
   const [phone, setPhone] =
@@ -100,7 +103,9 @@ const userCredential =
   ),
   {
     username,
-    fullName,
+  firstName,
+lastName,
+fullName: `${firstName} ${lastName}`,
     phone,
     email,
     isClient,
@@ -112,9 +117,9 @@ const userCredential =
       new Date(),
   }
 );
-      alert(
-        `Bienvenue ${fullName} 🎉`
-      );
+     alert(
+  `Bienvenue ${firstName} ${lastName} 🎉`
+);
 
       router.push("/");
 
@@ -136,9 +141,14 @@ const userCredential =
 
   return (
 
-    <div className="min-h-screen bg-[#082567] flex items-center justify-center p-6">
+<div
+  className="min-h-screen bg-cover bg-center bg-fixed flex items-center justify-center p-6"
+  style={{
+    backgroundImage: "url('/belmart-fond.jpeg')",
+  }}
+>
 
-      <div className="bg-white rounded-3xl p-10 w-full max-w-xl shadow-2xl">
+<div className="bg-white/95 backdrop-blur-sm rounded-3xl p-10 w-full max-w-xl shadow-2xl">
 
         <h1 className="text-5xl font-black text-[#082567] text-center">
           Créer un compte
@@ -150,21 +160,41 @@ const userCredential =
 
         <div className="mt-8">
 
-          <label className="font-bold text-[#082567]">
-            Nom complet
-          </label>
+          <div className="grid grid-cols-2 gap-4">
 
-          <input
-            type="text"
-            value={fullName}
-            onChange={(e) =>
-              setFullName(
-                e.target.value
-              )
-            }
-            placeholder="Votre nom complet"
-          className="w-full bg-white border-2 border-gray-300 rounded-2xl px-4 py-4 mt-2 text-[#082567] font-medium placeholder-gray-500 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100 outline-none transition-all duration-300"
-          />
+  <div>
+    <label className="font-bold text-[#082567]">
+      Prénom
+    </label>
+
+    <input
+      type="text"
+      value={firstName}
+      onChange={(e) =>
+        setFirstName(e.target.value)
+      }
+      placeholder="Prénom"
+      className="w-full bg-white border-2 border-gray-300 rounded-2xl px-4 py-4 mt-2"
+    />
+  </div>
+
+  <div>
+    <label className="font-bold text-[#082567]">
+      Nom
+    </label>
+
+    <input
+      type="text"
+      value={lastName}
+      onChange={(e) =>
+        setLastName(e.target.value)
+      }
+      placeholder="Nom"
+      className="w-full bg-white border-2 border-gray-300 rounded-2xl px-4 py-4 mt-2"
+    />
+  </div>
+
+</div>
           <label className="font-bold text-[#082567]">
   Nom d'utilisateur
 </label>
@@ -182,9 +212,7 @@ const userCredential =
 
         <div className="mt-6">
 
-          <label className="font-bold text-[#082567]">
-            Téléphone
-          </label>
+         
 
         <input
   type="text"
@@ -213,9 +241,7 @@ const userCredential =
     type="email"
     value={email}
     onChange={(e) =>
-      setEmail(
-        e.target.value
-      )
+      setEmail(e.target.value)
     }
     placeholder="Votre email"
     className="w-full bg-white border-2 border-gray-300 rounded-2xl px-4 py-4 mt-2 text-[#082567] font-medium placeholder-gray-500 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100 outline-none transition-all duration-300"
@@ -289,7 +315,7 @@ const userCredential =
           <div className="mt-6">
 
             <label className="font-bold text-[#082567]">
-              Numéro de carte fidélité
+              Numéro de carte Cashback
             </label>
 
             <input
@@ -300,7 +326,7 @@ const userCredential =
                   e.target.value
                 )
               }
-              placeholder="Votre numéro de carte"
+             placeholder="Numéro de carte Cashback"
               className="w-full bg-white border-2 border-gray-300 rounded-2xl px-4 py-4 mt-2 text-[#082567] font-medium placeholder-gray-500 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100 outline-none transition-all duration-300"
             />
 

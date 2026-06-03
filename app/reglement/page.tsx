@@ -1,6 +1,12 @@
 export default function ReglementPage() {
   return (
-    <div className="min-h-screen bg-[#082567] text-white p-8">
+  <div
+  className="min-h-screen bg-cover bg-center bg-fixed p-6"
+  style={{
+    backgroundImage: "url('/belmart-fond.jpeg')",
+  }}
+>
+  <div className="min-h-screen bg-black/20 rounded-3xl"></div>
 
       {/* BOUTON RETOUR */}
 
@@ -13,11 +19,8 @@ export default function ReglementPage() {
         </a>
       </div>
 
-      <h1 className="text-5xl font-black text-yellow-400 mb-8">
-        Règlement Officiel du Jeu
-      </h1>
 
-      <div className="bg-white text-[#082567] rounded-3xl p-8 shadow-2xl">
+      <div className="bg-white/95 backdrop-blur-sm text-[#082567] rounded-3xl p-8 shadow-2xl">
 
         <h2 className="text-4xl font-black mb-6">
           Belmart Pronostic 2026

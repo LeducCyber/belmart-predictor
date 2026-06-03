@@ -140,21 +140,23 @@ export default function GroupsPage() {
 
   return (
 
-    <div className="min-h-screen bg-gray-100 p-6">
+    <div
+  className="min-h-screen bg-cover bg-center bg-fixed p-6"
+  style={{
+    backgroundImage: "url('/belmart-fond.jpeg')",
+  }}
+>
 
       <div className="max-w-7xl mx-auto">
-
+  <div className="min-h-screen bg-black/20 rounded-3xl">
         <div className="bg-[#082567] text-white rounded-3xl p-6 mb-8 shadow-xl flex items-center justify-between">
 
           <div>
 
             <h1 className="text-4xl font-black">
-              Groupes Coupe du Monde 2026
-            </h1>
+  Groupes de la Coupe du Monde 2026
+</h1>
 
-            <p className="mt-2 text-lg text-gray-200">
-              Phase de groupes FIFA 2026
-            </p>
 
           </div>
 
@@ -173,7 +175,7 @@ export default function GroupsPage() {
 
             <div
               key={index}
-              className="bg-white rounded-3xl shadow-lg overflow-hidden"
+              className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-xl overflow-hidden"
             >
 
               <div className="bg-[#082567] text-white p-4">
@@ -212,11 +214,13 @@ export default function GroupsPage() {
 
           ))}
 
-        </div>
+               </div>
 
       </div>
 
     </div>
+
+  </div>
 
   );
 

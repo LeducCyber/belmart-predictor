@@ -265,9 +265,15 @@ leaderboard.sort(
 
   }, [currentUser]);
 
-  return (
+ return (
 
-    <div className="min-h-screen bg-[#082567] text-white p-6">
+<div
+  className="min-h-screen bg-cover bg-top bg-fixed text-white p-6"
+  style={{
+    backgroundImage: "url('/belmart-fond.jpeg')",
+  }}
+>
+  <div className="min-h-screen bg-black/20">
 
       {/* RETOUR */}
 
@@ -287,15 +293,6 @@ leaderboard.sort(
       <div className="flex flex-col md:flex-row justify-between items-center mb-10">
 
         <div>
-
-        <h1 className="text-2xl md:text-5xl font-black text-yellow-400">
-  Belmart Pronostic 2026
-</h1>
-
-
-          <p className="text-xl mt-2">
-            Classement des meilleurs pronostiqueurs
-          </p>
 
         </div>
 
@@ -322,7 +319,7 @@ leaderboard.sort(
       </div>
 
       {/* TOP 3 */}
-
+<div className="h-80"></div>
       {players.length > 0 && (
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
@@ -339,7 +336,7 @@ leaderboard.sort(
                   key={
                     player.id
                   }
-                  className="bg-white text-[#082567] rounded-3xl p-8 shadow-2xl text-center"
+                className="bg-white/95 backdrop-blur-sm text-[#082567] rounded-3xl p-8 shadow-2xl text-center"
                 >
 
                   <div className="text-6xl">
@@ -433,7 +430,7 @@ leaderboard.sort(
 </div>
       {/* TABLEAU */}
 
-    <div className="hidden md:block bg-white rounded-3xl p-6 text-[#082567] shadow-2xl overflow-x-auto">
+  <div className="hidden md:block bg-white/95 backdrop-blur-sm rounded-3xl p-6 text-[#082567] shadow-2xl overflow-x-auto">
 
         <h2 className="text-2xl md:text-4xl font-black mb-6">
 
@@ -545,9 +542,10 @@ leaderboard.sort(
 
         </table>
 
-      </div>
+       </div>
 
-    </div>
+  </div>
+</div>
 
   );
 }

@@ -8,6 +8,10 @@ import {
   getFirestore
 } from "firebase/firestore";
 
+import {
+  getStorage
+} from "firebase/storage";
+
 const firebaseConfig = {
   apiKey: "AIzaSyD_X1dqlNNt9-1OQdK1QlhLYtjO9c_V4O0",
   authDomain: "belmart-predictor-2026.firebaseapp.com",
@@ -22,3 +26,5 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 
 export const db = getFirestore(app);
+
+export const storage = getStorage(app);

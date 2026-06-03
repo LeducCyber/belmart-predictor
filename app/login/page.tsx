@@ -15,17 +15,13 @@ export default function LoginPage() {
 
   const router = useRouter();
 
-  const [email, setEmail] =
-    useState("");
+  const [email, setEmail] = useState("");
 
-  const [password, setPassword] =
-    useState("");
+  const [password, setPassword] = useState("");
 
-  const [error, setError] =
-    useState("");
+  const [error, setError] = useState("");
 
-  const [loading, setLoading] =
-    useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleLogin = async () => {
 
@@ -58,48 +54,54 @@ export default function LoginPage() {
     }
 
   };
+
   const resetPassword = async () => {
 
-  if (!email) {
-    alert("Entrez votre email");
-    return;
-  }
+    if (!email) {
+      alert("Entrez votre email");
+      return;
+    }
 
-  try {
+    try {
 
-    await sendPasswordResetEmail(
-      auth,
-      email
-    );
+      await sendPasswordResetEmail(
+        auth,
+        email
+      );
 
-    alert(
-      "Email de réinitialisation envoyé ✅"
-    );
+      alert(
+        "Email de réinitialisation envoyé ✅"
+      );
 
-  } catch (error) {
+    } catch (error) {
 
-    console.log(error);
+      console.log(error);
 
-    alert(
-      "Impossible d'envoyer l'email"
-    );
+      alert(
+        "Impossible d'envoyer l'email"
+      );
 
-  }
+    }
 
-};
+  };
 
   return (
 
-    <div className="min-h-screen bg-[#082567] flex items-center justify-center p-6">
+    <div
+  className="min-h-screen bg-cover bg-center bg-fixed flex items-center justify-center p-6"
+  style={{
+    backgroundImage: "url('/belmart-fond.jpeg')",
+  }}
+>
 
-      <div className="bg-white rounded-3xl p-10 w-full max-w-md shadow-2xl">
+      <div className="bg-white/95 backdrop-blur-sm rounded-3xl p-10 w-full max-w-md shadow-2xl border border-gray-200">
 
-        <h1 className="text-5xl font-black text-[#082567] text-center">
+   <h1 className="text-5xl font-black text-[#082567] text-center drop-shadow-sm">
           Connexion
         </h1>
 
         <p className="text-center text-gray-500 mt-3">
-          Belmart Pronostics Mondial  2026
+          Belmart Pronostics Mondial 2026
         </p>
 
         <div className="mt-8">
@@ -155,19 +157,20 @@ export default function LoginPage() {
             ? "Connexion..."
             : "Se connecter"}
         </button>
-<button
-  onClick={resetPassword}
-  className="block mx-auto mt-4 text-[#082567] font-bold hover:underline"
->
-  Mot de passe oublié ?
-</button>
-        <a
-  href="/signup"
-  className="block text-center mt-6 text-[#082567] font-black text-lg"
->
-  Créer un compte
-</a>
 
+        <button
+          onClick={resetPassword}
+          className="block mx-auto mt-4 text-[#082567] font-bold hover:underline"
+        >
+          Mot de passe oublié ?
+        </button>
+
+        <a
+          href="/signup"
+          className="block text-center mt-6 text-[#082567] font-black text-lg"
+        >
+          Créer un compte
+        </a>
 
       </div>
 

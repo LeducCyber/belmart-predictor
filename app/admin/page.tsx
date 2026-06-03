@@ -18,7 +18,13 @@ import {
   auth,
   db,
 } from "../../lib/firebase";
+import { storage } from "../../lib/firebase";
 
+import {
+  ref,
+  uploadBytes,
+  getDownloadURL,
+} from "firebase/storage";
 import {
   onAuthStateChanged,
 } from "firebase/auth";
@@ -58,11 +64,11 @@ export default function AdminPage() {
     setMatchTeam2] =
     useState("");
 
-  const [flag1, setFlag1] =
-    useState("");
+ const [flag1File, setFlag1File] =
+  useState<File | null>(null);
 
-  const [flag2, setFlag2] =
-    useState("");
+const [flag2File, setFlag2File] =
+  useState<File | null>(null);
 
   const [matchDate,
     setMatchDate] =
@@ -259,8 +265,8 @@ export default function AdminPage() {
       if (
         !matchTeam1 ||
         !matchTeam2 ||
-        !flag1 ||
-        !flag2 ||
+       !flag1File ||
+!flag2File ||
         !matchDate ||
         !displayDate ||
         !matchTime
@@ -288,9 +294,9 @@ export default function AdminPage() {
             team2:
               matchTeam2,
 
-            flag1,
+            flag1: "",
 
-            flag2,
+flag2: "",
 
             date:
               matchDate,
@@ -308,8 +314,8 @@ export default function AdminPage() {
 
         setMatchTeam1("");
         setMatchTeam2("");
-        setFlag1("");
-        setFlag2("");
+        setFlag1File(null);
+setFlag2File(null);
         setMatchDate("");
         setDisplayDate("");
         setMatchTime("");
@@ -532,55 +538,46 @@ export default function AdminPage() {
         </h2>
 
         <div className="grid md:grid-cols-3 gap-4">
+  <input
+  type="text"
+  placeholder="Equipe 1"
+  value={matchTeam1}
+  onChange={(e) =>
+    setMatchTeam1(e.target.value)
+  }
+  className="border-2 border-gray-200 rounded-2xl p-4"
+/>  
 
-          <input
-            type="text"
-            placeholder="Equipe 1"
-            value={matchTeam1}
-            onChange={(e) =>
-              setMatchTeam1(
-                e.target.value
-              )
-            }
+<input
+  type="text"
+  placeholder="Equipe 2"
+  value={matchTeam2}
+  onChange={(e) =>
+    setMatchTeam2(e.target.value)
+  }
+  className="border-2 border-gray-200 rounded-2xl p-4"
+/>
+<input
+  type="file"
+  accept="image/*"
+  onChange={(e) =>
+    setFlag1File(
+      e.target.files?.[0] || null
+    )
+  }
+/>
+
+<input
+  type="file"
+  accept="image/*"
+  onChange={(e) =>
+    setFlag2File(
+      e.target.files?.[0] || null
+    )
+  }
+/>
             className="border-2 border-gray-200 rounded-2xl p-4"
-          />
-
-          <input
-            type="text"
-            placeholder="Equipe 2"
-            value={matchTeam2}
-            onChange={(e) =>
-              setMatchTeam2(
-                e.target.value
-              )
-            }
-            className="border-2 border-gray-200 rounded-2xl p-4"
-          />
-
-          <input
-            type="text"
-            placeholder="Flag 1 (mx)"
-            value={flag1}
-            onChange={(e) =>
-              setFlag1(
-                e.target.value
-              )
-            }
-            className="border-2 border-gray-200 rounded-2xl p-4"
-          />
-
-          <input
-            type="text"
-            placeholder="Flag 2 (za)"
-            value={flag2}
-            onChange={(e) =>
-              setFlag2(
-                e.target.value
-              )
-            }
-            className="border-2 border-gray-200 rounded-2xl p-4"
-          />
-
+      
           <input
             type="text"
             placeholder="Date 2026-06-11"
@@ -798,7 +795,7 @@ export default function AdminPage() {
                 e.target.value
               )
             }
-            className="border-2 border-gray-200 rounded-2xl p-4"
+      
           />
 
          <select
@@ -815,7 +812,6 @@ export default function AdminPage() {
       setTeam2(match.team2);
     }
   }}
-  className="border-2 border-gray-200 rounded-2xl p-4"
 >
   <option value="">
     Choisir un match
