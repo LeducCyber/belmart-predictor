@@ -474,7 +474,7 @@ return (
 
   <div className="px-4 pb-10 pt-[800px]">
 
-  <div className="flex justify-center mb-8">
+  <div className="flex justify-center mb-4">
 
     <a
       href="/signup"
@@ -485,7 +485,7 @@ return (
 
   </div>
 
- <div className="inline-block bg-[#082567]/80 px-6 py-2 rounded-2xl mb-0 ml-4">
+ <div className="inline-block bg-[#082567]/80 px-6 py-3 rounded-2xl ml-4 relative -mb-2">
 
     <h2 className="text-5xl font-black text-white">
       ⚽ Liste des matchs
@@ -493,7 +493,7 @@ return (
 
   </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 -mt-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-2">
 
          {(showAllMatches ? matches : matches.slice(0, 6)).map(
   (match, index) => (
