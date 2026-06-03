@@ -270,7 +270,7 @@ leaderboard.sort(
 <div
   className="min-h-screen bg-cover bg-top bg-fixed text-white p-6"
   style={{
-    backgroundImage: "url('/belmart-fond.jpeg')",
+   backgroundImage: "url('/Belmart-fond.jpeg')"
   }}
 >
   <div className="min-h-screen bg-black/20">
