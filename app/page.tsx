@@ -472,9 +472,9 @@ return (
 
       {/* MATCHS */}
 
- <div className="px-4 pb-10 pt-[500px]">
+  <div className="px-4 pb-10 pt-[800px]">
 
-  <div className="flex justify-center mb-4">
+<div className="flex justify-center mb-4 relative top-[60px] left-[80px]">
 
     <a
       href="/signup"
@@ -485,7 +485,7 @@ return (
 
   </div>
 
- <div className="inline-block bg-[#082567]/80 px-6 py-3 rounded-2xl ml-4 relative -mb-2">
+ <div className="inline-block bg-[#082567]/80 px-6 py-3 rounded-2xl ml-4 relative z-20 -mb-[38px]">
 
     <h2 className="text-5xl font-black text-white">
       ⚽ Liste des matchs
@@ -493,7 +493,7 @@ return (
 
   </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 
          {(showAllMatches ? matches : matches.slice(0, 6)).map(
   (match, index) => (
@@ -644,7 +644,8 @@ className="bg-white rounded-xl p-4 text-[#082567] shadow-md border border-gray-2
 
         </div> {/* fin grid */}
 
-    <div className="flex justify-center mt-8">
+        <div className="flex justify-center mt-8">
+<div className="flex justify-center mt-8">
 
   <button
     onClick={() => setShowAllMatches(!showAllMatches)}
@@ -656,8 +657,12 @@ className="bg-white rounded-xl p-4 text-[#082567] shadow-md border border-gray-2
   </button>
 
 </div>
+   
+
+</div> {/* bouton voir plus */}
 
       </div> {/* MATCHS */}
+
     </div> {/* bg-black/20 */}
 
 {showLoginModal && (
