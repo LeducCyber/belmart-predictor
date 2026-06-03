@@ -133,7 +133,7 @@ export default function GroupsPage() {
         "Ghana",
         "Panama",
       ],
-      codes: ["gb", "hr", "gh", "pa"],
+      codes: ["eng", "hr", "gh", "pa"]
     },
 
   ];
@@ -143,7 +143,7 @@ export default function GroupsPage() {
     <div
   className="min-h-screen bg-cover bg-center bg-fixed p-6"
   style={{
-   backgroundImage: "url('/Belmart-fond.jpeg')"
+   backgroundImage: "url('/mondial.png')"
   }}
 >
 

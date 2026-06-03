@@ -90,7 +90,7 @@ export default function LoginPage() {
     <div
   className="min-h-screen bg-cover bg-center bg-fixed flex items-center justify-center p-6"
   style={{
-   backgroundImage: "url('/Belmart-fond.jpeg')"
+   backgroundImage: "url('/mondial.png')"
   }}
 >
 

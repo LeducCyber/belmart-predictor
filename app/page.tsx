@@ -27,12 +27,15 @@ export default function BelmartPredictor2026() {
 
   const [matches, setMatches] =
     useState<any[]>([]);
+    const [showAllMatches, setShowAllMatches] =
+  useState(false);
     const [results, setResults] =
   useState<any>({});
 
   const [predictions, setPredictions] =
     useState<any>({});
-
+const [showLoginModal, setShowLoginModal] =
+  useState(false);
   useEffect(() => {
 
     const unsubscribe =
@@ -236,13 +239,11 @@ setResults(resultsMap);
 
       if (!user) {
 
-        alert(
-          "Veuillez vous connecter"
-        );
+  setShowLoginModal(true);
 
-        return;
+  return;
 
-      }
+}
 
       const prediction =
         predictions[
@@ -374,20 +375,20 @@ setResults(resultsMap);
 
     };
 
-  return (
+return (
+  <div
+    className="min-h-screen bg-no-repeat"
+    style={{
+      backgroundImage: "url('/mondial.png')",
+      backgroundSize: "100% auto",
+      backgroundPosition: "top center",
+    }}
+  >
 
-<div
-  className="min-h-screen bg-cover bg-top bg-fixed"
-  style={{
-   backgroundImage: "url('/Belmart-fond.jpeg')"
-  }}
->
-
-  <div className="min-h-screen bg-black/20">
-  
+    <div className="min-h-screen bg-black/20">
       {/* HEADER */}
       
-      <div className="bg-white text-[#082567] px-3 sm:px-6 py-5 border-b">
+     <div className="bg-white text-[#082567] px-3 sm:px-6 py-1 border-b">
 
         <div className="flex flex-col lg:flex-row items-center justify-between gap-4">
 
@@ -471,18 +472,31 @@ setResults(resultsMap);
 
       {/* MATCHS */}
 
-    <div className="px-4 pb-10 pt-[500px]">
+  <div className="px-4 pb-10 pt-[800px]">
 
- <div className="inline-block bg-[#082567]/80 px-6 py-3 rounded-2xl mb-12 ml-4">
-  <h2 className="text-5xl font-black text-white">
-    ⚽ Liste des matchs
-  </h2>
-</div>
+  <div className="flex justify-center mb-8">
+
+    <a
+      href="/signup"
+      className="bg-yellow-400 text-[#082567] px-10 py-5 rounded-3xl font-black text-2xl hover:scale-105 hover:bg-white transition-all duration-300 shadow-2xl"
+    >
+      🚀 Inscrivez-vous maintenant
+    </a>
+
+  </div>
+
+  <div className="inline-block bg-[#082567]/80 px-6 py-3 rounded-2xl mb-4 ml-4">
+
+    <h2 className="text-5xl font-black text-white">
+      ⚽ Liste des matchs
+    </h2>
+
+  </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 
-          {matches.map(
-            (match, index) => (
+         {(showAllMatches ? matches : matches.slice(0, 6)).map(
+  (match, index) => (
 
               <div
   key={index}
@@ -514,6 +528,7 @@ className="bg-white rounded-xl p-4 text-[#082567] shadow-md border border-gray-2
   <span className="mt-3 font-bold text-lg text-center">
     {match.team1}
   </span>
+
 </div>
 
   {/* Centre */}
@@ -581,15 +596,15 @@ className="bg-white rounded-xl p-4 text-[#082567] shadow-md border border-gray-2
 
   {/* Equipe 2 */}
   <div className="flex flex-col items-center">
-    <img
-  src={`https://flagcdn.com/w160/${match.flag2}.png`}
-  className="w-32 h-24 object-cover rounded-xl shadow-lg border border-gray-200"
-/> 
+  <img
+   src={`https://flagcdn.com/w160/${match.flag2 === "eng" ? "gb-eng" : match.flag2}.png`}
+    className="w-32 h-24 object-cover rounded-xl shadow-lg border border-gray-200"
+  />
 
-    <span className="mt-3 font-bold text-lg text-center">
-      {match.team2}
-    </span>
-  </div>
+  <span className="mt-3 font-bold text-lg text-center">
+    {match.team2}
+  </span>
+</div>
 
 </div>
 <button
@@ -614,10 +629,11 @@ className="bg-white rounded-xl p-4 text-[#082567] shadow-md border border-gray-2
 </p>
 
     <p className="text-4xl font-black text-green-600">
-      {results[`${match.team1}-${match.team2}`].finalScore1}
-      {" - "}
-      {results[`${match.team1}-${match.team2}`].finalScore2}
-    </p>
+  {results[`${match.team1}-${match.team2}`].finalScore1}
+  {" - "}
+  {results[`${match.team1}-${match.team2}`].finalScore2}
+</p>
+
   </div>
 )}
 
@@ -626,7 +642,65 @@ className="bg-white rounded-xl p-4 text-[#082567] shadow-md border border-gray-2
             )
           )}
 
-          </div>
+        </div> {/* fin grid */}
+
+        <div className="flex justify-center mt-8">
+
+   <div className="flex justify-center mt-8">
+
+  <button
+    onClick={() => setShowAllMatches(!showAllMatches)}
+    className="bg-[#082567] text-white px-8 py-4 rounded-2xl font-black hover:bg-yellow-500 hover:text-[#082567] transition"
+  >
+    {showAllMatches
+      ? "Voir moins de matchs"
+      : "Voir plus de matchs"}
+  </button>
+
+</div>
+
+</div> {/* bouton voir plus */}
+
+      </div> {/* MATCHS */}
+
+    </div> {/* bg-black/20 */}
+
+{showLoginModal && (
+
+  <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+
+    <div className="bg-white rounded-3xl p-8 max-w-md w-full mx-4 text-center">
+
+      <h2 className="text-3xl font-black text-[#082567]">
+        ⚽ Connexion requise
+      </h2>
+
+      <p className="mt-4 text-gray-600">
+        Vous devez être connecté pour effectuer un pronostic.
+      </p>
+
+      <div className="mt-8 flex flex-col gap-4">
+
+        <a
+          href="/login"
+          className="bg-[#082567] text-white py-4 rounded-2xl font-black"
+        >
+          Se connecter
+        </a>
+
+        <a
+          href="/signup"
+          className="bg-yellow-400 text-[#082567] py-4 rounded-2xl font-black"
+        >
+          Créer un compte
+        </a>
+
+        <button
+          onClick={() => setShowLoginModal(false)}
+          className="border-2 border-gray-300 py-4 rounded-2xl font-bold"
+        >
+          Fermer
+        </button>
 
       </div>
 
@@ -634,5 +708,8 @@ className="bg-white rounded-xl p-4 text-[#082567] shadow-md border border-gray-2
 
   </div>
 
-  );
+)}
+
+  </div>
+);
 }
