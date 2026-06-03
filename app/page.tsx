@@ -472,7 +472,7 @@ return (
 
       {/* MATCHS */}
 
-<div className="px-4 pb-10 pt-[700px] md:pt-[650px]">
+  <div className="px-4 pb-10 pt-[800px]">
 
   <div className="flex justify-center mb-8">
 
@@ -485,7 +485,7 @@ return (
 
   </div>
 
-  <div className="inline-block bg-[#082567]/80 px-6 py-3 rounded-2xl mb-0 ml-4">
+  <div className="inline-block bg-[#082567]/80 px-6 py-3 rounded-2xl mb-4 ml-4">
 
     <h2 className="text-5xl font-black text-white">
       ⚽ Liste des matchs
