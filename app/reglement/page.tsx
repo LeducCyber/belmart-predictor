@@ -3,7 +3,7 @@ export default function ReglementPage() {
   <div
   className="min-h-screen bg-cover bg-center bg-fixed p-6"
   style={{
-    backgroundImage: "url('/belmart-fond.jpeg')",
+   backgroundImage: "url('/Belmart-fond.jpeg')"
   }}
 >
   <div className="min-h-screen bg-black/20 rounded-3xl"></div>

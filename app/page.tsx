@@ -379,7 +379,7 @@ setResults(resultsMap);
 <div
   className="min-h-screen bg-cover bg-top bg-fixed"
   style={{
-    backgroundImage: "url('/belmart-fond.jpeg')",
+   backgroundImage: "url('/Belmart-fond.jpeg')"
   }}
 >
 
