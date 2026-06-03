@@ -472,7 +472,7 @@ return (
 
       {/* MATCHS */}
 
-  <div className="px-4 pb-10 pt-[800px]">
+ <div className="px-4 pb-10 pt-[500px]">
 
   <div className="flex justify-center mb-4">
 
@@ -644,9 +644,7 @@ className="bg-white rounded-xl p-4 text-[#082567] shadow-md border border-gray-2
 
         </div> {/* fin grid */}
 
-        <div className="flex justify-center mt-8">
-
-   <div className="flex justify-center mt-8">
+    <div className="flex justify-center mt-8">
 
   <button
     onClick={() => setShowAllMatches(!showAllMatches)}
@@ -659,10 +657,7 @@ className="bg-white rounded-xl p-4 text-[#082567] shadow-md border border-gray-2
 
 </div>
 
-</div> {/* bouton voir plus */}
-
       </div> {/* MATCHS */}
-
     </div> {/* bg-black/20 */}
 
 {showLoginModal && (
