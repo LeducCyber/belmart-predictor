@@ -385,7 +385,7 @@ return (
     }}
   >
 
-    <div className="min-h-screen bg-black/20">
+    <div className="min-h-screen">
       {/* HEADER */}
       
     <div className="bg-white text-[#082567] px-2 py-2 border-b">
@@ -471,8 +471,7 @@ return (
 
 
       {/* MATCHS */}
-
-<div className="px-4 pb-10 pt-[60px] md:pt-[400px] lg:pt-[800px]">
+<div className="px-1 md:px-4 pb-10 pt-[60px] md:pt-[400px] lg:pt-[800px]">
 
 <div className="flex justify-center md:justify-end mt-8 md:-mt-4 mb-[-30px] md:mb-4 md:pr-10 relative z-20">
 
