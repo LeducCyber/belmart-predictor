@@ -398,7 +398,7 @@ return (
   
           </div>
 
-        <div className="flex flex-wrap justify-center gap-2 text-xs font-bold items-center text-center leading-none">
+       <div className="flex flex-wrap justify-center gap-1 text-[11px] font-bold items-center text-center leading-none">
 
             <a
   href="/"
