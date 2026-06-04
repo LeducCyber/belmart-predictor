@@ -472,7 +472,7 @@ return (
       {/* MATCHS */}
 
 <div className="px-0 pb-10 pt-[60px] md:px-4 md:pt-[400px] lg:pt-[800px]">
-<div className="flex justify-center mt-8 md:-mt-4 mb-[-25px] md:mb-4 relative z-20">
+<div className="flex justify-center mt-8 md:-mt-4 mb-[-10px] md:mb-4 relative z-20">
    <a
   href="/signup"
 className="w-auto min-w-[220px] bg-yellow-400 text-[#082567] px-6 py-3 rounded-full font-black text-sm md:text-xl text-center shadow-xl"
