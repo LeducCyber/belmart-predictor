@@ -143,7 +143,7 @@ export default function GroupsPage() {
     <div
   className="min-h-screen bg-cover bg-center bg-fixed p-6"
   style={{
-   backgroundImage: "url('/mondial.png')"
+  backgroundImage: "url('/mondial.png')"
   }}
 >
 

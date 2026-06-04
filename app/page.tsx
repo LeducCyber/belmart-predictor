@@ -472,10 +472,10 @@ return (
       {/* MATCHS */}
 
 <div className="px-0 pb-10 pt-[60px] md:px-4 md:pt-[400px] lg:pt-[800px]">
-<div className="flex justify-center md:justify-end mt-8 md:-mt-4 mb-[-45px] md:mb-4 md:pr-10 relative z-20">
+<div className="flex justify-center mt-8 md:-mt-4 mb-[-25px] md:mb-4 relative z-20">
    <a
   href="/signup"
-  className="w-[170px] bg-yellow-400 text-[#082567] px-2 py-2 md:px-10 md:py-5 rounded-xl md:rounded-3xl font-black text-[10px] md:text-2xl text-center hover:scale-105 hover:bg-white transition-all duration-300 shadow-xl"
+className="w-auto min-w-[220px] bg-yellow-400 text-[#082567] px-6 py-3 rounded-full font-black text-sm md:text-xl text-center shadow-xl"
 >
   🚀 Inscrivez-vous maintenant
 </a>
