@@ -472,13 +472,13 @@ return (
 
       {/* MATCHS */}
 
-<div className="px-4 pb-10 pt-[150px] md:pt-[400px] lg:pt-[800px]">
+<div className="px-4 pb-10 pt-[60px] md:pt-[400px] lg:pt-[800px]">
 
 <div className="flex justify-end -mt-4 mb-4 pr-10">
 
     <a
       href="/signup"
-      className="bg-yellow-400 text-[#082567] px-10 py-5 rounded-3xl font-black text-2xl hover:scale-105 hover:bg-white transition-all duration-300 shadow-2xl"
+      className="w-full max-w-[300px] bg-yellow-400 text-[#082567] py-4 rounded-2xl font-black hover:bg-white transition-all duration-300"
     >
       🚀 Inscrivez-vous maintenant
     </a>
@@ -493,7 +493,7 @@ return (
 
               <div
   key={index}
-className="bg-white rounded-xl p-4 text-[#082567] shadow-md border border-gray-200"
+className="bg-white rounded-xl p-3 md:p-4 text-[#082567] shadow-md border border-gray-200 mx-2 md:mx-0"
 >
 
                 <div className="text-center">
