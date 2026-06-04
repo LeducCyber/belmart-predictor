@@ -388,7 +388,7 @@ return (
     <div className="min-h-screen bg-black/20">
       {/* HEADER */}
       
-     <div className="bg-white text-[#082567] px-3 sm:px-6 py-1 border-b">
+   <div className="bg-white text-[#082567] px-2 py-0 border-b">
 
         <div className="flex flex-col lg:flex-row items-center justify-between gap-4">
 
@@ -398,7 +398,7 @@ return (
   
           </div>
 
-        <div className="flex flex-wrap justify-center lg:justify-end gap-4 font-bold items-center text-center">
+        <div className="flex flex-wrap justify-center gap-2 text-xs font-bold items-center text-center leading-none">
 
             <a
   href="/"
@@ -480,7 +480,7 @@ return (
   href="/signup"
   className="w-[170px] bg-yellow-400 text-[#082567] px-2 py-2 md:px-10 md:py-5 rounded-xl md:rounded-3xl font-black text-[10px] md:text-2xl text-center hover:scale-105 hover:bg-white transition-all duration-300 shadow-xl"
 >
-  🚀 Inscrivez-vous maintenant
+  Inscrivez-vous maintenant
 </a>
 
   </div>
