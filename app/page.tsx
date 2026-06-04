@@ -474,19 +474,19 @@ return (
 
 <div className="px-4 pb-10 pt-[60px] md:pt-[400px] lg:pt-[800px]">
 
-<div className="flex justify-end -mt-4 mb-4 pr-10">
+<div className="flex justify-center md:justify-end mt-8 md:-mt-4 mb-4 md:pr-10">
 
-    <a
-      href="/signup"
-      className="bg-yellow-400 text-[#082567] px-10 py-5 rounded-3xl font-black text-2xl hover:scale-105 hover:bg-white transition-all duration-300 shadow-2xl"
-    >
-      🚀 Inscrivez-vous maintenant
-    </a>
+   <a
+  href="/signup"
+  className="w-[170px] bg-yellow-400 text-[#082567] px-2 py-2 md:px-10 md:py-5 rounded-xl md:rounded-3xl font-black text-[10px] md:text-2xl text-center hover:scale-105 hover:bg-white transition-all duration-300 shadow-xl"
+>
+  🚀 Inscrivez-vous maintenant
+</a>
 
   </div>
 
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 -mt-10">
+       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-10 md:-mt-10">
 
          {(showAllMatches ? matches : matches.slice(0, 6)).map(
   (match, index) => (
