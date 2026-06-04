@@ -388,7 +388,7 @@ return (
     <div className="min-h-screen bg-black/20">
       {/* HEADER */}
       
-   <div className="bg-white text-[#082567] px-2 py-0 border-b">
+     <div className="bg-white text-[#082567] px-3 sm:px-6 py-1 border-b">
 
         <div className="flex flex-col lg:flex-row items-center justify-between gap-4">
 
@@ -398,7 +398,7 @@ return (
   
           </div>
 
-       <div className="flex flex-wrap justify-center gap-1 text-[11px] font-bold items-center text-center leading-none">
+        <div className="flex flex-wrap justify-center lg:justify-end gap-4 font-bold items-center text-center">
 
             <a
   href="/"
@@ -472,21 +472,21 @@ return (
 
       {/* MATCHS */}
 
-<div className="px-4 pb-10 pt-[40px] md:pt-[400px] lg:pt-[800px]">
+<div className="px-4 pb-10 pt-[60px] md:pt-[400px] lg:pt-[800px]">
 
-<div className="flex justify-center md:justify-end mt-8 md:-mt-4 mb-[-35px] md:mb-4 md:pr-10 relative z-20">
+<div className="flex justify-center md:justify-end mt-8 md:-mt-4 mb-[-20px] md:mb-4 md:pr-10 relative z-20">
 
-   <a
-  href="/signup"
-  className="w-[170px] bg-yellow-400 text-[#082567] px-2 py-2 md:px-10 md:py-5 rounded-xl md:rounded-3xl font-black text-[10px] md:text-2xl text-center hover:scale-105 hover:bg-white transition-all duration-300 shadow-xl"
->
-  Inscrivez-vous maintenant
-</a>
+  <a
+    href="/signup"
+    className="w-[170px] bg-yellow-400 text-[#082567] px-2 py-2 md:px-10 md:py-5 rounded-xl md:rounded-3xl font-black text-[10px] md:text-2xl text-center hover:scale-105 hover:bg-white transition-all duration-300 shadow-xl"
+  >
+    🚀 Inscrivez-vous maintenant
+  </a>
 
-  </div>
+</div>
 
 
-       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-10 md:-mt-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-20 md:-mt-10">
 
          {(showAllMatches ? matches : matches.slice(0, 6)).map(
   (match, index) => (
