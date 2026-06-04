@@ -388,7 +388,7 @@ return (
     <div className="min-h-screen bg-black/20">
       {/* HEADER */}
       
-     <div className="bg-white text-[#082567] px-3 sm:px-6 py-1 border-b">
+     <div className="bg-white text-[#082567] px-2 py-0 border-b">
 
         <div className="flex flex-col lg:flex-row items-center justify-between gap-4">
 
@@ -398,7 +398,7 @@ return (
   
           </div>
 
-        <div className="flex flex-wrap justify-center lg:justify-end gap-4 font-bold items-center text-center">
+       <div className="flex justify-center gap-2 text-[11px] font-bold items-center whitespace-nowrap overflow-x-auto">
 
             <a
   href="/"
@@ -445,7 +445,7 @@ return (
                 onClick={
                   handleLogout
                 }
-                className="bg-white text-[#082567] px-5 py-2 rounded-2xl font-black"
+              className="bg-white text-[#082567] px-2 py-1 rounded-xl font-black text-[11px]"
               >
                 Déconnexion
               </button>
