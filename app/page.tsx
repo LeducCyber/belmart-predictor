@@ -398,7 +398,7 @@ return (
   
           </div>
 
-     <div className="flex justify-center gap-1 md:gap-4 text-[9px] md:text-sm font-bold items-center whitespace-nowrap">
+        <div className="flex flex-wrap justify-center lg:justify-end gap-4 font-bold items-center text-center">
 
             <a
   href="/"
@@ -472,13 +472,18 @@ return (
 
       {/* MATCHS */}
 
-<div className="px-0 pb-10 pt-[20px] md:pt-[250px] lg:pt-[350px]">
+<div className="px-0 pb-10 pt-[20px] md:pt-[400px] lg:pt-[800px]">
 
 <div className="flex justify-center -mb-10 relative z-20">
- 
+  <a
+    href="/signup"
+    className="w-[180px] bg-yellow-400 text-[#082567] py-2 px-2 rounded-xl font-black text-xs text-center shadow-lg"
+  >
+    🚀 Inscrivez-vous maintenant
+  </a>
 </div>
 
-<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-8 md:mt-12">
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-20">
 
          {(showAllMatches ? matches : matches.slice(0, 6)).map(
   (match, index) => (
