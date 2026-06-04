@@ -474,7 +474,7 @@ return (
 
 <div className="px-0 pb-10 pt-[20px] md:pt-[400px] lg:pt-[800px]">
 
-<div className="flex justify-center -mb-10 relative z-20">
+<div className="flex justify-center -mb-12 relative z-20">
  <a
   href="/signup"
   className="w-[160px] bg-yellow-400 text-[#082567] py-2 px-2 rounded-xl font-black text-[10px] text-center shadow-lg"
