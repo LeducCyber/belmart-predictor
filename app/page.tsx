@@ -489,7 +489,7 @@ return (
 
               <div
   key={index}
-className="bg-white rounded-xl p-4 text-[#082567] shadow-md border border-gray-200"
+className="w-full bg-white rounded-xl p-4 text-[#082567] shadow-md border border-gray-200"
 >
 
                 <div className="text-center">
