@@ -474,19 +474,17 @@ return (
 
 <div className="px-4 pb-10 pt-[60px] md:pt-[400px] lg:pt-[800px]">
 
-<div className="flex justify-end -mt-4 mb-4 pr-10">
-
-    <a
-      href="/signup"
-      className="w-full max-w-[300px] bg-yellow-400 text-[#082567] py-4 rounded-2xl font-black hover:bg-white transition-all duration-300"
-    >
-      🚀 Inscrivez-vous maintenant
-    </a>
-
-  </div>
+<div className="flex justify-center lg:justify-end mb-4 px-4">
+  <a
+    href="/signup"
+    className="w-full max-w-[260px] bg-yellow-400 text-[#082567] py-3 px-4 rounded-2xl font-black text-center text-base md:text-xl shadow-lg"
+  >
+    🚀 Inscrivez-vous maintenant
+  </a>
+</div>
 
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 -mt-10">
+   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
 
          {(showAllMatches ? matches : matches.slice(0, 6)).map(
   (match, index) => (
