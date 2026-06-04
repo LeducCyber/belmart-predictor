@@ -483,7 +483,7 @@ return (
 </a>
 </div>
 
-<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-20">
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-24">
 
          {(showAllMatches ? matches : matches.slice(0, 6)).map(
   (match, index) => (
@@ -532,7 +532,7 @@ className="bg-white rounded-xl p-3 md:p-4 text-[#082567] shadow-md border border
       {match.time}
     </p>
 
-    <div className="flex justify-center gap-4 mt-6">
+   <div className="flex justify-center -mb-16 relative z-20">
 
       <input
         type="number"
