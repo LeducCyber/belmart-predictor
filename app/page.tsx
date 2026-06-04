@@ -398,7 +398,7 @@ return (
   
           </div>
 
-       <div className="flex justify-center gap-3 text-sm font-bold items-center whitespace-nowrap overflow-x-auto">
+       <div className="flex justify-center gap-1 text-[10px] font-bold items-center whitespace-nowrap">
 
             <a
   href="/"
@@ -478,7 +478,7 @@ return (
  
 </div>
 
-<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-20">
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-24">
 
          {(showAllMatches ? matches : matches.slice(0, 6)).map(
   (match, index) => (
