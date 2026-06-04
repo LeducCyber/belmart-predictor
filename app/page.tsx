@@ -384,8 +384,7 @@ return (
        backgroundRepeat: "no-repeat",
     }}
   >
-
-    <div className="min-h-screen bg-black/20">
+<div className="min-h-screen">
       {/* HEADER */}
       
      <div className="bg-white text-[#082567] px-3 sm:px-6 py-1 border-b">
