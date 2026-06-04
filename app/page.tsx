@@ -472,7 +472,7 @@ return (
 
       {/* MATCHS */}
 
-<div className="px-4 pb-10 pt-[60px] md:pt-[400px] lg:pt-[800px]">
+<div className="px-4 pb-10 pt-[40px] md:pt-[400px] lg:pt-[800px]">
 
 <div className="flex justify-center md:justify-end mt-8 md:-mt-4 mb-4 md:pr-10">
 
