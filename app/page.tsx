@@ -474,16 +474,16 @@ return (
 
 <div className="px-0 pb-10 pt-[20px] md:pt-[400px] lg:pt-[800px]">
 
-<div className="flex justify-center -mb-3 relative z-10">
-  <a
-    href="/signup"
-    className="w-[180px] bg-yellow-400 text-[#082567] py-2 px-2 rounded-xl font-black text-xs text-center shadow-lg"
-  >
-    🚀 Inscrivez-vous maintenant
-  </a>
+<div className="flex justify-center -mb-10 relative z-20">
+ <a
+  href="/signup"
+  className="w-[160px] bg-yellow-400 text-[#082567] py-2 px-2 rounded-xl font-black text-[10px] text-center shadow-lg"
+>
+  🚀 Inscrivez-vous maintenant
+</a>
 </div>
 
-<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-14">
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-20">
 
          {(showAllMatches ? matches : matches.slice(0, 6)).map(
   (match, index) => (
