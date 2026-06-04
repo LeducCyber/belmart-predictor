@@ -388,7 +388,7 @@ return (
     <div className="min-h-screen bg-black/20">
       {/* HEADER */}
       
-     <div className="bg-white text-[#082567] px-2 py-0 border-b">
+    <div className="bg-white text-[#082567] px-2 py-2 border-b">
 
         <div className="flex flex-col lg:flex-row items-center justify-between gap-4">
 
