@@ -472,25 +472,28 @@ return (
 
       {/* MATCHS */}
 
-<div className="px-0 pb-10 pt-[20px] md:pt-[400px] lg:pt-[800px]">
+<div className="px-4 pb-10 pt-[60px] md:pt-[400px] lg:pt-[800px]">
 
-<div className="flex justify-center -mb-10 relative z-20">
-  <a
-    href="/signup"
-    className="w-[180px] bg-yellow-400 text-[#082567] py-2 px-2 rounded-xl font-black text-xs text-center shadow-lg"
-  >
-    🚀 Inscrivez-vous maintenant
-  </a>
-</div>
+<div className="flex justify-end -mt-4 mb-4 pr-10">
 
-<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-20">
+    <a
+      href="/signup"
+      className="bg-yellow-400 text-[#082567] px-10 py-5 rounded-3xl font-black text-2xl hover:scale-105 hover:bg-white transition-all duration-300 shadow-2xl"
+    >
+      🚀 Inscrivez-vous maintenant
+    </a>
+
+  </div>
+
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 -mt-10">
 
          {(showAllMatches ? matches : matches.slice(0, 6)).map(
   (match, index) => (
 
               <div
   key={index}
-className="bg-white rounded-xl p-3 md:p-4 text-[#082567] shadow-md border border-gray-200 mx-2 md:mx-0"
+className="bg-white rounded-xl p-4 text-[#082567] shadow-md border border-gray-200"
 >
 
                 <div className="text-center">
