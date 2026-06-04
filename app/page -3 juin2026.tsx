@@ -236,6 +236,7 @@ setResults(resultsMap);
 
   const savePrediction =
     async (match: any) => {
+
       if (!user) {
 
   setShowLoginModal(true);
@@ -473,7 +474,7 @@ return (
 
   <div className="px-4 pb-10 pt-[800px]">
 
-<div className="flex justify-end -mt-4 mb-4 pr-10">
+  <div className="flex justify-center mb-8">
 
     <a
       href="/signup"
@@ -484,8 +485,15 @@ return (
 
   </div>
 
+  <div className="inline-block bg-[#082567]/80 px-6 py-3 rounded-2xl mb-4 ml-4">
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 -mt-10">
+    <h2 className="text-5xl font-black text-white">
+      ⚽ Liste des matchs
+    </h2>
+
+  </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 
          {(showAllMatches ? matches : matches.slice(0, 6)).map(
   (match, index) => (
@@ -648,55 +656,10 @@ className="bg-white rounded-xl p-4 text-[#082567] shadow-md border border-gray-2
           </button>
         </div>
 
-          </div>
-
-  </div>
-
-{showLoginModal && (
-
-  <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-
-    <div className="bg-white rounded-3xl p-8 max-w-md w-full mx-4 text-center">
-
-      <h2 className="text-3xl font-black text-[#082567]">
-        ⚽ Connexion requise
-      </h2>
-
-      <p className="mt-4 text-gray-600">
-        Vous devez être connecté pour effectuer un pronostic.
-      </p>
-
-      <div className="mt-8 flex flex-col gap-4">
-
-        <a
-          href="/login"
-          className="bg-[#082567] text-white py-4 rounded-2xl font-black"
-        >
-          Se connecter
-        </a>
-
-        <a
-          href="/signup"
-          className="bg-yellow-400 text-[#082567] py-4 rounded-2xl font-black"
-        >
-          Créer un compte
-        </a>
-
-        <button
-          onClick={() => setShowLoginModal(false)}
-          className="border-2 border-gray-300 py-4 rounded-2xl font-bold"
-        >
-          Fermer
-        </button>
-
       </div>
 
     </div>
 
   </div>
-
-)}
-
-</div>
 );
 }
