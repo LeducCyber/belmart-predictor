@@ -378,9 +378,10 @@ return (
   <div
     className="min-h-screen bg-no-repeat"
     style={{
-      backgroundImage: "url('/mondial.png')",
-      backgroundSize: "100% auto",
+      backgroundImage: "url('/mondial2.png')",
+        backgroundSize: "100% auto",
       backgroundPosition: "top center",
+       backgroundRepeat: "no-repeat",
     }}
   >
 
