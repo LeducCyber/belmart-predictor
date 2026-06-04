@@ -388,82 +388,33 @@ return (
     <div className="min-h-screen bg-black/20">
       {/* HEADER */}
       
-     <div className="bg-white text-[#082567] px-3 sm:px-6 py-1 border-b">
+     <div className="bg-white text-[#082567] px-2 sm:px-4 py-0 border-b">
 
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-4">
+  <div className="flex flex-wrap justify-center lg:justify-end gap-2 font-bold items-center text-center text-sm">
 
-          <div className="text-center lg:text-left">
+    <a href="/" className="px-2 py-1">
+      Accueil
+    </a>
 
-        
-  
-          </div>
+    <a href="/classement" className="px-2 py-1">
+      Classement Client
+    </a>
 
-        <div className="flex flex-wrap justify-center lg:justify-end gap-4 font-bold items-center text-center">
+    <a href="/groupes" className="px-2 py-1">
+      Groupes
+    </a>
 
-            <a
-  href="/"
-  className="hover:text-yellow-400 transition-colors"
->
-  Accueil
-</a>
-            <a
-  href="/leaderboard"
-  className="hover:text-yellow-400 transition-colors"
->
-  Classement Client
-</a>
+    <a href="/reglement" className="px-2 py-1">
+      Règlement
+    </a>
 
-           <a
-  href="/groups"
-  className="hover:text-yellow-400 transition-colors"
->
-  Groupes
-</a>
+    <a href="/login" className="px-2 py-1">
+      Connexion
+    </a>
 
-            <a
-  href="/reglement"
-  className="hover:text-yellow-400 transition-colors"
->
-  Règlement
-</a>
+  </div>
 
-            {user?.email ===
-              "d.stlouis@belmarthaiti.com" && (
-
-              <a
-  href="/admin"
-  className="hover:text-yellow-400 transition-colors"
->
-  Administration
-</a>
-
-            )}
-
-            {user ? (
-
-              <button
-                onClick={
-                  handleLogout
-                }
-                className="bg-white text-[#082567] px-5 py-2 rounded-2xl font-black"
-              >
-                Déconnexion
-              </button>
-
-            ) : (
-
-              <a
-                href="/login"
-                className="bg-white text-[#082567] px-5 py-2 rounded-2xl font-black"
-              >
-                Connexion
-              </a>
-
-            )}
-
-          </div>
-
-        </div>
+</div>
 
       </div>
 
@@ -483,7 +434,7 @@ return (
 </a>
 </div>
 
-<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-24">
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-20">
 
          {(showAllMatches ? matches : matches.slice(0, 6)).map(
   (match, index) => (
@@ -645,8 +596,6 @@ className="bg-white rounded-xl p-3 md:p-4 text-[#082567] shadow-md border border
               : "Voir plus de matchs"}
           </button>
         </div>
-
-          </div>
 
   </div>
 
