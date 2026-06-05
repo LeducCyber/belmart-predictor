@@ -149,8 +149,7 @@ export default function GroupsPage() {
 
       <div className="max-w-7xl mx-auto">
   <div className="min-h-screen bg-black/20 rounded-3xl">
-        <div className="bg-[#082567] text-white rounded-3xl p-6 mb-8 shadow-xl flex items-center justify-between">
-
+       <div className="bg-[#082567] text-white rounded-3xl px-5 py-4 mb-6 shadow-xl flex items-center justify-between">
           <div>
 
             <h1 className="text-4xl font-black">
@@ -160,13 +159,16 @@ export default function GroupsPage() {
 
           </div>
 
-          <a
-            href="/"
-            className="bg-white text-[#082567] px-5 py-3 rounded-2xl font-bold hover:bg-gray-200 transition"
-          >
-            ← Retour à l'accueil
-          </a>
-
+      <div className="bg-[#082567] text-white rounded-3xl p-6 mb-8 shadow-xl">
+ <div className="bg-[#082567] rounded-3xl p-6 mb-8 shadow-xl">
+  <a
+    href="/"
+    className="inline-block bg-yellow-400 text-[#082567] px-6 py-3 rounded-2xl font-black hover:bg-yellow-300 transition shadow-lg"
+  >
+    ← Retour à l'accueil
+  </a>
+</div>
+</div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
