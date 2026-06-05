@@ -154,7 +154,7 @@ export default function GroupsPage() {
           <div>
 
             <h1 className="text-4xl font-black">
-  Groupes de la Coupe du Monde 2026
+   Phase de groupes
 </h1>
 
 
@@ -188,26 +188,47 @@ export default function GroupsPage() {
 
               <div className="p-4">
 
-                {group.teams.map((team, i) => (
+             <table className="w-full text-[#082567]">
+  <thead>
+    <tr className="border-b font-bold text-sm">
+      <th className="text-left py-2">#</th>
+      <th className="text-left py-2">Équipe</th>
+      <th>MJ</th>
+      <th>G</th>
+      <th>N</th>
+      <th>P</th>
+      <th>BP</th>
+      <th>BC</th>
+    </tr>
+  </thead>
 
-                  <div
-                    key={i}
-                    className="flex items-center gap-4 border-b py-4"
-                  >
+  <tbody>
+    {group.teams.map((team, i) => (
+      <tr key={i} className="border-b">
+        <td className="py-3">{i + 1}</td>
 
-                    <img
-                      src={`https://flagcdn.com/w80/${group.codes[i]}.png`}
-                      className="w-10 h-10 rounded-full"
-                    />
+        <td className="py-3">
+          <div className="flex items-center gap-3">
+            <img
+              src={`https://flagcdn.com/w80/${group.codes[i]}.png`}
+              className="w-8 h-8 rounded"
+            />
+            <span className="font-bold">
+              {team}
+            </span>
+          </div>
+        </td>
 
-                    <span className="text-lg font-bold text-[#082567]">
-                      {team}
-                    </span>
-
-                  </div>
-
-                ))}
-
+        <td className="text-center">0</td>
+        <td className="text-center">0</td>
+        <td className="text-center">0</td>
+        <td className="text-center">0</td>
+        <td className="text-center">0</td>
+        <td className="text-center">0</td>
+      </tr>
+    ))}
+  </tbody>
+</table>
               </div>
 
             </div>
