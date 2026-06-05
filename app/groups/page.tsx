@@ -133,7 +133,7 @@ export default function GroupsPage() {
         "Ghana",
         "Panama",
       ],
-      codes: ["eng", "hr", "gh", "pa"]
+      codes: ["gb-eng", "hr", "gh", "pa"]
     },
 
   ];
