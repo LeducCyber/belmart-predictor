@@ -472,7 +472,7 @@ return (
       {/* MATCHS */}
 
 <div className="px-0 pb-10 pt-[60px] md:px-4 md:pt-[400px] lg:pt-[800px]">
-<div className="flex justify-center mt-8 md:-mt-4 mb-[-10px] md:mb-4 relative z-20">
+<div className="flex justify-center mt-8 md:-mt-4 mb-[10px] md:mb-4 relative z-20">
    <a
   href="/signup"
 className="w-auto min-w-[220px] bg-yellow-400 text-[#082567] px-6 py-3 rounded-full font-black text-sm md:text-xl text-center shadow-xl"
@@ -482,7 +482,7 @@ className="w-auto min-w-[220px] bg-yellow-400 text-[#082567] px-6 py-3 rounded-f
 
   </div>
 
-<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-20 md:-mt-10">
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-80 md:mt-32">
    {(showAllMatches ? matches : matches.slice(0, 6)).map(
   (match, index) => (
 
