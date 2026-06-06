@@ -123,7 +123,7 @@ export default function ReglementPage() {
               <p>🥈 2ème place : Deuxième Prix</p>
               <p>🥉 3ème place : Troisième Prix</p>
               <p>🏅 Places 4 à 10 : Récompenses Premium</p>
-              <p>🎖️ Places 11 à 25 : Récompenses Belmart</p>
+             <p>🎖️ Places 11 à 20 : Récompenses Belmart</p>
             </div>
           </div>
 
