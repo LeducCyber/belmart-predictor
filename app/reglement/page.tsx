@@ -3,7 +3,7 @@ export default function ReglementPage() {
     <div
       className="min-h-screen bg-cover bg-center p-4 md:p-6 overflow-x-hidden"
       style={{
-        backgroundImage: "url('/mondial2.png')",
+        backgroundImage: "url('/pronostic.png')",
       }}
     >
       <div className="mb-8">

@@ -378,16 +378,21 @@ return (
   <div
     className="min-h-screen bg-no-repeat"
     style={{
-      backgroundImage: "url('/mondial2.png')",
+      backgroundImage: "url('/pronostic.png')",
         backgroundSize: "100% auto",
       backgroundPosition: "top center",
        backgroundRepeat: "no-repeat",
     }}
   >
-<div className="min-h-screen">
+<div className="min-h-screen relative">
+ <a
+  href="/signup"
+  className="absolute right-0 top-[1060px] w-[760px] h-[300px] z-[999] bg-red-500/30"
+  aria-label="Créer un compte"
+/>
       {/* HEADER */}
       
-     <div className="bg-white text-[#082567] px-3 sm:px-6 py-1 border-b">
+<div className="bg-[#082567] text-white px-6 py-4 border-b border-blue-900 shadow-lg">
 
         <div className="flex flex-col lg:flex-row items-center justify-between gap-4">
 
@@ -397,7 +402,7 @@ return (
   
           </div>
 
-  <div className="flex justify-center gap-1 text-[10px] font-bold items-center whitespace-nowrap overflow-x-auto">
+<div className="flex gap-6 text-base font-bold items-center overflow-x-auto whitespace-nowrap px-4 scrollbar-hide">
 
             <a
   href="/"
@@ -472,15 +477,42 @@ return (
       {/* MATCHS */}
 
 <div className="px-0 pb-10 pt-[60px] md:px-4 md:pt-[400px] lg:pt-[800px]">
-<div className="flex justify-center mt-8 md:-mt-4 mb-[10px] md:mb-4 relative z-20">
-   <a
-  href="/signup"
-className="w-auto min-w-[220px] bg-yellow-400 text-[#082567] px-6 py-3 rounded-full font-black text-sm md:text-xl text-center shadow-xl"
->
-  🚀 Inscrivez-vous maintenant
-</a>
+
+<div className="bg-white/90 backdrop-blur-sm rounded-3xl py-4 px-6 max-w-4xl mr-auto ml-8 mt-56 mb-[-60px] overflow-hidden relative z-30">
+  <h2 className="text-center text-xl font-black text-[#082567] mb-4">
+    Nos Partenaires Officiels
+  </h2>
+
+  <div className="overflow-hidden">
+  <div className="flex items-center gap-20 animate-partners whitespace-nowrap">
+
+    <img
+      src="/partners/coca cola.jpeg"
+      alt="Coca-Cola"
+      className="h-16 object-contain"
+    />
+
+    <img
+      src="/partners/powerade.jpeg"
+      alt="Powerade"
+      className="h-16 object-contain"
+    />
+
+    <img
+      src="/partners/coca cola.jpeg"
+      alt="Coca-Cola"
+      className="h-16 object-contain"
+    />
+
+    <img
+      src="/partners/powerade.jpeg"
+      alt="Powerade"
+      className="h-16 object-contain"
+    />
 
   </div>
+</div>
+</div>
 
 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-80 md:mt-32">
    {(showAllMatches ? matches : matches.slice(0, 6)).map(
