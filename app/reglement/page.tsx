@@ -86,11 +86,6 @@ export default function ReglementPage() {
             <h3 className="text-2xl font-black mb-3">
               🏆 Phase à élimination directe
             </h3>
-
-            <p>
-              À partir des matchs à élimination directe, les points sont doublés afin de maintenir le suspense.
-            </p>
-
             <ul className="space-y-2 mt-3">
               <li>🎯 Score exact trouvé : 10 points</li>
               <li>✅ Bon résultat trouvé : 2 points</li>
@@ -99,7 +94,18 @@ export default function ReglementPage() {
           </div>
 
           <div>
-            <h3 className="text-2xl font-black mb-3">🎁 Récompenses</h3>
+          <div className="flex items-center gap-4 mb-3">
+  <h3 className="text-2xl font-black">
+    🎁 Récompenses
+  </h3>
+
+  <a
+    href="/primes"
+    className="bg-yellow-400 text-[#082567] px-3 py-1 rounded-xl font-black text-sm hover:bg-yellow-300 transition"
+  >
+    📋 Liste des primes
+  </a>
+</div>
 
             <div className="space-y-2">
               <p>🥇 1ère place : Grand Prix</p>
