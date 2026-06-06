@@ -398,7 +398,7 @@ return (
   
           </div>
 
-<div className="flex gap-6 text-base font-bold items-center overflow-x-auto whitespace-nowrap px-4 scrollbar-hide">
+<div className="flex gap-4 md:gap-6 text-sm md:text-base font-bold items-center overflow-x-auto whitespace-nowrap px-2 md:px-4 scrollbar-hide">
 
             <a
   href="/"
@@ -472,7 +472,7 @@ return (
 
       {/* MATCHS */}
 
-<div className="px-0 pb-10 pt-[10px] md:px-4 md:pt-[400px] lg:pt-[800px]">
+<div className="px-0 pb-10 pt-[40px] md:px-4 md:pt-[400px] lg:pt-[800px]">
 
 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4 md:mt-32">
 
@@ -504,7 +504,7 @@ return (
   </div>
 </div>
 
-<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-0 md:mt-32">
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-8 md:mt-32">
    {(showAllMatches ? matches : matches.slice(0, 6)).map(
   (match, index) => (
 
