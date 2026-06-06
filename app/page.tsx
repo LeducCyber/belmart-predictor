@@ -474,8 +474,8 @@ return (
 
 <div className="px-0 pb-10 pt-[60px] md:px-4 md:pt-[400px] lg:pt-[800px]">
 
-<div className="hidden md:block bg-white/90 backdrop-blur-sm rounded-3xl py-4 px-6 max-w-3xl mr-auto ml-8 overflow-hidden">
-  <h2 className="text-center text-xl font-black text-[#082567] mb-4">
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4 md:mt-32">
+  <h2 className="text-center text-lg md:text-xl font-black text-[#082567] mb-2">
     Nos Partenaires Officiels
   </h2>
 
@@ -485,7 +485,7 @@ return (
       <img
         src="/partners/coca cola.jpeg"
         alt="Coca-Cola"
-        className="h-16 object-contain"
+       className="h-10 md:h-16 object-contain"
       />
 
       <img
@@ -522,7 +522,7 @@ return (
   </div>
 </div>
 
-<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-80 md:mt-32">
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-0 md:mt-32">
    {(showAllMatches ? matches : matches.slice(0, 6)).map(
   (match, index) => (
 
