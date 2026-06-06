@@ -474,7 +474,7 @@ return (
 
 <div className="px-0 pb-10 pt-[60px] md:px-4 md:pt-[400px] lg:pt-[800px]">
 
-<div className="bg-white/90 backdrop-blur-sm rounded-3xl py-4 px-6 max-w-3xl mr-auto ml-8 overflow-hidden">
+<div className="hidden md:block bg-white/90 backdrop-blur-sm rounded-3xl py-4 px-6 max-w-3xl mr-auto ml-8 overflow-hidden">
   <h2 className="text-center text-xl font-black text-[#082567] mb-4">
     Nos Partenaires Officiels
   </h2>
