@@ -474,13 +474,13 @@ return (
 
 <div className="px-0 pb-10 pt-[60px] md:px-4 md:pt-[400px] lg:pt-[800px]">
 
-<div className="bg-white/90 backdrop-blur-sm rounded-3xl py-4 px-6 max-w-4xl mr-auto ml-8 mt-56 mb-[-60px] overflow-hidden relative z-30">
+<div className="bg-white/90 backdrop-blur-sm rounded-3xl py-4 px-6 max-w-3xl mx-auto overflow-hidden">
   <h2 className="text-center text-xl font-black text-[#082567] mb-4">
     Nos Partenaires Officiels
   </h2>
 
   <div className="overflow-hidden">
-  <div className="flex items-center gap-20 animate-partners whitespace-nowrap">
+  <div className="flex items-center justify-center gap-16">
 
     <img
       src="/partners/coca cola.jpeg"
@@ -489,7 +489,7 @@ return (
     />
 
     <img
-      src="/partners/powerade.jpeg"
+      src="/partners/Powerade.jpeg"
       alt="Powerade"
       className="h-16 object-contain"
     />
@@ -501,7 +501,7 @@ return (
     />
 
     <img
-      src="/partners/powerade.jpeg"
+      src="/partners/Powerade.jpeg"
       alt="Powerade"
       className="h-16 object-contain"
     />
