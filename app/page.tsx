@@ -388,7 +388,7 @@ return (
  
       {/* HEADER */}
       
-<div className="bg-[#082567] text-white px-6 py-4 border-b border-blue-900 shadow-lg">
+<div className="bg-[#082567] text-white px-4 py-1 border-b border-blue-900 shadow-lg">
 
         <div className="flex flex-col lg:flex-row items-center justify-between gap-4">
 
@@ -398,7 +398,7 @@ return (
   
           </div>
 
-<div className="flex gap-1 md:gap-6 text-[10px] md:text-base font-bold items-center justify-center flex-wrap md:flex-nowrap px-0 md:px-4">
+<div className="flex gap-1 md:gap-6 text-[9px] md:text-base font-bold items-center justify-center flex-wrap md:flex-nowrap px-0 md:px-4">
 
             <a
   href="/"
