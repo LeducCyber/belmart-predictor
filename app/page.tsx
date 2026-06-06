@@ -475,9 +475,6 @@ return (
 <div className="px-0 pb-10 pt-[60px] md:px-4 md:pt-[400px] lg:pt-[800px]">
 
 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4 md:mt-32">
-  <h2 className="text-center text-lg md:text-xl font-black text-[#082567] mb-2">
-    Nos Partenaires Officiels
-  </h2>
 
   <div className="overflow-hidden">
   <div className="flex items-center gap-16 animate-partners whitespace-nowrap w-max">
@@ -517,6 +514,7 @@ return (
         alt="Powerade"
         className="h-16 object-contain"
       />
+    
 
     </div>
   </div>
