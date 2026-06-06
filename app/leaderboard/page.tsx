@@ -216,10 +216,25 @@ if (
     playersMap
   ) as any[];
 
-leaderboard.sort(
-  (a: any, b: any) =>
-    b.points - a.points
-);
+leaderboard.sort((a: any, b: any) => {
+
+  // 1. Points
+  if (b.points !== a.points) {
+    return b.points - a.points;
+  }
+
+  // 2. Scores exacts
+  if (b.exactScores !== a.exactScores) {
+    return b.exactScores - a.exactScores;
+  }
+
+  // 3. Nombre de pronostics
+  if (b.predictions !== a.predictions) {
+    return b.predictions - a.predictions;
+  }
+
+  return 0;
+});
 
           setPlayers(
             leaderboard

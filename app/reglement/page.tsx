@@ -64,11 +64,22 @@ export default function ReglementPage() {
 
             <h4 className="text-xl font-black mb-2">Phase de groupes</h4>
 
-            <ul className="space-y-2">
-              <li>🎯 Score exact trouvé : 5 points</li>
-              <li>✅ Bon résultat trouvé (vainqueur ou match nul, sans le score exact) : 1 point</li>
-              <li>❌ Mauvais pronostic : 0 point</li>
-            </ul>
+           <ul className="space-y-2">
+  <li>Toute tentative de fraude entraîne une disqualification immédiate.</li>
+  <li>Le fair-play est obligatoire entre tous les participants.</li>
+  <li>Les décisions de Belmart sont finales et sans appel.</li>
+
+  <li className="mt-4">
+    En cas d’égalité de points, le classement est déterminé par :
+    <ul className="ml-6 mt-2 list-disc">
+      <li>Le nombre de scores exacts trouvés.</li>
+      <li>Le nombre total de pronostics enregistrés.</li>
+      <li>
+        Si l’égalité persiste, les joueurs conservent le même rang jusqu’à la prochaine mise à jour.
+      </li>
+    </ul>
+  </li>
+</ul>
 
             <div className="mt-4">
               <p className="font-bold">Exemple :</p>
