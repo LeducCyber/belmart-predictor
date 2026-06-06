@@ -385,11 +385,7 @@ return (
     }}
   >
 <div className="min-h-screen relative">
- <a
-  href="/signup"
-  className="absolute right-0 top-[1060px] w-[760px] h-[300px] z-[999] bg-red-500/30"
-  aria-label="Créer un compte"
-/>
+ 
       {/* HEADER */}
       
 <div className="bg-[#082567] text-white px-6 py-4 border-b border-blue-900 shadow-lg">
@@ -704,11 +700,10 @@ className="w-full bg-white rounded-xl p-4 text-[#082567] shadow-md border border
         </a>
 
         <a
-          href="/signup"
-          className="bg-yellow-400 text-[#082567] py-4 rounded-2xl font-black"
-        >
-          Créer un compte
-        </a>
+  href="/signup"
+  className="absolute right-0 top-[820px] w-[650px] h-[220px] z-[999]"
+  aria-label="Créer un compte"
+/>
 
         <button
           onClick={() => setShowLoginModal(false)}
