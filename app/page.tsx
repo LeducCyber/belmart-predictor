@@ -398,7 +398,7 @@ return (
   
           </div>
 
-<div className="flex gap-4 md:gap-6 text-sm md:text-base font-bold items-center overflow-x-auto whitespace-nowrap px-2 md:px-4 scrollbar-hide">
+<div className="flex gap-1 md:gap-6 text-[10px] md:text-base font-bold items-center justify-center flex-wrap md:flex-nowrap px-0 md:px-4">
 
             <a
   href="/"
@@ -445,7 +445,7 @@ return (
                 onClick={
                   handleLogout
                 }
-                className="bg-white text-[#082567] px-5 py-2 rounded-2xl font-black"
+               className="bg-white text-[#082567] px-2 md:px-5 py-1 md:py-2 rounded-2xl font-black text-xs md:text-base"
               >
                 Déconnexion
               </button>
@@ -454,7 +454,7 @@ return (
 
               <a
                 href="/login"
-                className="bg-white text-[#082567] px-5 py-2 rounded-2xl font-black"
+              className="bg-white text-[#082567] px-2 md:px-5 py-1 md:py-2 rounded-2xl font-black text-xs md:text-base"
               >
                 Connexion
               </a>
@@ -472,7 +472,7 @@ return (
 
       {/* MATCHS */}
 
-<div className="px-0 pb-10 pt-[40px] md:px-4 md:pt-[400px] lg:pt-[800px]">
+<div className="px-0 pb-10 pt-[120px] md:px-4 md:pt-[400px] lg:pt-[800px]">
 
 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4 md:mt-32">
 
@@ -482,7 +482,7 @@ return (
 <img
   src="/partners/coca cola.jpeg"
   alt="Coca-Cola"
-  className="h-8 md:h-16 object-contain"
+ className="h-5 md:h-16 object-contain"
 />
 
 <img
@@ -504,7 +504,7 @@ return (
   </div>
 </div>
 
-<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-8 md:mt-32">
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-16 md:mt-32">
    {(showAllMatches ? matches : matches.slice(0, 6)).map(
   (match, index) => (
 
