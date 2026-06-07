@@ -117,7 +117,7 @@ export default function LoginPage() {
             onChange={(e) =>
               setEmail(e.target.value)
             }
-            className="w-full border-2 border-gray-200 rounded-2xl p-4 mt-2 outline-none"
+            className="w-full border-2 border-[#082567] bg-slate-200 rounded-2xl p-4 mt-2 outline-none text-[#082567] placeholder-gray-600"
           />
 
         </div>
