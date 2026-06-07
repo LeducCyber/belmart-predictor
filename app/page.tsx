@@ -491,7 +491,7 @@ return (
 />
 
 <img
-  src="/partners/Powerade.jpeg"
+  src="/partners/powerade.png"
   alt="Powerade"
     className="h-6 md:h-16 object-contain"
 
@@ -507,7 +507,7 @@ return (
   className="h-6 md:h-16 object-contain"
 />
 <img
-  src="/partners/Powerade.jpeg"
+  src="/partners/powerade.png"
   alt="Powerade"
     className="h-6 md:h-16 object-contain"
 
