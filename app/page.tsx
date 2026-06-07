@@ -525,13 +525,13 @@ return (
 
     <img
       src="/partners/cola.png"
-      alt="Cola"
+      alt="cola"
       className="h-6 md:h-16 object-contain"
     />
 
     <img
       src="/partners/maid.png"
-      alt="Maid"
+      alt="maid"
       className="h-6 md:h-16 object-contain"
     />
 
