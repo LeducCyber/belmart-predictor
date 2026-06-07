@@ -491,6 +491,11 @@ return (
 />
 
 <img
+  src="/partners/johnie.png"
+  alt="Johnie"
+  className="h-6 md:h-16 object-contain"
+/>
+<img
   src="/partners/pow.png"
   alt="pow"
     className="h-6 md:h-16 object-contain"
@@ -504,6 +509,11 @@ return (
 <img
   src="/partners/dasani.png"
   alt="Dasani"
+  className="h-6 md:h-16 object-contain"
+/>
+<img
+  src="/partners/johnie.png"
+  alt="Johnie"
   className="h-6 md:h-16 object-contain"
 />
 <img
