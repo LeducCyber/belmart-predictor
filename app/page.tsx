@@ -410,7 +410,7 @@ return (
   href="/leaderboard"
   className="hover:text-yellow-400 transition-colors"
 >
-  Classement Client
+  Classement
 </a>
 
            <a
@@ -473,6 +473,7 @@ return (
       {/* MATCHS */}
 
 <div className="px-0 pb-10 pt-[120px] md:px-4 md:pt-[400px] lg:pt-[800px]">
+  
 
 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4 md:mt-32">
 
