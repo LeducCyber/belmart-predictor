@@ -499,6 +499,23 @@ return (
   alt="Powerade"
    className="h-6 md:h-16 object-contain"
 />
+<img src="/partners/Casamigos.png" alt="Casamigos" className="h-6 md:h-16 object-contain" />
+
+<img src="/partners/Lays.png" alt="Lays" className="h-6 md:h-16 object-contain" />
+
+<img src="/partners/pitars.png" alt="pitars" className="h-6 md:h-16 object-contain" />
+
+<img src="/partners/JOHNNIE.jpg" alt="JOHNNIE" className="h-6 md:h-16 object-contain" />
+
+<img src="/partners/Walker.png" alt="Walker" className="h-6 md:h-16 object-contain" />
+
+<img src="/partners/menage.png" alt="Trois" className="h-6 md:h-16 object-contain" />
+
+<img src="/partners/White.jpg" alt="test" className="h-6 md:h-16 object-contain" />
+
+<img src="/partners/test2.jpg" alt="Produit" className="h-6 md:h-16 object-contain" />
+
+
     </div>
   </div>
 </div>
