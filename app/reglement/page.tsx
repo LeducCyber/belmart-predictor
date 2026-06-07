@@ -163,17 +163,15 @@ export default function ReglementPage() {
             <h3 className="text-2xl font-black mb-3"> Classement</h3>
 
             <p className="mb-3">
-              Les participants sont classés selon leur nombre total de points.
+             Les participants sont classés en fonction de leur nombre total de points.
             </p>
 
             <p className="font-bold mb-2">En cas d'égalité :</p>
 
             <ul className="space-y-2">
-              <li>• Le plus grand nombre de scores exacts trouvés.</li>
-              <li>• Le plus grand nombre de pronostics enregistrés.</li>
-              <li>
-                • Si l'égalité persiste, les participants conservent le même rang jusqu'à la prochaine mise à jour du classement.
-              </li>
+              <li>.En cas d'égalité, les participants concernés partagent le même rang et se répartissent également la valeur des prix associés aux rangs occupés
+  
+              </li>Exemple : si deux participants terminent à égalité au 6e rang, ils se partagent les prix des 6e et 7e positions. Le participant suivant est alors classé au 8e rang
             </ul>
           </div>
 
