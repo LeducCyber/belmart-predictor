@@ -477,7 +477,7 @@ return (
 
 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4 md:mt-32">
 <div className="overflow-hidden py-1 w-[72%] md:w-full">
-<div className="flex items-center gap-2 md:gap-16 animate-partners whitespace-nowrap w-max">
+  <div className="flex items-center gap-4 md:gap-16 animate-partners whitespace-nowrap w-max">
 <img
   src="/partners/coca cola.jpeg"
   alt="Coca-Cola"
@@ -525,7 +525,12 @@ return (
     </div>
   </div>
 </div>
-
+<a
+  href="/signup"
+  className="fixed bottom-24 right-4 z-[9999] bg-red-600 text-white px-4 py-3 rounded-full font-black shadow-xl animate-pulse"
+>
+  CLIQUER
+</a>
 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-16 md:mt-32">
    {(showAllMatches ? matches : matches.slice(0, 6)).map(
   (match, index) => (
