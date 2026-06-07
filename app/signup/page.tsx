@@ -175,7 +175,7 @@ fullName: `${firstName} ${lastName}`,
         setFirstName(e.target.value)
       }
       placeholder="Prénom"
-      className="w-full bg-white border-2 border-gray-300 rounded-2xl px-4 py-4 mt-2"
+      className="w-full bg-gray-100 border-2 border-[#082567] rounded-2xl px-4 py-4 mt-2 text-[#082567] font-medium placeholder-gray-500 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100 outline-none transition-all duration-300"
     />
   </div>
 
@@ -191,7 +191,7 @@ fullName: `${firstName} ${lastName}`,
         setLastName(e.target.value)
       }
       placeholder="Nom"
-      className="w-full bg-white border-2 border-gray-300 rounded-2xl px-4 py-4 mt-2"
+     className="w-full bg-gray-100 border-2 border-[#082567] rounded-2xl px-4 py-4 mt-2 text-[#082567] font-medium placeholder-gray-500 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100 outline-none transition-all duration-300"
     />
   </div>
 
@@ -207,7 +207,7 @@ fullName: `${firstName} ${lastName}`,
     setUsername(e.target.value)
   }
   placeholder="Nom d'utilisateur"
-  className="w-full bg-white border-2 border-gray-300 rounded-2xl px-4 py-3 mt-2 text-[#082567] font-medium placeholder-gray-500 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100 outline-none transition-all duration-300"
+ className="w-full bg-gray-100 border-2 border-[#082567] rounded-2xl px-4 py-4 mt-2 text-[#082567] font-medium placeholder-gray-500 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100 outline-none transition-all duration-300"
 />
         </div>
 
@@ -224,7 +224,7 @@ fullName: `${firstName} ${lastName}`,
     )
   }
   placeholder="+509XXXXXXXX"
-  className="w-full bg-white border-2 border-gray-300 rounded-2xl px-4 py-4 mt-2 text-[#082567] font-medium placeholder-gray-500 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100 outline-none transition-all duration-300"
+className="w-full bg-gray-100 border-2 border-[#082567] rounded-2xl px-4 py-4 mt-2 text-[#082567] font-medium placeholder-gray-500 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100 outline-none transition-all duration-300"
 />
           
 
@@ -245,7 +245,7 @@ fullName: `${firstName} ${lastName}`,
       setEmail(e.target.value)
     }
     placeholder="Votre email"
-    className="w-full bg-white border-2 border-gray-300 rounded-2xl px-4 py-4 mt-2 text-[#082567] font-medium placeholder-gray-500 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100 outline-none transition-all duration-300"
+    className="w-full bg-gray-100 border-2 border-[#082567] rounded-2xl px-4 py-4 mt-2 text-[#082567] font-medium placeholder-gray-500 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100 outline-none transition-all duration-300"
   />
 
 </div>
@@ -265,7 +265,7 @@ fullName: `${firstName} ${lastName}`,
       )
     }
     placeholder="Votre mot de passe"
-    className="w-full bg-white border-2 border-gray-300 rounded-2xl px-4 py-4 mt-2 text-[#082567] font-medium placeholder-gray-500 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100 outline-none transition-all duration-300"
+className="w-full bg-gray-100 border-2 border-[#082567] rounded-2xl px-4 py-4 mt-2 text-[#082567] font-medium placeholder-gray-500 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100 outline-none transition-all duration-300"
   />
 
 </div>
@@ -285,7 +285,7 @@ fullName: `${firstName} ${lastName}`,
       )
     }
     placeholder="Confirmer votre mot de passe"
-    className="w-full bg-white border-2 border-gray-300 rounded-2xl px-4 py-4 mt-2 text-[#082567] font-medium placeholder-gray-500 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100 outline-none transition-all duration-300"
+    className="w-full bg-gray-100 border-2 border-[#082567] rounded-2xl px-4 py-4 mt-2 text-[#082567] font-medium placeholder-gray-500 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100 outline-none transition-all duration-300"
   />
 
 </div>
@@ -328,7 +328,7 @@ fullName: `${firstName} ${lastName}`,
                 )
               }
              placeholder="Numéro de carte Cashback"
-              className="w-full bg-white border-2 border-gray-300 rounded-2xl px-4 py-4 mt-2 text-[#082567] font-medium placeholder-gray-500 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100 outline-none transition-all duration-300"
+            className="w-full bg-gray-100 border-2 border-[#082567] rounded-2xl px-4 py-4 mt-2 text-[#082567] font-medium placeholder-gray-500 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100 outline-none transition-all duration-300"
             />
 
           </div>
