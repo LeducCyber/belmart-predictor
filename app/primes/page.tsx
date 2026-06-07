@@ -44,12 +44,12 @@ export default function PrimesPage() {
 
           <div className="bg-white p-4 rounded-2xl shadow">
             <h2 className="font-black">5ème Place</h2>
-            <p>50 Caisses Assortiment de Produits Coca Cola</p>
+            <p>50 Paquets de 12 - Assortiment boissons de La Couronne</p>
           </div>
 
           <div className="bg-white p-4 rounded-2xl shadow">
             <h2 className="font-black">6ème Place</h2>
-            <p>45 Caisses Assortiment de Produits Coca Cola</p>
+            <p>45 Paquets de 12 - Assortiment boissons de La Couronne</p>
           </div>
 
           <div className="bg-white p-4 rounded-2xl shadow">
@@ -59,7 +59,7 @@ export default function PrimesPage() {
 
           <div className="bg-white p-4 rounded-2xl shadow">
             <h2 className="font-black">8ème Place</h2>
-            <p>40 Caisses Assortiment de Produits Coca Cola</p>
+            <p>40 Paquets de 12 - Assortiment boissons de La Couronne</p>
           </div>
 
           <div className="bg-white p-4 rounded-2xl shadow">
@@ -69,7 +69,7 @@ export default function PrimesPage() {
 
           <div className="bg-white p-4 rounded-2xl shadow">
             <h2 className="font-black">10ème Place</h2>
-            <p>35 Caisses Assortiment de Produits Coca Cola</p>
+            <p>35 Paquets de 12 - Assortiment boissons de La Couronne</p>
           </div>
 
           <div className="bg-white p-4 rounded-2xl shadow">
@@ -79,7 +79,7 @@ export default function PrimesPage() {
 
           <div className="bg-white p-4 rounded-2xl shadow">
             <h2 className="font-black">12ème Place</h2>
-            <p>30 Caisses Assortiment de Produits Coca Cola</p>
+            <p>30 Paquets de 12 - Assortiment boissons de La Couronne</p>
           </div>
 
           <div className="bg-white p-4 rounded-2xl shadow">
@@ -94,27 +94,27 @@ export default function PrimesPage() {
 
           <div className="bg-white p-4 rounded-2xl shadow">
             <h2 className="font-black">15ème Place</h2>
-            <p>25 Caisses Assortiment de Produits Coca Cola</p>
+            <p>25 Paquets de 12 - Assortiment boissons de La Couronne</p>
           </div>
 
           <div className="bg-white p-4 rounded-2xl shadow">
             <h2 className="font-black">16ème Place</h2>
-            <p>25 Caisses Assortiment de Produits Coca Cola</p>
+            <p>25 Paquets de 12 - Assortiment boissons de La Couronne</p>
           </div>
 
           <div className="bg-white p-4 rounded-2xl shadow">
             <h2 className="font-black">17ème Place</h2>
-            <p>25 Caisses Assortiment de Produits Coca Cola</p>
+            <p>25 Paquets de 12 - Assortiment boissons de La Couronne</p>
           </div>
 
           <div className="bg-white p-4 rounded-2xl shadow">
             <h2 className="font-black">18ème Place</h2>
-            <p>25 Caisses Assortiment de Produits Coca Cola</p>
+            <p>25 Paquets de 12 - Assortiment boissons de La Couronne</p>
           </div>
 
           <div className="bg-white p-4 rounded-2xl shadow">
             <h2 className="font-black">19ème Place</h2>
-            <p>25 Caisses Assortiment de Produits Coca Cola</p>
+            <p>25 Paquets de 12 - Assortiment boissons de La Couronne</p>
           </div>
 
           <div className="bg-white p-4 rounded-2xl shadow">
