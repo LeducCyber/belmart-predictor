@@ -710,7 +710,7 @@ className="w-full bg-white rounded-xl p-4 text-[#082567] shadow-md border border
    </div>
 <a
   href="/signup"
-  className="fixed bottom-24 right-4 z-50 bg-red-600 text-white px-6 py-4 rounded-full font-black text-base shadow-xl hover:bg-red-700 transition animate-pulse"
+  className="fixed bottom-40 md:bottom-24 right-4 z-50 bg-red-600 text-white px-6 py-4 rounded-full font-black text-base shadow-xl hover:bg-red-700 transition animate-pulse"
 >
   Cliquer pour vous inscrire
 </a>
