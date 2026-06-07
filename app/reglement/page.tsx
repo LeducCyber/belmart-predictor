@@ -169,10 +169,11 @@ export default function ReglementPage() {
             <p className="font-bold mb-2">En cas d'égalité :</p>
 
             <ul className="space-y-2">
-              <li>.En cas d'égalité, les participants concernés partagent le même rang et se répartissent également la valeur des prix associés aux rangs occupés
-  
-              </li>Exemple : si deux participants terminent à égalité au 6e rang, ils se partagent les prix des 6e et 7e positions. Le participant suivant est alors classé au 8e rang
-            </ul>
+              <li>En cas d'égalité, les participants concernés partagent le même rang et se répartissent à parts égales la valeur des prix associés aux rangs occupés.
+
+              </li>Pour les matchs à élimination directe, le score retenu est celui à la fin du temps réglementaire (90 minutes plus arrêts de jeu). En cas de prolongation ou de tirs au but, seule l'équipe qualifiée est prise en compte pour l'attribution des points liés au résultat
+            </ul>Belmart ne peut être tenu responsable d'un problème technique, d'une interruption de service ou d'un défaut de connexion empêchant l'enregistrement d'un pronostic.
+Belmart se réserve le droit d'interpréter le présent règlement et de trancher toute situation non prévue. Les décisions de Belmart sont finales et sans appel.
           </div>
 
           <div>
