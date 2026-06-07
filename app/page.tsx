@@ -476,9 +476,8 @@ return (
   
 
 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4 md:mt-32">
-
- <div className="overflow-hidden py-1 max-w-[68%] md:max-w-full">
-  <div className="flex items-center gap-4 md:gap-16 animate-partners whitespace-nowrap w-max">
+<div className="overflow-hidden py-1 w-[72%] md:w-full">
+<div className="flex items-center gap-2 md:gap-16 animate-partners whitespace-nowrap w-max">
 <img
   src="/partners/coca cola.jpeg"
   alt="Coca-Cola"
