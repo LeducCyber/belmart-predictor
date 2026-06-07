@@ -477,60 +477,86 @@ return (
 
 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4 md:mt-32">
 <div className="overflow-hidden py-1 w-[72%] md:w-full">
-  <div className="flex items-center gap-4 md:gap-16 animate-partners whitespace-nowrap w-max">
-<img
-  src="/partners/coca cola.jpeg"
-  alt="Coca-Cola"
-   className="h-6 md:h-16 object-contain"
-/>
-<img
-  src="/partners/dasani.png"
-  alt="Dasani"
-  className="h-6 md:h-16 object-contain"
-/>
+  <div className="flex items-center gap-2 md:gap-16 animate-partners whitespace-nowrap w-max">
 
-<img
-  src="/partners/johnie.png"
-  alt="Johnie"
-  className="h-6 md:h-16 object-contain"
-/>
-<img
-  src="/partners/pow.png"
-  alt="pow"
-    className="h-6 md:h-16 object-contain"
+    <img
+      src="/partners/coca cola.jpeg"
+      alt="Coca-Cola"
+      className="h-6 md:h-16 object-contain"
+    />
 
-/>  
-<img
-  src="/partners/coca cola.jpeg"
-  alt="Coca-Cola"
-   className="h-6 md:h-16 object-contain"
-/>
-<img
-  src="/partners/dasani.png"
-  alt="Dasani"
-  className="h-6 md:h-16 object-contain"
-/>
-<img
-  src="/partners/johnie.png"
-  alt="johnie"
-  className="h-6 md:h-16 object-contain"
-/>
-<img
-  src="/partners/pow.png"
-  alt="pow"
-    className="h-6 md:h-16 object-contain"
+    <img
+      src="/partners/cola.png"
+      alt="Cola"
+      className="h-6 md:h-16 object-contain"
+    />
 
-/>  
+    <img
+      src="/partners/maid.png"
+      alt="Maid"
+      className="h-6 md:h-16 object-contain"
+    />
+
+    <img
+      src="/partners/dasani.png"
+      alt="Dasani"
+      className="h-6 md:h-16 object-contain"
+    />
+
+    <img
+      src="/partners/pow.png"
+      alt="Powerade"
+      className="h-6 md:h-16 object-contain"
+    />
+
+    <img
+      src="/partners/johnie.png"
+      alt="Johnnie"
+      className="h-6 md:h-16 object-contain"
+    />
+
+    {/* Répétition pour l'animation infinie */}
+
+    <img
+      src="/partners/coca cola.jpeg"
+      alt="Coca-Cola"
+      className="h-6 md:h-16 object-contain"
+    />
+
+    <img
+      src="/partners/cola.png"
+      alt="Cola"
+      className="h-6 md:h-16 object-contain"
+    />
+
+    <img
+      src="/partners/maid.png"
+      alt="Maid"
+      className="h-6 md:h-16 object-contain"
+    />
+
+    <img
+      src="/partners/dasani.png"
+      alt="Dasani"
+      className="h-6 md:h-16 object-contain"
+    />
+
+    <img
+      src="/partners/pow.png"
+      alt="Powerade"
+      className="h-6 md:h-16 object-contain"
+    />
+
+    <img
+      src="/partners/johnie.png"
+      alt="Johnnie"
+      className="h-6 md:h-16 object-contain"
+    />
+
+  </div>
 
     </div>
   </div>
-</div>
-<a
-  href="/signup"
-  className="fixed bottom-24 right-4 z-[9999] bg-red-600 text-white px-4 py-3 rounded-full font-black shadow-xl animate-pulse"
->
-  CLIQUER
-</a>
 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-16 md:mt-32">
    {(showAllMatches ? matches : matches.slice(0, 6)).map(
   (match, index) => (
@@ -681,21 +707,8 @@ className="w-full bg-white rounded-xl p-4 text-[#082567] shadow-md border border
 
         </div> {/* fin grid */}
 
-        <div className="flex justify-center mt-8">
+   </div>
 
-          <button
-            onClick={() => setShowAllMatches(!showAllMatches)}
-            className="bg-[#082567] text-white px-8 py-4 rounded-2xl font-black hover:bg-yellow-500 hover:text-[#082567] transition"
-          >
-            {showAllMatches
-              ? "Voir moins de matchs"
-              : "Voir plus de matchs"}
-          </button>
-        </div>
-
-          </div>
-
-  </div>
 
 {showLoginModal && (
 
@@ -704,7 +717,7 @@ className="w-full bg-white rounded-xl p-4 text-[#082567] shadow-md border border
     <div className="bg-white rounded-3xl p-8 max-w-md w-full mx-4 text-center">
 
       <h2 className="text-3xl font-black text-[#082567]">
-        ⚽ Connexion requise
+        Connexion requise
       </h2>
 
       <p className="mt-4 text-gray-600">
@@ -719,7 +732,6 @@ className="w-full bg-white rounded-xl p-4 text-[#082567] shadow-md border border
         >
           Se connecter
         </a>
-
 
         <button
           onClick={() => setShowLoginModal(false)}
@@ -737,5 +749,8 @@ className="w-full bg-white rounded-xl p-4 text-[#082567] shadow-md border border
 )}
 
 </div>
+
+</div>
+
 );
 }
