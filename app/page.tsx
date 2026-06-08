@@ -560,7 +560,7 @@ return (
   <div className="flex justify-center mb-8">
   <a
     href="/signup"
-  className="bg-yellow-400 hover:bg-yellow-500 text-[#082567] font-black text-sm md:text-lg px-4 md:px-8 py-2 md:py-4 rounded-xl md:rounded-2xl shadow-lg transition-all duration-300"
+   className="bg-yellow-400 hover:bg-yellow-500 text-[#082567] font-black text-[10px] md:text-lg px-2 md:px-8 py-1.5 md:py-4 rounded-xl md:rounded-2xl shadow-lg transition-all duration-300"
   >
     👉 Cliquez pour vous inscrire
   </a>
