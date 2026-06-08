@@ -378,11 +378,13 @@ return (
   <div
     className="min-h-screen bg-no-repeat"
     style={{
-      backgroundImage: "url('/pronostic.png')",
-        backgroundSize: "100% auto",
-      backgroundPosition: "center 40px",
-       backgroundRepeat: "no-repeat",
-    }}
+  backgroundImage: "url('/pronostic.png')",
+  backgroundSize: "100% auto",
+  backgroundPosition: window.innerWidth < 768
+    ? "center 100px"
+    : "center 60px",
+  backgroundRepeat: "no-repeat",
+}}
   >
 <div className="min-h-screen relative">
  
