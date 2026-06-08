@@ -559,7 +559,7 @@ return (
   </div>
   <div className="flex justify-center mb-8">
   <a
-    href="/register"
+    href="/signup"
     className="bg-yellow-400 hover:bg-yellow-500 text-[#082567] font-black text-lg px-8 py-4 rounded-2xl shadow-lg transition-all duration-300"
   >
     👉 Cliquez pour vous inscrire
