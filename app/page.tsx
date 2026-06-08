@@ -559,6 +559,14 @@ return (
 
     </div>
   </div>
+  <div className="flex justify-center mb-8">
+  <a
+    href="/register"
+    className="bg-yellow-400 hover:bg-yellow-500 text-[#082567] font-black text-lg px-8 py-4 rounded-2xl shadow-lg transition-all duration-300"
+  >
+    👉 Cliquez pour vous inscrire
+  </a>
+</div>
 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-16 md:mt-32">
    {(showAllMatches ? matches : matches.slice(0, 6)).map(
   (match, index) => (
