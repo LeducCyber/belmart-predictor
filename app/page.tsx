@@ -380,9 +380,7 @@ return (
     style={{
   backgroundImage: "url('/pronostic.png')",
   backgroundSize: "100% auto",
-  backgroundPosition: window.innerWidth < 768
-    ? "center 100px"
-    : "center 60px",
+  backgroundPosition: "center 60px",
   backgroundRepeat: "no-repeat",
 }}
   >
