@@ -380,7 +380,7 @@ return (
     style={{
       backgroundImage: "url('/pronostic.png')",
         backgroundSize: "100% auto",
-      backgroundPosition: "top center",
+      backgroundPosition: "center 40px",
        backgroundRepeat: "no-repeat",
     }}
   >
@@ -388,7 +388,7 @@ return (
  
       {/* HEADER */}
       
-<div className="bg-[#082567] text-white px-4 py-1 border-b border-blue-900 shadow-lg">
+<div className="bg-[#082567] text-white px-4 py-1 border-b border-blue-900 shadow-lg mt-2">
 
         <div className="flex flex-col lg:flex-row items-center justify-between gap-4">
 
@@ -445,7 +445,7 @@ return (
                 onClick={
                   handleLogout
                 }
-               className="bg-white text-[#082567] px-2 md:px-5 py-1 md:py-2 rounded-2xl font-black text-xs md:text-base"
+    className="bg-white text-[#082567] px-2 md:px-3 py-1 rounded-xl font-bold text-xs"
               >
                 Déconnexion
               </button>
@@ -454,7 +454,7 @@ return (
 
               <a
                 href="/login"
-              className="bg-white text-[#082567] px-2 md:px-5 py-1 md:py-2 rounded-2xl font-black text-xs md:text-base"
+            className="bg-white text-[#082567] px-2 py-0.5 rounded-lg font-semibold text-[11px]"
               >
                 Connexion
               </a>
